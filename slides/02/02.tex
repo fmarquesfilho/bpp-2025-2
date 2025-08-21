@@ -1,0 +1,501 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\title{Por que estudar Boas Práticas de Programação?}
+\subtitle{Introdução e Motivação}
+\author{Prof. Fernando Figueira}
+\institute{DIMAp -- UFRN}
+\date{22 de Agosto de 2025}
+
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{azulUni}{RGB}{0, 51, 102}
+\setbeamercolor{palette primary}{bg=azulUni,fg=white}
+\setbeamercolor{palette secondary}{bg=azulUni!80!black,fg=white}
+\setbeamercolor{palette tertiary}{bg=azulUni!60!black,fg=white}
+\setbeamercolor{palette quaternary}{bg=azulUni!40!black,fg=white}
+\setbeamercolor{structure}{fg=azulUni}
+\setbeamercolor{section in toc}{fg=azulUni}
+\setbeamercolor{subsection in toc}{fg=azulUni!80!black}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Sumário}
+\tableofcontents
+\end{frame}
+
+\section{Introdução}
+\begin{frame}{O Dilema do Desenvolvedor}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Código que funciona $\neq$ Código bom}
+\begin{itemize}
+    \item Qualquer um pode escrever código que um computador entenda
+    \item Bons programadores escrevem código que humanos entendam
+    \item Manutenção consome 60-80\% do custo total de software
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\centering
+% Ilustração de código espaguete feita com TikZ
+\begin{tikzpicture}[scale=0.8]
+  % Blocos de código
+  \foreach \x/\y in {0.5/3, 1.5/2.8, 2.5/3.2, 3.5/2.9, 0.8/2.2, 2.2/2.1, 3.2/2.3, 1.2/1.4, 2.8/1.5}
+    \fill[blue!60] (\x,\y) rectangle ++(0.3,0.2);
+  
+  % Conexões emaranhadas (código espaguete)
+  \draw[red, thick, bend left=30] (0.5,3) to (2.2,2.1);
+  \draw[red, thick, bend right=40] (1.5,2.8) to (3.2,2.3);
+  \draw[red, thick, bend left=20] (2.5,3.2) to (1.2,1.4);
+  \draw[red, thick, bend right=50] (3.5,2.9) to (0.8,2.2);
+  \draw[red, thick, bend left=60] (0.8,2.2) to (2.8,1.5);
+  \draw[red, thick, bend right=30] (2.2,2.1) to (3.5,2.9);
+  
+  % Símbolos de alerta
+  \node[red, scale=1.5] at (1.5,0.8) {!};
+  \node[red, scale=1.5] at (2.8,0.8) {!};
+  
+  \node[below] at (2,0.3) {\scriptsize{Código Espaguete}};
+\end{tikzpicture}
+\\\tiny{Fonte: Ilustração própria - Representação de código espaguete}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{O que são Boas Práticas de Programação?}
+\begin{block}{Definição}
+Conjunto de técnicas, princípios e padrões que melhoram a qualidade, legibilidade e manutenibilidade do código, facilitando a colaboração e reduzindo erros.
+\end{block}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+    \item Nomenclatura clara
+    \item Organização lógica
+    \item Comentários úteis
+    \item Formatação consistente
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+    \item Tratamento de erros
+    \item Princípios de design
+    \item Testes automatizados
+    \item Refatoração contínua
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Impacto no Mundo Real}
+\begin{frame}{Custo do Código de Baixa Qualidade}
+\begin{table}
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Problema} & \textbf{Custo Anual (Estimativa)} \\
+\midrule
+Tempo perdido com manutenção & \$85 bilhões \\
+Bugs e erros evitáveis & \$62 bilhões \\
+Retrabalho por código ilegível & \$45 bilhões \\
+Complexidade desnecessária & \$38 bilhões \\
+\bottomrule
+\end{tabular}
+\end{table}
+\vspace{0.5cm}
+\footnotesize{Fonte: Estudos sobre produtividade em desenvolvimento de software (2023)}
+\end{frame}
+
+\begin{frame}{Caso Real: Knight Capital}
+\begin{alertblock}{Um exemplo extremo}
+Em 2012, a Knight Capital perdeu \$460 milhões em 45 minutos devido a:
+\begin{itemize}
+    \item Código não testado adequadamente
+    \item Sistema de deploy falho
+    \item Código legado não documentado
+    \item Falta de práticas de segurança
+\end{itemize}
+\end{alertblock}
+
+\begin{block}{Resultado}
+\begin{itemize}
+    \item Quase levou à falência da empresa
+    \item Aquisição forçada por concorrente
+    \item Multa de \$12 milhões
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Benefícios das Boas Práticas}
+\begin{frame}{Vantagens para Desenvolvedores}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Produtividade}
+\begin{itemize}
+    \item Menor tempo de debug
+    \item Entendimento mais rápido
+    \item Menos retrabalho
+    \item Integração facilitada
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Qualidade de Vida}
+\begin{itemize}
+    \item Menor estresse
+    \item Maior satisfação
+    \item Menor carga cognitiva
+    \item Orgulho do trabalho
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rounded corners, fill=blue!20] at (0,0) {
+\footnotesize{\textbf{Desenvolvedores felizes escrevem código melhor}}
+};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Vantagens para Empresas}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Econômicas}
+\begin{itemize}
+    \item Redução de custos
+    \item Menor rotatividade
+    \item Retorno mais rápido
+    \item Menor risco legal
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Estratégicas}
+\begin{itemize}
+    \item Competitividade
+    \item Escalabilidade
+    \item Adaptabilidade
+    \item Reputação
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+% Ilustração de crescimento empresarial com TikZ
+\begin{tikzpicture}[scale=0.6]
+  % Eixos
+  \draw[->] (0,0) -- (5,0) node[right] {\scriptsize{Tempo}};
+  \draw[->] (0,0) -- (0,3) node[above] {\scriptsize{Valor}};
+  
+  % Curva de crescimento
+  \draw[green!70!black, very thick] (0.5,0.3) .. controls (1.5,0.8) and (2.5,1.5) .. (4,2.5);
+  
+  % Pontos na curva
+  \fill[blue] (0.5,0.3) circle (2pt) node[below] {\tiny{Início}};
+  \fill[orange] (1.5,0.8) circle (2pt) node[below] {\tiny{Práticas}};
+  \fill[green] (2.5,1.5) circle (2pt) node[below] {\tiny{CI/CD}};
+  \fill[purple] (4,2.5) circle (2pt) node[below] {\tiny{Sucesso}};
+  
+  \node[below] at (2.5,-0.8) {\scriptsize{Crescimento com Boas Práticas}};
+\end{tikzpicture}
+\\\tiny{Fonte: Ilustração própria - Crescimento empresarial com boas práticas}
+\end{center}
+\end{frame}
+
+\section{Princípios Fundamentais}
+\begin{frame}{DRY: Don't Repeat Yourself}
+\begin{block}{Princípio}
+``Cada pedaço de conhecimento deve ter uma representação única, não ambígua e autoritativa dentro de um sistema.''
+\end{block}
+
+\begin{exampleblock}{Exemplo Prático}
+\begin{itemize}
+    \item \textbf{Ruim}: Mesmo código em 10 lugares diferentes
+    \item \textbf{Bom}: Uma função bem nomeada reutilizável
+    \item \textbf{Resultado}: Mudanças em um único lugar
+\end{itemize}
+\end{exampleblock}
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, circle, fill=green!20] (one) at (0,0) {1};
+\node[draw, circle, fill=red!20] (many) at (3,0) {Muitos};
+\draw[->, thick] (many) to [bend right=30] node[above] {\scriptsize{DRY}} (one);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{KISS: Keep It Simple, Stupid}
+\begin{block}{Princípio}
+``A simplicidade deve ser um objetivo chave no design, e a complexidade desnecessária deve ser evitada.''
+\end{block}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{exampleblock}{Complexidade Acidental vs. Essencial}
+\begin{itemize}
+    \item \textbf{Essencial}: Complexidade inerente ao problema
+    \item \textbf{Acidental}: Complexidade introduzida pela solução
+    \item Boas práticas reduzem a acidental
+\end{itemize}
+\end{exampleblock}
+\end{column}
+\begin{column}{0.4\textwidth}
+\centering
+% Ilustração de complexidade com TikZ
+\begin{tikzpicture}[scale=0.6]
+  % Complexidade Essencial (lado esquerdo)
+  \draw[green!70!black, thick] (-1.5,-1) rectangle (-0.5,1);
+  \node[green!70!black] at (-1,1.3) {\tiny{\textbf{Essencial}}};
+  
+  % Elementos organizados
+  \fill[green!60] (-1.3,0.5) circle (2pt);
+  \fill[green!60] (-1,0) circle (2pt);
+  \fill[green!60] (-0.7,-0.5) circle (2pt);
+  \draw[green!70!black] (-1.3,0.5) -- (-1,0) -- (-0.7,-0.5);
+  
+  % Complexidade Acidental (lado direito)
+  \draw[red!70!black, thick] (0.5,-1) rectangle (1.5,1);
+  \node[red!70!black] at (1,1.3) {\tiny{\textbf{Acidental}}};
+  
+  % Elementos emaranhados
+  \fill[red!60] (0.7,0.6) circle (1.5pt);
+  \fill[red!60] (0.9,0.2) circle (1.5pt);
+  \fill[red!60] (1.1,-0.1) circle (1.5pt);
+  \fill[red!60] (1.3,0.4) circle (1.5pt);
+  \fill[red!60] (0.8,-0.6) circle (1.5pt);
+  
+  % Conexões confusas
+  \draw[red!70!black, bend left] (0.7,0.6) to (1.1,-0.1);
+  \draw[red!70!black, bend right] (0.9,0.2) to (1.3,0.4);
+  \draw[red!70!black, bend left] (1.1,-0.1) to (0.8,-0.6);
+  
+  % Seta
+  \draw[->, blue, thick] (-0.3,0) -- (0.3,0);
+  \node[blue, above] at (0,0.3) {\tiny{Reduzir}};
+  
+  \node[below] at (0,-1.5) {\scriptsize{Complexidade do Sistema}};
+\end{tikzpicture}
+\\\tiny{Fonte: Ilustração própria - Complexidade do sistema}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{YAGNI: You Ain't Gonna Need It}
+\begin{block}{Princípio}
+``Implemente apenas funcionalidades que você realmente precisa, não as que você prevê que poderá precisar.''
+\end{block}
+
+\begin{alertblock}{Armadilha Comum}
+\begin{itemize}
+    \item Desperdício de tempo com features não usadas
+    \item Complexidade desnecessária
+    \item Dificuldade de manutenção
+    \item Custo aumentado sem benefício
+\end{itemize}
+\end{alertblock}
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rounded corners, fill=yellow!20] at (0,0) {
+\footnotesize{\textbf{Pergunte-se: Isso é necessário AGORA?}}
+};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\section{CI/CD e Boas Práticas}
+
+\begin{frame}{Benefícios do CI/CD}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Integração Contínua}
+\begin{itemize}
+    \item Testes automatizados
+    \item Builds frequentes
+    \item Detecção precoce de bugs
+    \item Merge diário no mínimo
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Entrega Contínua}
+\begin{itemize}
+    \item Deploy automatizado
+    \item Sempre pronto para release
+    \item Menor risco de entrega
+    \item Feedback rápido dos clientes
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{exampleblock}{Valor de Negócio}
+\begin{itemize}
+    \item \textbf{Comercial}: Receita direta e redução de custos
+    \item \textbf{Mercado}: Atração de novos clientes e vantagem competitiva
+    \item \textbf{Eficiência}: Otimização de processos e time-to-market
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\section{Impacto na Carreira}
+\begin{frame}{Diferencial no Mercado de Trabalho}
+\begin{block}{O que empregadores valorizam}
+\begin{itemize}
+    \item Capacidade de trabalhar em equipe
+    \item Código de fácil manutenção e escalável
+    \item Habilidade de documentar
+    \item Entendimento de padrões e princípios
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Pesquisa com Tech Recruiters (2024)}
+\begin{itemize}
+    \item 87\% preferem desenvolvedores com boas práticas
+    \item 76\% pagam até 30\% mais por esta habilidade
+    \item 92\% consideram em processos seletivos
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Progressão na Carreira}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Junior → Pleno}
+\begin{itemize}
+    \item Escreve código que funciona
+    \item Foca em tarefas individuais
+    \item Precisa de supervisão
+    \item Resolve problemas imediatos
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Pleno → Sênior}
+\begin{itemize}
+    \item Escreve código de fácil manutenibilidade
+    \item Pensa no sistema completo
+    \item Orienta outros devs
+    \item Antecipa problemas futuros
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rounded corners, fill=blue!10] at (0,0) {
+\footnotesize{\textbf{O uso correto de boas práticas separa os níveis de experiência entre os devs.}}
+};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\section{Aplicação Prática}
+\begin{frame}{Como Implementar no Dia a Dia}
+\begin{block}{Passos Incrementais}
+\begin{enumerate}
+    \item \textbf{Revisar}: Analise seu próprio código criticamente
+    \item \textbf{Identificar}: Detecte code smells e problemas
+    \item \textbf{Refatorar}: Melhore gradualmente
+    \item \textbf{Automatizar}: Use ferramentas de análise
+    \item \textbf{Revisar}: Peça feedback constantemente
+\end{enumerate}
+\end{block}
+
+\begin{exampleblock}{Ferramentas Úteis}
+\begin{itemize}
+    \item Linters (ESLint, Pylint, Checkstyle)
+    \item Análise estática (SonarQube)
+    \item Formatters (Prettier, Black)
+    \item Testes automatizados
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Métricas de Sucesso}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Quantitativas}
+\begin{itemize}
+    \item ↓ Tempo de manutenção
+    \item ↓ Bugs reportados
+    \item ↓ Complexidade ciclomática
+    \item ↑ Cobertura de testes
+    \item ↑ Velocidade de desenvolvimento
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Qualitativas}
+\begin{itemize}
+    \item ↑ Satisfação da equipe
+    \item ↑ Confiança nas mudanças
+    \item ↑ Clareza do código
+    \item ↓ Estresse e sobrecarga
+    \item ↑ Qualidade do produto
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Conclusão}
+\begin{frame}{Por que Investir em Boas Práticas?}
+\begin{block}{Resumo dos Benefícios}
+\begin{itemize}
+    \item \textbf{Econômico}: Reduz custos de desenvolvimento e manutenção
+    \item \textbf{Técnico}: Aumenta qualidade e confiabilidade
+    \item \textbf{Humano}: Melhora satisfação e colaboração
+    \item \textbf{Profissional}: Diferencia no mercado de trabalho
+\end{itemize}
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, star, star points=5, fill=yellow!80!orange, inner sep=3pt] at (0,0) {};
+\node at (0,-1) {\footnotesize{Investimento que sempre retorna}};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\centering
+\Huge \textbf{Perguntas?}
+\vspace{2cm}
+\small \url{https://github.com/fmarquesfilho/bpp-2025-2}
+
+\end{frame}
+
+\end{document}
