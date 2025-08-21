@@ -1,0 +1,284 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\title{Boas Práticas de Programação}
+\subtitle{Plano do Curso -- 2025.2}
+\author{Prof. Fernando Figueira}
+\institute{DIMAp -- UFRN}
+\date{\today}
+
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{azulUni}{RGB}{0, 51, 102}
+\setbeamercolor{palette primary}{bg=azulUni,fg=white}
+\setbeamercolor{palette secondary}{bg=azulUni!80!black,fg=white}
+\setbeamercolor{palette tertiary}{bg=azulUni!60!black,fg=white}
+\setbeamercolor{palette quaternary}{bg=azulUni!40!black,fg=white}
+\setbeamercolor{structure}{fg=azulUni}
+\setbeamercolor{section in toc}{fg=azulUni}
+\setbeamercolor{subsection in toc}{fg=azulUni!80!black}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Sumário}
+\tableofcontents
+\end{frame}
+
+\section{Informações Gerais}
+\begin{frame}{Informações Gerais}
+\begin{itemize}
+    \item \textbf{Período:} 2025.2
+    \item \textbf{Dias de aula:} Sextas-feiras
+    \item \textbf{Modalidade:} Presencial (exceto acompanhamento de projeto)
+    \item \textbf{Linguagem:} Livre para o projeto
+    \item \textbf{Repositório:} \url{https://github.com/fmarquesfilho/bpp-2025-2}
+\end{itemize}
+\end{frame}
+
+\section{Ementa e Abordagem}
+\begin{frame}{Ementa do Curso}
+\begin{block}{Conteúdos abordados}
+\begin{itemize}
+    \item Organização de código em classes e pacotes
+    \item Critérios de qualidade de rotinas
+    \item Programação defensiva e com pseudo-código
+    \item Padrões de comentários e nomenclatura
+    \item Estruturas de dados e controle de código
+    \item Automação de compilação e testes
+    \item Análise de cobertura e desempenho
+    \item Técnicas de depuração
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Abordagem Pedagógica}
+\begin{block}{Foco na prática}
+\begin{itemize}
+    \item Princípios de \textbf{código limpo} e \textbf{SOLID}
+    \item Identificação de \textbf{code smells}
+    \item Técnicas de \textbf{refatoração}
+    \item Ferramentas open-source de análise estática
+    \item Aplicação em projetos reais
+\end{itemize}
+\end{block}
+
+\begin{block}{Recursos principais}
+\begin{itemize}
+    \item \href{https://luzkan.github.io/smells/}{Catálogo de Code Smells e Refatorações}
+    \item Exemplos práticos da internet
+    \item Mineração de repositórios
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Metodologia de Avaliação}
+\begin{frame}{Sistema de Avaliação}
+\begin{table}
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Unidade} & \textbf{Tipo} & \textbf{Descrição} \\
+\midrule
+U1 (10,0) & Trabalho Prático & Planejamento do projeto \\
+U2 (10,0) & Prova Escrita & Conceitos teóricos e práticos \\
+U3 (10,0) & Projeto Final & Desenvolvimento do MVP \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{block}{Nota Final}
+Média aritmética das três unidades
+\end{block}
+\end{frame}
+
+\begin{frame}{Projeto do Curso}
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{block}{Características}
+\begin{itemize}
+    \item Individual ou grupos de 2-3 pessoas
+    \item Modelo MVP (Minimum Viable Product)
+    \item Entregas com vídeo (5-8 min)
+    \item Artefatos em PDF/ZIP
+    \item Foco na aplicação prática
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Calendário do Curso}
+\begin{frame}{Primeiras Semanas}
+\begin{table}
+\scriptsize
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Data} & \textbf{Atividade} \\
+\midrule
+22/08/25 & Apresentação do curso \\
+29/08/25 & Código Limpo: Nomenclatura e Estrutura \\
+05/09/25 & Code Smells e Ferramentas de Detecção \\
+12/09/25 & Princípios SOLID \\
+19/09/25 & Técnicas de Refatoração \\
+26/09/25 & Ferramentas de Análise Estática \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Entregas e Avaliações}
+\begin{table}
+\scriptsize
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Data} & \textbf{Atividade} \\
+\midrule
+02/10/25 & \textbf{Entrega U1} (via SIGAA até 23:59) \\
+03/10/25 & \textcolor{red}{Feriado - Não haverá aula} \\
+10/10/25 & Mineração de Repositórios I \\
+17/10/25 & Mineração de Repositórios II \\
+24/10/25 & Programação Defensiva \\
+31/10/25 & Automação de Testes \\
+07/11/25 & \textbf{Prova U2} (Avaliação Escrita) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Semanas Finais}
+\begin{table}
+\scriptsize
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Data} & \textbf{Atividade} \\
+\midrule
+14/11/25 & Depuração e Análise de Desempenho \\
+21/11/25 & \textcolor{red}{Feriado - Não haverá aula} \\
+28/11/25 & Acompanhamento do Projeto (online) \\
+05/12/25 & \textbf{Entrega U3} (via SIGAA até 23:59) \\
+12/12/25 & Recuperação \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\section{Datas Importantes}
+\begin{frame}{Feriados e Suspensões}
+\begin{alertblock}{Datas sem aula}
+\begin{itemize}
+    \item \textbf{03/10/25} - Dia dos Mártires de Cunhaú e Uruaçu
+    \item \textbf{28/10/25} - Dia do Servidor Público
+    \item \textbf{21/11/25} - Feriado Municipal em Natal
+\end{itemize}
+\end{alertblock}
+
+\begin{block}{Observações}
+\begin{itemize}
+    \item Acompanhamento do projeto (28/11) será online
+    \item Plantão para dúvidas na entrega final (05/12)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Recursos e Materiais}
+\begin{frame}{Materiais de Apoio}
+\begin{block}{Principais recursos}
+\begin{itemize}
+    \item \textbf{Livro:} ``Clean Code'' de Robert C. Martin
+    \item \textbf{Catálogo:} \url{https://luzkan.github.io/smells/}
+    \item \textbf{Ferramentas:} SonarQube, PMD, Checkstyle
+    \item \textbf{Testes:} JUnit, Valgrind, outras ferramentas
+    \item \textbf{Repositório:} GitHub do curso
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Ferramentas Utilizadas}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Análise Estática}
+\begin{itemize}
+    \item SonarQube
+    \item PMD
+    \item Checkstyle
+    \item ESLint/TSLint
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Testes e Qualidade}
+\begin{itemize}
+    \item JUnit/TestNG
+    \item Jest/Mocha
+    \item JaCoCo
+    \item Valgrind
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Contato e Informações}
+\begin{frame}{Comunicação e Contato}
+\begin{block}{Canais oficiais}
+\begin{itemize}
+    \item \textbf{SIGAA:} Comunicações oficiais e entregas
+    \item \textbf{Repositório GitHub:} \url{https://github.com/fmarquesfilho/bpp-2025-2}
+    \item \textbf{E-mail:} [seu.email@universidade.edu]
+\end{itemize}
+\end{block}
+
+\begin{block}{Modalidades de aula}
+\begin{itemize}
+    \item \textbf{Presencial:} Aulas regulares
+    \item \textbf{Online:} Acompanhamento de projeto (28/11)
+    \item \textbf{Plantão:} Dúvidas sobre entregas (05/12)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Expectativas de Aprendizado}
+\begin{block}{Ao final do curso, você será capaz de:}
+\begin{itemize}
+    \item Identificar e corrigir code smells
+    \item Aplicar princípios SOLID e Clean Code
+    \item Utilizar ferramentas de análise estática
+    \item Desenvolver código de alta qualidade
+    \item Implementar testes automatizados
+    \item Realizar refatorações eficazes
+    \item Analisar desempenho e detectar gargalos
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\centering
+\Huge \textbf{Bons Estudos!}
+\vspace{1cm}
+\\
+\large Dúvidas e sugestões são sempre bem-vindas!
+\\
+\vspace{0.5cm}
+\small \url{https://github.com/fmarquesfilho/bpp-2025-2}
+\end{frame}
+
+\end{document}
