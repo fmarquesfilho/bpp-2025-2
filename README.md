@@ -76,7 +76,8 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 ### **Semana 7** - Entrega U1: Planejamento do Projeto
 | Data     | Atividade                                          |
 |----------|----------------------------------------------------|
-| 03/10/25 | **Feriado. Não haverá aula. As entregas devem ser realizadas via SIGAA até 23:59.** |
+| 02/10/25 | **As entregas devem ser realizadas via SIGAA até 23:59.** |
+| 03/10/25 | **Feriado (não haverá aula)** |
 
 ### **Semana 8** - Mineração de Repositórios
 | Data | Atividade |
