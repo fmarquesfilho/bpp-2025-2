@@ -1,0 +1,677 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{graphicx}
+\usetikzlibrary{shapes.geometric, arrows, positioning, shadows}
+
+% Tema moderno
+\usetheme{metropolis}
+\usecolortheme{default}
+
+% Cores personalizadas
+\definecolor{cleanblue}{RGB}{52, 152, 219}
+\definecolor{cleangreen}{RGB}{46, 204, 113}
+\definecolor{cleanred}{RGB}{231, 76, 60}
+\definecolor{cleangray}{RGB}{149, 165, 166}
+\definecolor{darkgray}{RGB}{44, 62, 80}
+
+% Configuração do código
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{gray!10},
+    commentstyle=\color{cleangreen},
+    keywordstyle=\color{cleanblue}\bfseries,
+    numberstyle=\tiny\color{cleangray},
+    stringstyle=\color{cleanred},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{cleangray!30}
+}
+\lstset{style=mystyle}
+
+% Informações do documento
+\title{Código Limpo: Princípios e Práticas}
+\subtitle{Boas Práticas de Programação - BPP 2025.2}
+\author{Prof. Fernando Marques Filho}
+\institute{Universidade Federal do Rio Grande do Norte}
+\date{\today}
+
+\begin{document}
+
+% Slide de título
+\frame{\titlepage}
+
+% Sumário
+\begin{frame}
+\frametitle{Agenda}
+\tableofcontents
+\end{frame}
+
+\section{Introdução ao Código Limpo}
+
+\begin{frame}
+\frametitle{O que é Código Limpo?}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \node[draw, rectangle, fill=cleanblue!20, minimum width=8cm, minimum height=3cm, rounded corners=10pt] (main) at (0,0) {};
+    \node[text width=7cm, align=center] at (0,0.5) {\Large\textbf{Código Limpo}};
+    \node[text width=7cm, align=center] at (0,0) {É um código};
+    \node[text width=7cm, align=center] at (0,-0.5) {\textcolor{cleanblue}{\textbf{fácil de entender}} e \textcolor{cleangreen}{\textbf{fácil de alterar}}};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{center}
+\textit{"Qualquer tolo consegue escrever código que um computador entende.\\
+Bons programadores escrevem código que humanos podem entender."}\\
+\vspace{0.2cm}
+\textbf{— Martin Fowler}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Origem e Motivação}
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{itemize}
+    \item \textbf{Criado por:} Robert C. Martin (Uncle Bob)
+    \item \textbf{Motivação:} Combater o débito técnico
+    \item \textbf{Objetivo:} Software sustentável e de qualidade
+\end{itemize}
+
+\vspace{0.5cm}
+\begin{block}{Débito Técnico}
+Custo implícito de uma implementação pensada apenas no agora, em vez de usar uma abordagem de melhor qualidade.
+\end{block}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}
+    \draw[fill=cleanred!20, draw=cleanred, thick] (0,0) rectangle (3,2);
+    \node at (1.5,1.5) {\faExclamationTriangle};
+    \node[text width=2.8cm, align=center] at (1.5,0.8) {\small Débito Técnico};
+    \node[text width=2.8cm, align=center] at (1.5,0.3) {\tiny Soluções rápidas geram problemas futuros};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Princípios do Código Limpo}
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+    % Nó central
+    \node[circle, draw, fill=cleanblue!30, minimum size=2cm] (center) {\textbf{Clean\\Code}};
+    
+    % Princípios ao redor
+    \node[rectangle, draw, fill=cleangreen!20, above left=of center] (eficiente) {\small Eficiente};
+    \node[rectangle, draw, fill=cleangreen!20, above=of center] (simples) {\small Simples};
+    \node[rectangle, draw, fill=cleangreen!20, above right=of center] (objetivo) {\small Objetivo};
+    \node[rectangle, draw, fill=cleangreen!20, right=of center] (elegante) {\small Elegante};
+    \node[rectangle, draw, fill=cleangreen!20, below right=of center] (leitura) {\small Fácil Leitura};
+    \node[rectangle, draw, fill=cleangreen!20, below=of center] (manutencao) {\small Fácil Manutenção};
+    \node[rectangle, draw, fill=cleangreen!20, below left=of center] (testes) {\small Testável};
+    \node[rectangle, draw, fill=cleangreen!20, left=of center] (dependencias) {\small Poucas Dependências};
+    
+    % Linhas conectoras
+    \draw[->] (center) -- (eficiente);
+    \draw[->] (center) -- (simples);
+    \draw[->] (center) -- (objetivo);
+    \draw[->] (center) -- (elegante);
+    \draw[->] (center) -- (leitura);
+    \draw[->] (center) -- (manutencao);
+    \draw[->] (center) -- (testes);
+    \draw[->] (center) -- (dependencias);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\section{Nomes Significativos}
+
+\begin{frame}
+\frametitle{Nomes Significativos}
+\framesubtitle{Use nomes que revelem o propósito}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Ruim}
+\lstinputlisting[language=Java]{examples/bad_names.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Bom}
+\lstinputlisting[language=Java]{examples/good_names.java}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{alertblock}{Regra de Ouro}
+\centering
+O nome deve responder: \textbf{Por que existe? O que faz? Como é usado?}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Nomes Pronunciáveis e Buscáveis}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Evite}
+\lstinputlisting[language=Java]{examples/bad_searchable.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Prefira}
+\lstinputlisting[language=Java]{examples/good_searchable.java}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item \textbf{Pronunciáveis:} Facilita comunicação entre equipe
+    \item \textbf{Buscáveis:} Permite encontrar rapidamente no código
+    \item \textbf{Sem prefixos:} Evite notações húngaras (strNome, intIdade)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Classes e Métodos: Nomenclatura}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Classes Genéricas}
+\lstinputlisting[language=Java]{examples/bad_class_names.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Classes Específicas}
+\lstinputlisting[language=Java]{examples/good_class_names.java}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item \textbf{Classes:} Substantivos ou frases nominais
+    \item \textbf{Métodos:} Verbos ou frases verbais
+    \item \textbf{Evite:} Manager, Processor, Data, Info
+\end{itemize}
+\end{frame}
+
+\section{Funções}
+
+\begin{frame}
+\frametitle{Funções: Pequenas e Focadas}
+\framesubtitle{Princípio da Responsabilidade Única}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[fill=cleanred!20, draw=cleanred, thick] (0,0) rectangle (4,3);
+    \node[text width=3.5cm, align=center] at (2,1.5) {\textbf{Função Grande}\\
+    \small • Múltiplas responsabilidades\\
+    • Difícil de testar\\
+    • Difícil de entender};
+    
+    \draw[->, very thick] (4.5,1.5) -- (5.5,1.5);
+    
+    \draw[fill=cleangreen!20, draw=cleangreen, thick] (6,0) rectangle (8,1);
+    \node[text width=1.8cm, align=center] at (7,0.5) {\small Função 1};
+    
+    \draw[fill=cleangreen!20, draw=cleangreen, thick] (6,1.2) rectangle (8,2.2);
+    \node[text width=1.8cm, align=center] at (7,1.7) {\small Função 2};
+    
+    \draw[fill=cleangreen!20, draw=cleangreen, thick] (6,2.4) rectangle (8,3.4);
+    \node[text width=1.8cm, align=center] at (7,2.9) {\small Função 3};
+\end{tikzpicture}
+\end{center}
+
+\begin{alertblock}{Regra}
+Uma função deve fazer uma coisa, fazê-la bem e fazer apenas ela.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exemplo: Refatoração de Função}
+
+\begin{block}{\textcolor{cleanred}{\faTimes} Função com Múltiplas Responsabilidades}
+\lstinputlisting[language=Python, firstline=1, lastline=8]{examples/bad_function.py}
+\end{block}
+
+\begin{block}{\textcolor{cleangreen}{\faCheck} Funções Especializadas}
+\lstinputlisting[language=Python, firstline=1, lastline=12]{examples/good_functions.py}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Argumentos de Função}
+\framesubtitle{Minimize o número de parâmetros}
+
+\begin{center}
+\begin{tikzpicture}
+    \node[draw, circle, fill=cleangreen!30] (zero) at (0,2) {0};
+    \node[draw, circle, fill=cleangreen!20] (one) at (2,2) {1};
+    \node[draw, circle, fill=yellow!30] (two) at (4,2) {2};
+    \node[draw, circle, fill=orange!30] (three) at (6,2) {3};
+    \node[draw, circle, fill=cleanred!30] (more) at (8,2) {3+};
+    
+    \node[below=0.3cm of zero] {\small Ideal};
+    \node[below=0.3cm of one] {\small Bom};
+    \node[below=0.3cm of two] {\small Aceitável};
+    \node[below=0.3cm of three] {\small Evitar};
+    \node[below=0.3cm of more] {\small Refatorar};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Muitos Parâmetros}
+\lstinputlisting[language=Java]{examples/many_params.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Objeto de Parâmetro}
+\lstinputlisting[language=Java]{examples/param_object.java}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Efeitos Colaterais em Funções}
+
+\begin{alertblock}{Problema}
+Funções que fazem mais do que prometem em seu nome causam efeitos colaterais inesperados.
+\end{alertblock}
+
+\vspace{0.5cm}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Com Efeito Colateral}
+\lstinputlisting[language=Java]{examples/side_effect.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Sem Efeito Colateral}
+\lstinputlisting[language=Java]{examples/no_side_effect.java}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Comentários}
+
+\begin{frame}
+\frametitle{Comentários: Quando e Como}
+\framesubtitle{Comentários são sintomas, não soluções}
+
+\begin{center}
+\begin{tikzpicture}
+    \node[draw, rectangle, fill=cleanblue!20, minimum width=8cm, minimum height=2cm, rounded corners=5pt] at (0,0) {
+        \begin{minipage}{7.5cm}
+        \centering
+        \textit{"A necessidade de comentários muitas vezes indica\\que o código não está claro o suficiente"}\\
+        \textbf{— Uncle Bob}
+        \end{minipage}
+    };
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Bons Comentários}
+\begin{itemize}
+    \item Explicação de intenções
+    \item Esclarecimentos
+    \item Avisos de consequências
+    \item TODOs
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.3\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Maus Comentários}
+\begin{itemize}
+    \item Murmúrios
+    \item Redundantes
+    \item Enganosos
+    \item Código comentado
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.3\textwidth}
+\begin{block}{\faInfoCircle} Regra}
+Escreva código autoexplicativo primeiro. Use comentários apenas quando necessário.
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exemplos de Comentários}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Comentário Redundante}
+\lstinputlisting[language=Java]{examples/bad_comment.java}
+\end{block}
+
+\vspace{0.3cm}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Comentário de Intenção}
+\lstinputlisting[language=Java]{examples/good_comment.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Comentário de Aviso}
+\lstinputlisting[language=Java]{examples/warning_comment.java}
+\end{block}
+
+\vspace{0.3cm}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Melhor: Código Claro}
+\lstinputlisting[language=Java]{examples/self_documenting.java}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Formatação}
+
+\begin{frame}
+\frametitle{Formatação: A Importância da Apresentação}
+
+\begin{center}
+\begin{tikzpicture}
+    \node[draw, rectangle, fill=cleanblue!20, minimum width=10cm, minimum height=2.5cm, rounded corners=10pt] at (0,0) {
+        \begin{minipage}{9cm}
+        \centering
+        \Large\textbf{Formatação não é luxo, é necessidade}\\
+        \vspace{0.3cm}
+        \normalsize Um código bem formatado é mais fácil de entender\\
+        porque permite focar no conteúdo, não na apresentação
+        \end{minipage}
+    };
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+    \item \textbf{Formatação Vertical:} Como organizar o código de cima para baixo
+    \item \textbf{Formatação Horizontal:} Como organizar cada linha
+    \item \textbf{Consistência:} Seguir padrões definidos
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=cleangray!10] (0,0) rectangle (3,4);
+    \draw[thick] (0.2,3.5) -- (2.8,3.5);
+    \draw[thick] (0.2,3.0) -- (2.8,3.0);
+    \draw[thick] (0.2,2.5) -- (1.5,2.5);
+    \draw[thick] (0.2,2.0) -- (2.8,2.0);
+    \draw[thick] (0.2,1.5) -- (2.8,1.5);
+    \draw[thick] (0.2,1.0) -- (1.8,1.0);
+    \draw[thick] (0.2,0.5) -- (2.8,0.5);
+    \node[below] at (1.5,0) {\small Código bem formatado};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Formatação Vertical: Metáfora do Jornal}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{enumerate}
+    \item \textbf{Título:} Nome da classe/arquivo
+    \item \textbf{Primeiro parágrafo:} Visão geral de alto nível
+    \item \textbf{Parágrafos seguintes:} Detalhes específicos
+    \item \textbf{Seções:} Agrupamento por conceitos relacionados
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{block}{Diretrizes}
+\begin{itemize}
+    \item Espaçamento entre conceitos
+    \item Declarações relacionadas próximas
+    \item Ordenação vertical (dependências apontam para baixo)
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    % Simulando layout de jornal
+    \draw[thick] (0,0) rectangle (3,5);
+    \draw[fill=darkgray] (0.2,4.2) rectangle (2.8,4.8);
+    \node[white, font=\tiny] at (1.5,4.5) {TÍTULO PRINCIPAL};
+    
+    \draw[thick] (0.2,3.5) -- (2.8,3.5);
+    \draw[thick] (0.2,3.3) -- (2.8,3.3);
+    \draw[thick] (0.2,3.1) -- (2.0,3.1);
+    
+    \draw[thick] (0.2,2.7) -- (2.8,2.7);
+    \draw[thick] (0.2,2.5) -- (2.8,2.5);
+    \draw[thick] (0.2,2.3) -- (1.8,2.3);
+    
+    \draw[thick] (0.2,1.9) -- (2.8,1.9);
+    \draw[thick] (0.2,1.7) -- (2.8,1.7);
+    \draw[thick] (0.2,1.5) -- (2.3,1.5);
+    
+    \node[below] at (1.5,0) {\tiny Estrutura hierárquica};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Formatação Horizontal e Indentação}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Formatação Ruim}
+\lstinputlisting[language=Java]{examples/bad_formatting.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Formatação Boa}
+\lstinputlisting[language=Java]{examples/good_formatting.java}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item \textbf{Indentação:} Reflete a hierarquia lógica
+    \item \textbf{Espaçamento:} Separa operadores e conceitos
+    \item \textbf{Alinhamento:} Melhora a legibilidade
+\end{itemize}
+\end{frame}
+
+\section{Objetos e Estruturas de Dados}
+
+\begin{frame}
+\frametitle{Objetos vs. Estruturas de Dados}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Estruturas de Dados}
+\begin{itemize}
+    \item Expõem dados
+    \item Não têm comportamento significativo
+    \item Fácil adicionar novas funções
+    \item Difícil adicionar novos tipos
+\end{itemize}
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=cleanblue!20] (0,0) rectangle (2.5,2);
+    \node[text width=2.3cm, align=center] at (1.25,1.5) {\small \textbf{Estrutura}};
+    \node[text width=2.3cm, align=center] at (1.25,1) {\tiny + dados públicos};
+    \node[text width=2.3cm, align=center] at (1.25,0.5) {\tiny - comportamento};
+\end{tikzpicture}
+\end{center}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{Objetos}
+\begin{itemize}
+    \item Escondem dados
+    \item Expõem comportamento
+    \item Fácil adicionar novos tipos
+    \item Difícil adicionar novas funções
+\end{itemize}
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=cleangreen!20] (0,0) rectangle (2.5,2);
+    \node[text width=2.3cm, align=center] at (1.25,1.5) {\small \textbf{Objeto}};
+    \node[text width=2.3cm, align=center] at (1.25,1) {\tiny - dados privados};
+    \node[text width=2.3cm, align=center] at (1.25,0.5) {\tiny + comportamento};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{alertblock}{Lei de Demeter}
+Um objeto deve falar apenas com seus vizinhos imediatos, não com estranhos.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Encapsulamento em Prática}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleanred}{\faTimes} Violação do Encapsulamento}
+\lstinputlisting[language=Java]{examples/bad_encapsulation.java}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Encapsulamento Adequado}
+\lstinputlisting[language=Java]{examples/good_encapsulation.java}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item \textbf{Dados privados:} Protegem o estado interno
+    \item \textbf{Métodos públicos:} Interface controlada
+    \item \textbf{Comportamento:} Lógica encapsulada no objeto
+\end{itemize}
+\end{frame}
+
+\section{Conclusão}
+
+\begin{frame}
+\frametitle{Resumo dos Princípios}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm]
+    \node[rectangle, draw, fill=cleanblue!20, text width=2cm, align=center] (nomes) {Nomes\\Significativos};
+    \node[rectangle, draw, fill=cleangreen!20, text width=2cm, align=center, right=of nomes] (funcoes) {Funções\\Pequenas};
+    \node[rectangle, draw, fill=yellow!20, text width=2cm, align=center, right=of funcoes] (comentarios) {Comentários\\Úteis};
+    
+    \node[rectangle, draw, fill=orange!20, text width=2cm, align=center, below=1cm of nomes] (formatacao) {Formatação\\Consistente};
+    \node[rectangle, draw, fill=purple!20, text width=2cm, align=center, right=of formatacao] (objetos) {Objetos\\Bem Definidos};
+    
+    % Setas conectoras
+    \draw[->, thick] (nomes) -- (funcoes);
+    \draw[->, thick] (funcoes) -- (comentarios);
+    \draw[->, thick] (nomes) -- (formatacao);
+    \draw[->, thick] (formatacao) -- (objetos);
+    \draw[->, thick] (funcoes) -- (objetos);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{alertblock}{Lembre-se}
+\centering
+Código limpo não é escrito de uma vez. É refinado continuamente.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Próximos Passos}
+
+\begin{enumerate}
+    \item \textbf{Pratique:} Aplique esses princípios no seu código diário
+    \item \textbf{Refatore:} Melhore código existente gradualmente
+    \item \textbf{Code Review:} Use esses critérios para avaliar código
+    \item \textbf{Ferramentas:} Utilize analisadores estáticos (próxima aula)
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{block}{Para a Próxima Aula}
+\begin{itemize}
+    \item Leitura: Capítulo sobre Code Smells
+    \item Exercício: Identificar code smells em projeto pessoal
+    \item Ferramenta: Instalar SonarQube/PMD
+\end{itemize}
+\end{block}
+
+\vspace{0.5cm}
+\begin{center}
+\textbf{Dúvidas?}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Referências}
+
+\begin{itemize}
+    \item Martin, Robert C. \textbf{Clean Code: A Handbook of Agile Software Craftsmanship}. Prentice Hall, 2008.
+    \item Fowler, Martin. \textbf{Refactoring: Improving the Design of Existing Code}. Addison-Wesley, 2019.
+    \item Catálogo de Code Smells: \url{https://luzkan.github.io/smells/}
+    \item Repositório do curso: \url{https://github.com/fmarquesfilho/bpp-2025-2}
+\end{itemize}
+
+\vspace{1cm}
+\begin{center}
+\Large
+Obrigado pela atenção!\\
+\vspace{0.5cm}
+\normalsize
+\texttt{fernando.marques@ufrn.br}
+\end{center}
+\end{frame}
+
+
+\end{document}
