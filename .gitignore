@@ -27,6 +27,7 @@
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+*.xdv
 
 # MacOSX
 .DS_Store
