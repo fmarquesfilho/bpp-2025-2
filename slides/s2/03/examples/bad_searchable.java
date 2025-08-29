@@ -1,10 +1,10 @@
-// Nomes difíceis de pronunciar e buscar
+// Nomes difí­ceis de pronunciar e buscar
 String xlzqp = "data";
 int grmblwskx = 42;
 List<User> usrLstMngr = new ArrayList<>();
 
 class XyzManager {
     // Difícil de encontrar no código
-    // Difícil de pronunciar em reuniões
+    // Difí­cil de pronunciar 
     void prcssXyzData() { }
 }

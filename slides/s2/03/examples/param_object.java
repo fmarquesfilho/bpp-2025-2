@@ -1,4 +1,4 @@
-// Objeto de parâmetro - mais claro e flexível
+// Objeto de parâmetro - mais claro e flexí­vel
 public class DadosUsuario {
     public String nome;
     public String email;
@@ -15,6 +15,6 @@ public void criarUsuario(DadosUsuario dados) {
 
 // Chamada mais clara e menos propensa a erros
 DadosUsuario dados = new DadosUsuario();
-dados.nome = "João";
+dados.nome = "JoÃÂ£o";
 dados.email = "joao@email.com";
 criarUsuario(dados);

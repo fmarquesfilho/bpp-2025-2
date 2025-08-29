@@ -5,7 +5,7 @@ public class ContaBancaria {
     
     public ContaBancaria(String numero, double saldoInicial) {
         if (numero == null || numero.isEmpty()) {
-            throw new IllegalArgumentException("Número inválido");
+            throw new IllegalArgumentException("NÃÂºmero invÃÂ¡lido");
         }
         this.numero = numero;
         this.saldo = Math.max(0, saldoInicial);

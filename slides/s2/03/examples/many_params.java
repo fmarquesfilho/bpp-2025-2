@@ -1,4 +1,4 @@
-// Muitos parâmetros - difícil de usar
+// Muitos parâmetros - difí­cil de usar
 public void criarUsuario(String nome, String email, 
                         String telefone, String endereco,
                         int idade, boolean ativo, 

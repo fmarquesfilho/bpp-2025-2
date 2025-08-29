@@ -5,6 +5,6 @@ List<User> userAccountManager = new ArrayList<>();
 
 class AccountManager {
     // Fácil de encontrar com Ctrl+F
-    // Fácil de pronunciar e discutir
+    // Fácil de pronunciar e discutir sobre
     void processAccountData() { }
 }
