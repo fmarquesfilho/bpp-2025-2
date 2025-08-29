@@ -3,14 +3,13 @@
 \documentclass[aspectratio=169]{beamer}
 \UseRawInputEncoding
 \usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
-
 \usepackage[brazil]{babel}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{fontawesome5}
 \usepackage{graphicx}
+\usepackage{adjustbox}
 \usetikzlibrary{shapes.geometric, arrows, positioning, shadows}
 
 % Tema moderno
@@ -47,6 +46,10 @@
 }
 \lstset{style=mystyle}
 
+% Reduzir espaçamento entre itens
+\setlength{\itemsep}{2pt}
+\setlength{\parskip}{2pt}
+
 % Informações do documento
 \title{Código Limpo: Princípios e Práticas}
 \subtitle{Boas Práticas de Programação - BPP 2025.2}
@@ -70,19 +73,20 @@
 \begin{frame}
 \frametitle{O que é Código Limpo?}
 \begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \node[draw, rectangle, fill=cleanblue!20, minimum width=8cm, minimum height=3cm, rounded corners=10pt] (main) at (0,0) {};
-    \node[text width=7cm, align=center] at (0,0.5) {\Large\textbf{Código Limpo}};
-    \node[text width=7cm, align=center] at (0,0) {É um código};
-    \node[text width=7cm, align=center] at (0,-0.5) {\textcolor{cleanblue}{\textbf{fácil de entender}} e \textcolor{cleangreen}{\textbf{fácil de alterar}}};
+\begin{tikzpicture}[scale=0.7]
+    \node[draw, rectangle, fill=cleanblue!20, minimum width=7cm, minimum height=2.5cm, rounded corners=10pt] (main) at (0,0) {};
+    \node[text width=6cm, align=center] at (0,0.3) {\Large\textbf{Código Limpo}};
+    \node[text width=6cm, align=center] at (0,-0.2) {É um código};
+    \node[text width=6cm, align=center] at (0,-0.7) {\textcolor{cleanblue}{\textbf{fácil de entender}} e \textcolor{cleangreen}{\textbf{fácil de alterar}}};
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{center}
+\footnotesize
 \textit{"Qualquer tolo consegue escrever código que um computador entende.\\
 Bons programadores escrevem código que humanos podem entender."}\\
-\vspace{0.2cm}
+\vspace{0.1cm}
 \textbf{— Martin Fowler}
 \end{center}
 \end{frame}
@@ -91,60 +95,32 @@ Bons programadores escrevem código que humanos podem entender."}\\
 \frametitle{Origem e Motivação}
 \begin{columns}
 \begin{column}{0.6\textwidth}
+\footnotesize
 \begin{itemize}
     \item \textbf{Criado por:} Robert C. Martin (Uncle Bob)
     \item \textbf{Motivação:} Combater o débito técnico
     \item \textbf{Objetivo:} Software sustentável e de qualidade
 \end{itemize}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{block}{Débito Técnico}
+\scriptsize
 Custo implícito de uma implementação pensada apenas no agora, em vez de usar uma abordagem de melhor qualidade.
 \end{block}
 \end{column}
 
 \begin{column}{0.4\textwidth}
 \begin{center}
-\begin{tikzpicture}
-    \draw[fill=cleanred!20, draw=cleanred, thick] (0,0) rectangle (3,2);
-    \node at (1.5,1.5) {\faExclamationTriangle};
-    \node[text width=2.8cm, align=center] at (1.5,0.8) {\small Débito Técnico};
-    \node[text width=2.8cm, align=center] at (1.5,0.3) {\tiny Soluções rápidas geram problemas futuros};
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=cleanred!20, draw=cleanred, thick] (0,0) rectangle (2.5,1.7);
+    \node at (1.25,1.3) {\faExclamationTriangle};
+    \node[text width=2.3cm, align=center, font=\scriptsize] at (1.25,0.7) {Débito Técnico};
+    \node[text width=2.3cm, align=center, font=\tiny] at (1.25,0.3) {Soluções rápidas geram problemas futuros};
 \end{tikzpicture}
 \end{center}
 \end{column}
 \end{columns}
 \end{frame}
-
-% \begin{frame}
-% \frametitle{Princípios do Código Limpo}
-% \begin{center}
-% \begin{tikzpicture}[node distance=1.5cm]
-%     % Nó central
-%     \node[circle, draw, fill=cleanblue!30, minimum size=2cm] (center) {\textbf{Clean\\Code}};
-    
-%     % Princípios ao redor
-%     \node[rectangle, draw, fill=cleangreen!20, above left=of center] (eficiente) {\small Eficiente};
-%     \node[rectangle, draw, fill=cleangreen!20, above=of center] (simples) {\small Simples};
-%     \node[rectangle, draw, fill=cleangreen!20, above right=of center] (objetivo) {\small Objetivo};
-%     \node[rectangle, draw, fill=cleangreen!20, right=of center] (elegante) {\small Elegante};
-%     \node[rectangle, draw, fill=cleangreen!20, below right=of center] (leitura) {\small Fácil Leitura};
-%     \node[rectangle, draw, fill=cleangreen!20, below=of center] (manutencao) {\small Fácil Manutenção};
-%     \node[rectangle, draw, fill=cleangreen!20, below left=of center] (testes) {\small Testável};
-%     \node[rectangle, draw, fill=cleangreen!20, left=of center] (dependencias) {\small Poucas Dependências};
-    
-%     % Linhas conectoras
-%     \draw[->] (center) -- (eficiente);
-%     \draw[->] (center) -- (simples);
-%     \draw[->] (center) -- (objetivo);
-%     \draw[->] (center) -- (elegante);
-%     \draw[->] (center) -- (leitura);
-%     \draw[->] (center) -- (manutencao);
-%     \draw[->] (center) -- (testes);
-%     \draw[->] (center) -- (dependencias);
-% \end{tikzpicture}
-% \end{center}
-% \end{frame}
 
 \section{Nomes Significativos}
 
@@ -155,20 +131,23 @@ Custo implícito de uma implementação pensada apenas no agora, em vez de usar 
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleanred}{\faTimes} Ruim}
-\lstinputlisting[language=Java]{examples/bad_names.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/bad_names.java}
 \end{block}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleangreen}{\faCheck} Bom}
-\lstinputlisting[language=Java]{examples/good_names.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/good_names.java}
 \end{block}
 \end{column}
 \end{columns}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{alertblock}{Regra de Ouro}
 \centering
+\footnotesize
 O nome deve responder: \textbf{Por que existe? O que faz? Como é usado?}
 \end{alertblock}
 \end{frame}
@@ -179,18 +158,21 @@ O nome deve responder: \textbf{Por que existe? O que faz? Como é usado?}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleanred}{\faTimes} Evite}
-\lstinputlisting[language=Java]{examples/bad_searchable.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/bad_searchable.java}
 \end{block}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleangreen}{\faCheck} Prefira}
-\lstinputlisting[language=Java]{examples/good_searchable.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/good_searchable.java}
 \end{block}
 \end{column}
 \end{columns}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
+\footnotesize
 \begin{itemize}
     \item \textbf{Pronunciáveis:} Facilita comunicação entre equipe
     \item \textbf{Buscáveis:} Permite encontrar rapidamente no código
@@ -204,18 +186,21 @@ O nome deve responder: \textbf{Por que existe? O que faz? Como é usado?}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleanred}{\faTimes} Classes Genéricas}
-\lstinputlisting[language=Java]{examples/bad_class_names.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/bad_class_names.java}
 \end{block}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleangreen}{\faCheck} Classes Específicas}
-\lstinputlisting[language=Java]{examples/good_class_names.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/good_class_names.java}
 \end{block}
 \end{column}
 \end{columns}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
+\footnotesize
 \begin{itemize}
     \item \textbf{Classes:} Substantivos ou frases nominais
     \item \textbf{Métodos:} Verbos ou frases verbais
@@ -230,27 +215,30 @@ O nome deve responder: \textbf{Por que existe? O que faz? Como é usado?}
 \framesubtitle{Princípio da Responsabilidade Única}
 
 \begin{center}
-\begin{tikzpicture}
-    \draw[fill=cleanred!20, draw=cleanred, thick] (0,0) rectangle (4,3);
-    \node[text width=3.5cm, align=center] at (2,1.5) {\textbf{Função Grande}\\
-    \small • Múltiplas responsabilidades\\
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=cleanred!20, draw=cleanred, thick] (0,0) rectangle (3.5,2.5);
+    \node[text width=3cm, align=center, font=\scriptsize] at (1.75,1.2) {\textbf{Função Grande}\\
+    \tiny • Múltiplas responsabilidades\\
     • Difícil de testar\\
     • Difícil de entender};
     
-    \draw[->, very thick] (4.5,1.5) -- (5.5,1.5);
+    \draw[->, very thick] (3.8,1.2) -- (4.8,1.2);
     
-    \draw[fill=cleangreen!20, draw=cleangreen, thick] (6,0) rectangle (8,1);
-    \node[text width=1.8cm, align=center] at (7,0.5) {\small Função 1};
+    \draw[fill=cleangreen!20, draw=cleangreen, thick] (5.2,0) rectangle (6.7,0.8);
+    \node[text width=1.3cm, align=center, font=\tiny] at (5.95,0.4) {Função 1};
     
-    \draw[fill=cleangreen!20, draw=cleangreen, thick] (6,1.2) rectangle (8,2.2);
-    \node[text width=1.8cm, align=center] at (7,1.7) {\small Função 2};
+    \draw[fill=cleangreen!20, draw=cleangreen, thick] (5.2,1) rectangle (6.7,1.8);
+    \node[text width=1.3cm, align=center, font=\tiny] at (5.95,1.4) {Função 2};
     
-    \draw[fill=cleangreen!20, draw=cleangreen, thick] (6,2.4) rectangle (8,3.4);
-    \node[text width=1.8cm, align=center] at (7,2.9) {\small Função 3};
+    \draw[fill=cleangreen!20, draw=cleangreen, thick] (5.2,2) rectangle (6.7,2.8);
+    \node[text width=1.3cm, align=center, font=\tiny] at (5.95,2.4) {Função 3};
 \end{tikzpicture}
 \end{center}
 
+\vspace{0.2cm}
 \begin{alertblock}{Regra}
+\centering
+\footnotesize
 Uma função deve fazer uma coisa, fazê-la bem e fazer apenas ela.
 \end{alertblock}
 \end{frame}
@@ -259,11 +247,13 @@ Uma função deve fazer uma coisa, fazê-la bem e fazer apenas ela.
 \frametitle{Exemplo: Refatoração de Função}
 
 \begin{block}{\textcolor{cleanred}{\faTimes} Função com Múltiplas Responsabilidades}
-\lstinputlisting[language=Python, firstline=1, lastline=8]{examples/bad_function.py}
+\scriptsize
+\lstinputlisting[language=Python, basicstyle=\scriptsize\ttfamily, firstline=1, lastline=6]{examples/bad_function.py}
 \end{block}
 
 \begin{block}{\textcolor{cleangreen}{\faCheck} Funções Especializadas}
-\lstinputlisting[language=Python, firstline=1, lastline=12]{examples/good_functions.py}
+\scriptsize
+\lstinputlisting[language=Python, basicstyle=\scriptsize\ttfamily, firstline=1, lastline=10]{examples/good_functions.py}
 \end{block}
 \end{frame}
 
@@ -272,32 +262,34 @@ Uma função deve fazer uma coisa, fazê-la bem e fazer apenas ela.
 \framesubtitle{Minimize o número de parâmetros}
 
 \begin{center}
-\begin{tikzpicture}
-    \node[draw, circle, fill=cleangreen!30] (zero) at (0,2) {0};
-    \node[draw, circle, fill=cleangreen!20] (one) at (2,2) {1};
-    \node[draw, circle, fill=yellow!30] (two) at (4,2) {2};
-    \node[draw, circle, fill=orange!30] (three) at (6,2) {3};
-    \node[draw, circle, fill=cleanred!30] (more) at (8,2) {3+};
+\begin{tikzpicture}[scale=0.8]
+    \node[draw, circle, fill=cleangreen!30, font=\scriptsize] (zero) at (0,1.5) {0};
+    \node[draw, circle, fill=cleangreen!20, font=\scriptsize] (one) at (1.8,1.5) {1};
+    \node[draw, circle, fill=yellow!30, font=\scriptsize] (two) at (3.6,1.5) {2};
+    \node[draw, circle, fill=orange!30, font=\scriptsize] (three) at (5.4,1.5) {3};
+    \node[draw, circle, fill=cleanred!30, font=\scriptsize] (more) at (7.2,1.5) {3+};
     
-    \node[below=0.3cm of zero] {\small Ideal};
-    \node[below=0.3cm of one] {\small Bom};
-    \node[below=0.3cm of two] {\small Aceitável};
-    \node[below=0.3cm of three] {\small Evitar};
-    \node[below=0.3cm of more] {\small Refatorar};
+    \node[below=0.2cm of zero, font=\tiny] {\small Ideal};
+    \node[below=0.2cm of one, font=\tiny] {\small Bom};
+    \node[below=0.2cm of two, font=\tiny] {\small Aceitável};
+    \node[below=0.2cm of three, font=\tiny] {\small Evitar};
+    \node[below=0.2cm of more, font=\tiny] {\small Refatorar};
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleanred}{\faTimes} Muitos Parâmetros}
-\lstinputlisting[language=Java]{examples/many_params.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/many_params.java}
 \end{block}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleangreen}{\faCheck} Objeto de Parâmetro}
-\lstinputlisting[language=Java]{examples/param_object.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/param_object.java}
 \end{block}
 \end{column}
 \end{columns}
@@ -307,20 +299,23 @@ Uma função deve fazer uma coisa, fazê-la bem e fazer apenas ela.
 \frametitle{Efeitos Colaterais em Funções}
 
 \begin{alertblock}{Problema}
+\footnotesize
 Funções que fazem mais do que prometem em seu nome causam efeitos colaterais inesperados.
 \end{alertblock}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleanred}{\faTimes} Com Efeito Colateral}
-\lstinputlisting[language=Java]{examples/side_effect.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/side_effect.java}
 \end{block}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \begin{block}{\textcolor{cleangreen}{\faCheck} Sem Efeito Colateral}
-\lstinputlisting[language=Java]{examples/no_side_effect.java}
+\scriptsize
+\lstinputlisting[language=Java, basicstyle=\scriptsize\ttfamily]{examples/no_side_effect.java}
 \end{block}
 \end{column}
 \end{columns}
@@ -333,10 +328,11 @@ Funções que fazem mais do que prometem em seu nome causam efeitos colaterais i
 \framesubtitle{Comentários são sintomas, não soluções}
 
 \begin{center}
-\begin{tikzpicture}
-    \node[draw, rectangle, fill=cleanblue!20, minimum width=8cm, minimum height=2cm, rounded corners=5pt] at (0,0) {
-        \begin{minipage}{7.5cm}
+\begin{tikzpicture}[scale=0.9]
+    \node[draw, rectangle, fill=cleanblue!20, minimum width=7cm, minimum height=1.5cm, rounded corners=5pt] at (0,0) {
+        \begin{minipage}{6.5cm}
         \centering
+        \footnotesize
         \textit{"A necessidade de comentários muitas vezes indica\\que o código não está claro o suficiente"}\\
         \textbf{— Uncle Bob}
         \end{minipage}
@@ -344,10 +340,11 @@ Funções que fazem mais do que prometem em seu nome causam efeitos colaterais i
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{columns}
 \begin{column}{0.3\textwidth}
 \begin{block}{\textcolor{cleangreen}{\faCheck} Bons Comentários}
+\scriptsize
 \begin{itemize}
     \item Explicação de intenções
     \item Esclarecimentos
@@ -359,6 +356,7 @@ Funções que fazem mais do que prometem em seu nome causam efeitos colaterais i
 
 \begin{column}{0.3\textwidth}
 \begin{block}{\textcolor{cleanred}{\faTimes} Maus Comentários}
+\scriptsize
 \begin{itemize}
     \item Murmúrios
     \item Redundantes
@@ -370,6 +368,7 @@ Funções que fazem mais do que prometem em seu nome causam efeitos colaterais i
 
 \begin{column}{0.3\textwidth}
 \begin{block}{\faInfoCircle\ Regra}
+\scriptsize
 Escreva código autoexplicativo primeiro. Use comentários apenas quando necessário.
 \end{block}
 \end{column}
@@ -382,13 +381,13 @@ Escreva código autoexplicativo primeiro. Use comentários apenas quando necess�
 \frametitle{Resumo dos Princípios}
 
 \begin{center}
-\begin{tikzpicture}[node distance=2cm]
-    \node[rectangle, draw, fill=cleanblue!20, text width=2cm, align=center] (nomes) {Nomes\\Significativos};
-    \node[rectangle, draw, fill=cleangreen!20, text width=2cm, align=center, right=of nomes] (funcoes) {Funções\\Pequenas};
-    \node[rectangle, draw, fill=yellow!20, text width=2cm, align=center, right=of funcoes] (comentarios) {Comentários\\Úteis};
+\begin{tikzpicture}[node distance=1.5cm, scale=0.8]
+    \node[rectangle, draw, fill=cleanblue!20, text width=1.8cm, align=center, font=\scriptsize] (nomes) {Nomes\\Significativos};
+    \node[rectangle, draw, fill=cleangreen!20, text width=1.8cm, align=center, font=\scriptsize, right=of nomes] (funcoes) {Funções\\Pequenas};
+    \node[rectangle, draw, fill=yellow!20, text width=1.8cm, align=center, font=\scriptsize, right=of funcoes] (comentarios) {Comentários\\Úteis};
     
-    \node[rectangle, draw, fill=orange!20, text width=2cm, align=center, below=1cm of nomes] (formatacao) {Formatação\\Consistente};
-    \node[rectangle, draw, fill=purple!20, text width=2cm, align=center, right=of formatacao] (objetos) {Objetos\\Bem Definidos};
+    \node[rectangle, draw, fill=orange!20, text width=1.8cm, align=center, font=\scriptsize, below=0.8cm of nomes] (formatacao) {Formatação\\Consistente};
+    \node[rectangle, draw, fill=purple!20, text width=1.8cm, align=center, font=\scriptsize, right=of formatacao] (objetos) {Objetos\\Bem Definidos};
     
     % Setas conectoras
     \draw[->, thick] (nomes) -- (funcoes);
@@ -399,9 +398,10 @@ Escreva código autoexplicativo primeiro. Use comentários apenas quando necess�
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{alertblock}{Lembre-se}
 \centering
+\footnotesize
 Código limpo não é escrito de uma vez. É refinado continuamente.
 \end{alertblock}
 \end{frame}
@@ -409,6 +409,7 @@ Código limpo não é escrito de uma vez. É refinado continuamente.
 \begin{frame}
 \frametitle{Próximos Passos}
 
+\footnotesize
 \begin{enumerate}
     \item \textbf{Pratique:} Aplique esses princípios no seu código diário
     \item \textbf{Refatore:} Melhore código existente gradualmente
@@ -416,7 +417,7 @@ Código limpo não é escrito de uma vez. É refinado continuamente.
     \item \textbf{Ferramentas:} Utilize analisadores estáticos (próxima aula)
 \end{enumerate}
 
-\vspace{1.5cm}
+\vspace{1cm}
 \begin{center}
 \textbf{Dúvidas?}
 \end{center}
@@ -425,6 +426,7 @@ Código limpo não é escrito de uma vez. É refinado continuamente.
 \begin{frame}
 \frametitle{Referências}
 
+\scriptsize
 \begin{itemize}
     \item Martin, Robert C. \textbf{Clean Code: A Handbook of Agile Software Craftsmanship}. Prentice Hall, 2008.
     \item Fowler, Martin. \textbf{Refactoring: Improving the Design of Existing Code}. Addison-Wesley, 2019.
@@ -432,11 +434,11 @@ Código limpo não é escrito de uma vez. É refinado continuamente.
     \item Repositório do curso: \url{https://github.com/fmarquesfilho/bpp-2025-2}
 \end{itemize}
 
-\vspace{1cm}
+\vspace{0.5cm}
 \begin{center}
 \Large
 Obrigado pela atenção!\\
-\vspace{0.5cm}
+\vspace{0.3cm}
 \normalsize
 \texttt{fernando@dimap.ufrn.br}
 \end{center}
