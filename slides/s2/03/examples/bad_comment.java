@@ -1,8 +1,9 @@
-// Comentário redundante - não agrega valor
+// Comentário redundante
 // Incrementa i
 i++;
 
-// Função principal do sistema
-public void main() {
-    // ...
-}
+// Atribui nome
+nome = "João";
+
+// Chama método calcular
+double resultado = calcular(x, y);

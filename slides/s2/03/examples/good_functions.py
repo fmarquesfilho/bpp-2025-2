@@ -1,14 +1,21 @@
 # Funções especializadas e focadas
-def exibir_tarefas_incompletas(tarefas):
-    tarefas_incompletas = filtrar_tarefas_incompletas(tarefas)
-    for tarefa in tarefas_incompletas:
-        exibir_tarefa(tarefa)
 
-def filtrar_tarefas_incompletas(tarefas):
-    return [tarefa for tarefa in tarefas if not tarefa.completa]
+def filtrar_tarefas_pendentes(tarefas):
+    return [t for t in tarefas if t.status == "pendente"]
+
+def notificar_usuario(tarefa):
+    enviar_email(tarefa.usuario.email)
 
 def exibir_tarefa(tarefa):
-    print(f"Tarefa: {tarefa.nome}")
     print(f"Descrição: {tarefa.descricao}")
-    print(f"Prazo: {tarefa.prazo}")
-    print("-" * 30)
+
+def atualizar_status_tarefa(tarefa):
+    tarefa.status = "processado"
+    salvar_banco(tarefa)
+
+def processar_tarefas(tarefas):
+    tarefas_pendentes = filtrar_tarefas_pendentes(tarefas)
+    for tarefa in tarefas_pendentes:
+        exibir_tarefa(tarefa)
+        notificar_usuario(tarefa)
+        atualizar_status_tarefa(tarefa)

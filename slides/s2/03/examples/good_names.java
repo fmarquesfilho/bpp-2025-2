@@ -1,7 +1,8 @@
-// Exemplo de nomes bons
-int durationInMinutes = 256;
+// Nomes que revelam propósito claramente
+int daysSinceLastLogin;
 String customerName = "João";
-List<String> productNames = new ArrayList<>();
+List<String> approvedUsers = new ArrayList<>();
 
 // Fica claro o propósito de cada variável
 // Fácil de entender e manter
+double monthlySalary = calculateMonthlySalary(hoursWorked, hourlyRate);

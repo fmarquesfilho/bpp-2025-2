@@ -1,9 +1,8 @@
 # Função com múltiplas responsabilidades
-def exibir_tarefas_incompletas(lista_de_tarefas):
-    for tarefa in lista_de_tarefas:
-        if not tarefa.completa:
-            print("Tarefa:", tarefa.nome)
+def processar_tarefas(tarefas):
+    for tarefa in tarefas:
+        if tarefa.status == "pendente":
             print("Descrição:", tarefa.descricao)
-            print("Prazo:", tarefa.prazo)
-            print("-" * 30)
-            
+            enviar_email(tarefa.usuario.email)
+            tarefa.status = "processado"
+            salvar_banco(tarefa)

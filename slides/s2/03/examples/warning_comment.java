@@ -1,8 +1,6 @@
-public double calcularResultado(double valor) {
-    /*
-     * AVISO: Este algoritmo tem limitações conhecidas.
-     * Pode não ser preciso para valores > 1000000.
-     * Validar resultados em cenários críticos.
-     */
-    return algoritmoComplexo(valor);
+// AVISO: Este método é muito lento para 
+// listas grandes (O(n²)). Use apenas para 
+// datasets pequenos (< 100 elementos)
+public List<Item> buscarDuplicatas(List<Item> items) {
+    // implementação...
 }

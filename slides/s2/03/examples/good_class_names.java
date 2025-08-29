@@ -1,6 +1,6 @@
 // Nomes específicos que revelam propósito
-class Book { }
-class CustomerOrder { }
-class PaymentValidator { }
-class EmailSender { }
-class DatabaseConnection { }
+class UserAccountManager { }
+class CustomerData { }
+class OrderInformation { }
+class PaymentProcessor { }
+class EmailNotificationHandler { }

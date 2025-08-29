@@ -1,9 +1,10 @@
 // Nomes pronunciáveis e buscáveis
-String messageText = "AXCV";
-int pageId = 23;
-class Client { }
+String applicationData = "data";
+int maxRetryAttempts = 42;
+List<User> userAccountManager = new ArrayList<>();
 
-public void generateBoletoInDatabase() {
+class AccountManager {
     // Fácil de encontrar com Ctrl+F
     // Fácil de pronunciar e discutir
+    void processAccountData() { }
 }

@@ -1,14 +1,20 @@
 // Objeto de parâmetro - mais claro e flexível
-public class Produto {
-    private String nome;
-    private String descricao;
-    private double preco;
-    private int quantidade;
-    private String categoria;
-    private boolean ativo;
-    // Construtor, getters e setters
+public class DadosUsuario {
+    public String nome;
+    public String email;
+    public String telefone;
+    public String endereco;
+    public int idade;
+    public boolean ativo;
+    public String departamento;
 }
 
-public void adicionarProduto(Produto produto) {
+public void criarUsuario(DadosUsuario dados) {
     // Implementação...
 }
+
+// Chamada mais clara e menos propensa a erros
+DadosUsuario dados = new DadosUsuario();
+dados.nome = "João";
+dados.email = "joao@email.com";
+criarUsuario(dados);

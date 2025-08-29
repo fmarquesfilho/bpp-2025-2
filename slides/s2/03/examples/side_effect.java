@@ -1,8 +1,8 @@
 // Função com efeito colateral inesperado
-public boolean autenticarUsuario(String usuario, String senha) {
-    if (validarCredenciais(usuario, senha)) {
+public boolean validarSenha(String senha) {
+    if (senha.length() > 8) {
         // Efeito colateral: inicia sessão
-        iniciarSessao(usuario);
+        iniciarSessao();
         return true;
     }
     return false;

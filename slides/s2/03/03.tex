@@ -1,4 +1,5 @@
 \documentclass[aspectratio=169]{beamer}
+\UseRawInputEncoding
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{listings}
@@ -111,35 +112,35 @@ Custo implícito de uma implementação pensada apenas no agora, em vez de usar 
 \end{columns}
 \end{frame}
 
-\begin{frame}
-\frametitle{Princípios do Código Limpo}
-\begin{center}
-\begin{tikzpicture}[node distance=1.5cm]
-    % Nó central
-    \node[circle, draw, fill=cleanblue!30, minimum size=2cm] (center) {\textbf{Clean\\Code}};
+% \begin{frame}
+% \frametitle{Princípios do Código Limpo}
+% \begin{center}
+% \begin{tikzpicture}[node distance=1.5cm]
+%     % Nó central
+%     \node[circle, draw, fill=cleanblue!30, minimum size=2cm] (center) {\textbf{Clean\\Code}};
     
-    % Princípios ao redor
-    \node[rectangle, draw, fill=cleangreen!20, above left=of center] (eficiente) {\small Eficiente};
-    \node[rectangle, draw, fill=cleangreen!20, above=of center] (simples) {\small Simples};
-    \node[rectangle, draw, fill=cleangreen!20, above right=of center] (objetivo) {\small Objetivo};
-    \node[rectangle, draw, fill=cleangreen!20, right=of center] (elegante) {\small Elegante};
-    \node[rectangle, draw, fill=cleangreen!20, below right=of center] (leitura) {\small Fácil Leitura};
-    \node[rectangle, draw, fill=cleangreen!20, below=of center] (manutencao) {\small Fácil Manutenção};
-    \node[rectangle, draw, fill=cleangreen!20, below left=of center] (testes) {\small Testável};
-    \node[rectangle, draw, fill=cleangreen!20, left=of center] (dependencias) {\small Poucas Dependências};
+%     % Princípios ao redor
+%     \node[rectangle, draw, fill=cleangreen!20, above left=of center] (eficiente) {\small Eficiente};
+%     \node[rectangle, draw, fill=cleangreen!20, above=of center] (simples) {\small Simples};
+%     \node[rectangle, draw, fill=cleangreen!20, above right=of center] (objetivo) {\small Objetivo};
+%     \node[rectangle, draw, fill=cleangreen!20, right=of center] (elegante) {\small Elegante};
+%     \node[rectangle, draw, fill=cleangreen!20, below right=of center] (leitura) {\small Fácil Leitura};
+%     \node[rectangle, draw, fill=cleangreen!20, below=of center] (manutencao) {\small Fácil Manutenção};
+%     \node[rectangle, draw, fill=cleangreen!20, below left=of center] (testes) {\small Testável};
+%     \node[rectangle, draw, fill=cleangreen!20, left=of center] (dependencias) {\small Poucas Dependências};
     
-    % Linhas conectoras
-    \draw[->] (center) -- (eficiente);
-    \draw[->] (center) -- (simples);
-    \draw[->] (center) -- (objetivo);
-    \draw[->] (center) -- (elegante);
-    \draw[->] (center) -- (leitura);
-    \draw[->] (center) -- (manutencao);
-    \draw[->] (center) -- (testes);
-    \draw[->] (center) -- (dependencias);
-\end{tikzpicture}
-\end{center}
-\end{frame}
+%     % Linhas conectoras
+%     \draw[->] (center) -- (eficiente);
+%     \draw[->] (center) -- (simples);
+%     \draw[->] (center) -- (objetivo);
+%     \draw[->] (center) -- (elegante);
+%     \draw[->] (center) -- (leitura);
+%     \draw[->] (center) -- (manutencao);
+%     \draw[->] (center) -- (testes);
+%     \draw[->] (center) -- (dependencias);
+% \end{tikzpicture}
+% \end{center}
+% \end{frame}
 
 \section{Nomes Significativos}
 
@@ -364,238 +365,11 @@ Funções que fazem mais do que prometem em seu nome causam efeitos colaterais i
 \end{column}
 
 \begin{column}{0.3\textwidth}
-\begin{block}{\faInfoCircle} Regra}
+\begin{block}{\faInfoCircle\ Regra}
 Escreva código autoexplicativo primeiro. Use comentários apenas quando necessário.
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Exemplos de Comentários}
-
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{block}{\textcolor{cleanred}{\faTimes} Comentário Redundante}
-\lstinputlisting[language=Java]{examples/bad_comment.java}
-\end{block}
-
-\vspace{0.3cm}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Comentário de Intenção}
-\lstinputlisting[language=Java]{examples/good_comment.java}
-\end{block}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Comentário de Aviso}
-\lstinputlisting[language=Java]{examples/warning_comment.java}
-\end{block}
-
-\vspace{0.3cm}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Melhor: Código Claro}
-\lstinputlisting[language=Java]{examples/self_documenting.java}
-\end{block}
-\end{column}
-\end{columns}
-\end{frame}
-
-\section{Formatação}
-
-\begin{frame}
-\frametitle{Formatação: A Importância da Apresentação}
-
-\begin{center}
-\begin{tikzpicture}
-    \node[draw, rectangle, fill=cleanblue!20, minimum width=10cm, minimum height=2.5cm, rounded corners=10pt] at (0,0) {
-        \begin{minipage}{9cm}
-        \centering
-        \Large\textbf{Formatação não é luxo, é necessidade}\\
-        \vspace{0.3cm}
-        \normalsize Um código bem formatado é mais fácil de entender\\
-        porque permite focar no conteúdo, não na apresentação
-        \end{minipage}
-    };
-\end{tikzpicture}
-\end{center}
-
-\vspace{0.5cm}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{itemize}
-    \item \textbf{Formatação Vertical:} Como organizar o código de cima para baixo
-    \item \textbf{Formatação Horizontal:} Como organizar cada linha
-    \item \textbf{Consistência:} Seguir padrões definidos
-\end{itemize}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \draw[fill=cleangray!10] (0,0) rectangle (3,4);
-    \draw[thick] (0.2,3.5) -- (2.8,3.5);
-    \draw[thick] (0.2,3.0) -- (2.8,3.0);
-    \draw[thick] (0.2,2.5) -- (1.5,2.5);
-    \draw[thick] (0.2,2.0) -- (2.8,2.0);
-    \draw[thick] (0.2,1.5) -- (2.8,1.5);
-    \draw[thick] (0.2,1.0) -- (1.8,1.0);
-    \draw[thick] (0.2,0.5) -- (2.8,0.5);
-    \node[below] at (1.5,0) {\small Código bem formatado};
-\end{tikzpicture}
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Formatação Vertical: Metáfora do Jornal}
-
-\begin{columns}
-\begin{column}{0.6\textwidth}
-\begin{enumerate}
-    \item \textbf{Título:} Nome da classe/arquivo
-    \item \textbf{Primeiro parágrafo:} Visão geral de alto nível
-    \item \textbf{Parágrafos seguintes:} Detalhes específicos
-    \item \textbf{Seções:} Agrupamento por conceitos relacionados
-\end{enumerate}
-
-\vspace{0.5cm}
-\begin{block}{Diretrizes}
-\begin{itemize}
-    \item Espaçamento entre conceitos
-    \item Declarações relacionadas próximas
-    \item Ordenação vertical (dependências apontam para baixo)
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.4\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=0.7]
-    % Simulando layout de jornal
-    \draw[thick] (0,0) rectangle (3,5);
-    \draw[fill=darkgray] (0.2,4.2) rectangle (2.8,4.8);
-    \node[white, font=\tiny] at (1.5,4.5) {TÍTULO PRINCIPAL};
-    
-    \draw[thick] (0.2,3.5) -- (2.8,3.5);
-    \draw[thick] (0.2,3.3) -- (2.8,3.3);
-    \draw[thick] (0.2,3.1) -- (2.0,3.1);
-    
-    \draw[thick] (0.2,2.7) -- (2.8,2.7);
-    \draw[thick] (0.2,2.5) -- (2.8,2.5);
-    \draw[thick] (0.2,2.3) -- (1.8,2.3);
-    
-    \draw[thick] (0.2,1.9) -- (2.8,1.9);
-    \draw[thick] (0.2,1.7) -- (2.8,1.7);
-    \draw[thick] (0.2,1.5) -- (2.3,1.5);
-    
-    \node[below] at (1.5,0) {\tiny Estrutura hierárquica};
-\end{tikzpicture}
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Formatação Horizontal e Indentação}
-
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{block}{\textcolor{cleanred}{\faTimes} Formatação Ruim}
-\lstinputlisting[language=Java]{examples/bad_formatting.java}
-\end{block}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Formatação Boa}
-\lstinputlisting[language=Java]{examples/good_formatting.java}
-\end{block}
-\end{column}
-\end{columns}
-
-\vspace{0.5cm}
-\begin{itemize}
-    \item \textbf{Indentação:} Reflete a hierarquia lógica
-    \item \textbf{Espaçamento:} Separa operadores e conceitos
-    \item \textbf{Alinhamento:} Melhora a legibilidade
-\end{itemize}
-\end{frame}
-
-\section{Objetos e Estruturas de Dados}
-
-\begin{frame}
-\frametitle{Objetos vs. Estruturas de Dados}
-
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{block}{Estruturas de Dados}
-\begin{itemize}
-    \item Expõem dados
-    \item Não têm comportamento significativo
-    \item Fácil adicionar novas funções
-    \item Difícil adicionar novos tipos
-\end{itemize}
-\end{block}
-
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \draw[fill=cleanblue!20] (0,0) rectangle (2.5,2);
-    \node[text width=2.3cm, align=center] at (1.25,1.5) {\small \textbf{Estrutura}};
-    \node[text width=2.3cm, align=center] at (1.25,1) {\tiny + dados públicos};
-    \node[text width=2.3cm, align=center] at (1.25,0.5) {\tiny - comportamento};
-\end{tikzpicture}
-\end{center}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{block}{Objetos}
-\begin{itemize}
-    \item Escondem dados
-    \item Expõem comportamento
-    \item Fácil adicionar novos tipos
-    \item Difícil adicionar novas funções
-\end{itemize}
-\end{block}
-
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \draw[fill=cleangreen!20] (0,0) rectangle (2.5,2);
-    \node[text width=2.3cm, align=center] at (1.25,1.5) {\small \textbf{Objeto}};
-    \node[text width=2.3cm, align=center] at (1.25,1) {\tiny - dados privados};
-    \node[text width=2.3cm, align=center] at (1.25,0.5) {\tiny + comportamento};
-\end{tikzpicture}
-\end{center}
-\end{column}
-\end{columns}
-
-\vspace{0.5cm}
-\begin{alertblock}{Lei de Demeter}
-Um objeto deve falar apenas com seus vizinhos imediatos, não com estranhos.
-\end{alertblock}
-\end{frame}
-
-\begin{frame}
-\frametitle{Encapsulamento em Prática}
-
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{block}{\textcolor{cleanred}{\faTimes} Violação do Encapsulamento}
-\lstinputlisting[language=Java]{examples/bad_encapsulation.java}
-\end{block}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Encapsulamento Adequado}
-\lstinputlisting[language=Java]{examples/good_encapsulation.java}
-\end{block}
-\end{column}
-\end{columns}
-
-\vspace{0.5cm}
-\begin{itemize}
-    \item \textbf{Dados privados:} Protegem o estado interno
-    \item \textbf{Métodos públicos:} Interface controlada
-    \item \textbf{Comportamento:} Lógica encapsulada no objeto
-\end{itemize}
 \end{frame}
 
 \section{Conclusão}
@@ -669,9 +443,9 @@ Código limpo não é escrito de uma vez. É refinado continuamente.
 Obrigado pela atenção!\\
 \vspace{0.5cm}
 \normalsize
-\texttt{fernando.marques@ufrn.br}
+\texttt{fernando@dimap.ufrn.br}
 \end{center}
 \end{frame}
 
-
 \end{document}
+

@@ -1,10 +1,10 @@
 // Separação clara de responsabilidades
-public boolean autenticarUsuario(String usuario, String senha) {
-    return validarCredenciais(usuario, senha);
+public boolean validarSenha(String senha) {
+    return senha.length() > 8;
 }
 
-public void iniciarSessaoSeAutenticado(String usuario, String senha) {
-    if (autenticarUsuario(usuario, senha)) {
-        iniciarSessao(usuario);
+public void fazerLogin(String senha) {
+    if (validarSenha(senha)) {
+        iniciarSessao();
     }
 }

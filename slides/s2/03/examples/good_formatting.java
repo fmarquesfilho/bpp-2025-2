@@ -1,9 +1,9 @@
-// Formatação adequada - fácil de ler
-public class Cliente {
+// Formatação boa
+public class Usuario {
     private String nome;
     private int idade;
     
-    public Cliente(String nome, int idade) {
+    public Usuario(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
     }

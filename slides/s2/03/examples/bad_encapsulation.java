@@ -1,12 +1,10 @@
 // Violação do encapsulamento
 public class ContaBancaria {
-    public double saldo; // Público - perigoso!
-    
-    public ContaBancaria(double saldo) {
-        this.saldo = saldo;
-    }
+    public double saldo;
+    public String numero;
 }
 
-// Uso perigoso
-ContaBancaria conta = new ContaBancaria(1000);
-conta.saldo = -500; // Permite saldo negativo!
+// Uso problemático
+ContaBancaria conta = new ContaBancaria();
+conta.saldo = -100; // Permite saldo negativo!
+conta.numero = null; // Permite dados inválidos

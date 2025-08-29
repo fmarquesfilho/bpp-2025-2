@@ -1,9 +1,10 @@
 // Nomes difíceis de pronunciar e buscar
-String strTxt = "AXCV";
-int pgId = 23;
-class clsClnt { }
+String xlzqp = "data";
+int grmblwskx = 42;
+List<User> usrLstMngr = new ArrayList<>();
 
-public void generateBltInDB() {
+class XyzManager {
     // Difícil de encontrar no código
     // Difícil de pronunciar em reuniões
+    void prcssXyzData() { }
 }
