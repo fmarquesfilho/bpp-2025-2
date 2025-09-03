@@ -295,7 +295,7 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 - Você está animado para desenvolvê-lo
 
 #### 8.3 Recursos de Apoio:
-- **Office hours**: Segundas 14h-16h (online)
+- **Atendimento**: Segundas 14h-16h (online)
 - **Fórum da disciplina**: Para dúvidas técnicas
 - **GitHub do curso**: Exemplos e templates
 - **Material complementar**: Artigos sobre MVP e backlog
