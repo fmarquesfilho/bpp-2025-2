@@ -1,14 +1,14 @@
-# Instruções para o Projeto - BPP 2025.2 (Versão Aprimorada)
+# Instruções para o Projeto - BPP 2025.2
 
 ## Visão Geral
 
-O projeto da disciplina de Boas Práticas de Programação (BPP) será desenvolvido ao longo do semestre utilizando **princípios ágeis adaptados para o contexto acadêmico**. A primeira entrega (Unidade 1) consiste no **planejamento completo** do projeto, aplicando conceitos de visão de produto, definição de MVP e Backlog Priorizado.
+O projeto da disciplina de Boas Práticas de Programação (BPP) será desenvolvido ao longo do semestre utilizando **princípios ágeis**. A primeira entrega (Unidade 1) consiste no **planejamento completo** do projeto, aplicando conceitos de visão de produto, definição de MVP e Backlog Priorizado e também uma versão preliminar (ainda inicial) do produto desenvolvido no projeto.
 
 ---
 
 ## Fase 1 - Planejamento Estratégico (Unidade 1)
 
-### 1. Visão do Produto (Product Vision)
+### 1. Visão do Produto
 
 A **visão do produto** é a declaração estratégica que guia todo o desenvolvimento. Ela deve responder: "Por que este produto existe?" e "Qual o impacto desejado?"
 
