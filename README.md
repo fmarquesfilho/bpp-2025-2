@@ -29,13 +29,12 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 
 | Unidade | Tipo de Avaliação | Descrição |
 |---------|-------------------|-----------|
-| **U1**  | Trabalho Prático  | Planejamento do projeto |
+| **U1**  | Projeto (entrega preliminar)  | Planejamento do projeto |
 | **U2**  | Prova Escrita     | Avaliação presencial dos conceitos teóricos e práticos |
-| **U3**  | Projeto Final     | Desenvolvimento e entrega do MVP do projeto |
+| **U3**  | Projeto (entrega final)     | Entrega do MVP do projeto |
 
 ### Observações:
 - O projeto pode ser feito **individualmente ou em grupos de 2 a 3 pessoas**.
-- As entregas devem seguir o modelo de **MVP (Minimum Viable Product)**.
 - Todas as entregas devem ser acompanhadas de vídeo explicativo (5–8 min) e artefatos em PDF/ZIP.
 - A nota final será a média aritmética das três unidades (cada unidade vale 10,0).
 
