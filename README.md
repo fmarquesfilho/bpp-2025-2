@@ -29,9 +29,9 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 
 | Unidade | Tipo de Avaliação | Descrição |
 |---------|-------------------|-----------|
-| **U1**  | Projeto (entrega preliminar)  | Planejamento do projeto |
+| **U1**  | Projeto (entrega preliminar)  | Planejamento do projeto + MVP inicial |
 | **U2**  | Prova Escrita     | Avaliação presencial dos conceitos teóricos e práticos |
-| **U3**  | Projeto (entrega final)     | Entrega do MVP do projeto |
+| **U3**  | Projeto (entrega final)     | Entrega do MVP final do projeto |
 
 ### Observações:
 - O projeto pode ser feito **individualmente ou em grupos de 2 a 3 pessoas**.
