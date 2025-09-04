@@ -127,16 +127,7 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 
 ### 4. Planejamento de Sprints
 
-#### 4.1 Estrutura:
-
-**Duração**: 1-2 semanas (alinhado com conteúdo das aulas)
-**Objetivo**: Entrega incremental funcional
-**Cerimônias adaptadas**:
-- Planning: 30 min (início da sprint)
-- Review: Autoavaliação + demo para colegas
-- Retrospective: Reflexão escrita sobre aprendizados
-
-#### 4.2 Cronograma (Unidade 1):
+#### 4.1 Cronograma (Unidade 1):
 
 **Semana 1 (02-08/09): Setup e Planejamento**
 - [ ] Definir visão do produto
@@ -168,7 +159,7 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 - [ ] Revisão final dos documentos
 - [ ] Upload no SIGAA
 
-#### 4.3 Definition of Done (DoD) por Sprint:
+#### 4.2 Definition of Done (DoD) por Sprint:
 
 **Sprint 1:**
 - [ ] Funcionalidade implementada
@@ -257,7 +248,7 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 
 **Documentos Obrigatórios:**
 - [ ] Visão do Produto (PDF, 2-3 páginas)
-- [ ] Product Backlog (PDF ou planilha) - se fizer no Trello ou similar, anexar print da tela.
+- [ ] Product Backlog (PDF) - se fizer no Trello ou ferramenta similar, anexar print da tela.
 - [ ] Vídeo de apresentação (5-8 minutos)
 
 #### 7.2 Estrutura do Vídeo de Apresentação:
@@ -294,18 +285,16 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 
 #### 8.3 Recursos de Apoio:
 - **Atendimento**: Segundas 14h-16h (online)
-- **Fórum da disciplina**: Para dúvidas técnicas
-- **GitHub do curso**: Exemplos e templates
-- **Material complementar**: Artigos sobre MVP e backlog
+- **Discord da disciplina**: https://discord.gg/bbMFJBQRT8
+- **GitHub do curso**: https://github.com/fmarquesfilho/bpp-2025-2
 
 ---
 
 ### 9. Instruções de Entrega Final
 
 #### 9.1 Formato dos Arquivos:
-- **Documentos**: PDF (máximo 10MB cada)
-- **Vídeo**: MP4 ou link para YouTube/Drive
-- **Nomenclatura**: `[TipoDoc]_[NomeProjeto]_[NomeAluno].pdf`
+- **Visão do Produto e Backlog do Produto**: Você pode usar qualquer editor ou ferramenta para elaborar estes documentos. Antes de entregá-los, faça a exportação para PDF ou o print da tela correspondente e gere os documentos em PDF. Estes documentos não serão aceitos em outro formato.
+- **Vídeo**: Adicionar o link para YouTube/Drive num arquivo texto e compactar junto aos demais documentos.
 
 #### 9.2 Envio:
 - **Plataforma**: SIGAA - Tarefa "Entrega U1"
