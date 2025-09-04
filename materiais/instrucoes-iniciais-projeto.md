@@ -293,15 +293,14 @@ Para cada refatoração realizada, documente:
 ## 5. Próximos Passos
 - Code smells ainda a corrigir
 - Melhorias planejadas para U3
-```
 
 #### 8.2 Documentos de Entrega:
 
 **Obrigatórios:**
 - [ ] Visão do Produto (PDF, 2-3 páginas)
 - [ ] Product Backlog (PDF)
-- [ ] **Relatório de Qualidade de Código (PDF, 3-4 páginas)**
-- [ ] **Código fonte completo (ZIP)**
+- [ ] Relatório de Qualidade de Código (PDF, 3-4 páginas)
+- [ ] Link para o repositório com o código-fonte do projeto
 - [ ] Vídeo de apresentação (8-10 minutos)
 
 #### 8.3 Estrutura do Vídeo Atualizada:
@@ -445,7 +444,7 @@ def process_user_data(user_data):
 
 #### 12.1 Antes de Enviar:
 - [ ] Todos os arquivos no formato correto
-- [ ] Código fonte incluído e organizado
+- [ ] Link para repositório com código-fonte incluído
 - [ ] **Pelo menos 3 code smells identificados**
 - [ ] **Pelo menos 3 refatorações documentadas**
 - [ ] **Relatório de qualidade completo**
@@ -464,4 +463,4 @@ def process_user_data(user_data):
 
 **Data de Entrega**: 02/10/2025 até 23:59
 **Plataforma**: SIGAA - Tarefa "Entrega U1"
-**Formato**: ZIP único com todos os arquivos incluindo código fonte
+**Formato**: ZIP único com todos os arquivos
