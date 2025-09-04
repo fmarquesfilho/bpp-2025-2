@@ -6,14 +6,15 @@
 \usetikzlibrary{shapes.geometric, arrows, positioning, matrix}
 \usepackage{amssymb}
 \usepackage{xcolor}
+\usepackage{listings}
 \usetheme{Madrid}
 \usepackage{pifont}
 
 \title{Boas Práticas de Programação (2025.2)}
-\subtitle{Planejamento Estratégico de Projeto com Princípios Ágeis}
+\subtitle{Projeto Integrado: MVP + Código Limpo + Refatoração}
 \author{Prof. Fernando Figueira}
 \institute{DIMAp - UFRN}
-\date{Setembro de 2025}
+\date{Agosto de 2025}
 
 % Definindo estilos personalizados
 \tikzset{
@@ -24,34 +25,51 @@
     arrow/.style = {thick,->,>=stealth}
 }
 
+% Configuração para código
+\lstset{
+    basicstyle=\tiny\ttfamily,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false,
+    backgroundcolor=\color{gray!10}
+}
+
 \begin{document}
 
 \frame{\titlepage}
 
-% Slide 1 - Overview do Planejamento
-\begin{frame}{Por que Planejamento Estratégico?}
+% Slide 1 - Overview do Projeto Integrado
+\begin{frame}{Projeto Integrado: MVP + Qualidade de Código}
 \begin{columns}[c]
 \column{0.5\textwidth}
+\textbf{Objetivos do Projeto:}
 \begin{itemize}
-    \item \textbf{Foco no Valor}: Resolver problemas reais
-    \item \textbf{Gestão de Escopo}: Evitar feature creep
-    \item \textbf{Entrega Incremental}: Feedback constante
-    \item \textbf{Aprendizado Ágil}: Adaptar baseado em evidências
+    \item \textbf{Entregar Valor}: MVP funcional
+    \item \textbf{Código Limpo}: Nomenclatura e estrutura
+    \item \textbf{Identificar Problemas}: Code smells
+    \item \textbf{Melhorar Continuamente}: Refatoração
 \end{itemize}
 
 \column{0.5\textwidth}
 \centering
-\begin{tikzpicture}[scale=0.7]
+\begin{tikzpicture}[scale=0.6]
     \draw[fill=blue!20] (0,0) circle (2cm) node {\textbf{Seu Projeto}};
-    \draw[fill=green!20] (-1.5,1.5) circle (0.8cm) node[font=\tiny] {Valor};
-    \draw[fill=yellow!20] (1.5,1.5) circle (0.8cm) node[font=\tiny] {Escopo};
-    \draw[fill=orange!20] (1.5,-1.5) circle (0.8cm) node[font=\tiny] {Tempo};
-    \draw[fill=red!20] (-1.5,-1.5) circle (0.8cm) node[font=\tiny] {Qualidade};
+    \draw[fill=green!20] (-1.5,1.5) circle (0.8cm) node[font=\tiny] {MVP};
+    \draw[fill=yellow!20] (1.5,1.5) circle (0.8cm) node[font=\tiny] {Clean Code};
+    \draw[fill=orange!20] (1.5,-1.5) circle (0.8cm) node[font=\tiny] {Refactoring};
+    \draw[fill=red!20] (-1.5,-1.5) circle (0.8cm) node[font=\tiny] {Quality};
 \end{tikzpicture}
 \end{columns}
+
+\vspace{0.3cm}
+\begin{alertblock}{Nova Abordagem}
+Seu projeto será avaliado tanto pelo \textbf{valor entregue} quanto pela \textbf{qualidade do código}!
+\end{alertblock}
 \end{frame}
 
-% Slide 2 - Visão do Produto com Template
+% Slide 2 - Visão do Produto (mantido)
 \begin{frame}{Visão do Produto: Template Prático}
 \begin{block}{Template da Visão}
 \textbf{Para} [usuários-alvo] \\
@@ -69,33 +87,12 @@
 \checkmark\ Identifica problema concreto \\
 \checkmark\ Explicita valor único \\
 \checkmark\ É inspiradora mas realista \\
-\checkmark\ Cabe no escopo acadêmico
+\checkmark\ \textbf{Permite aplicar boas práticas de código}
 \end{exampleblock}
 \end{frame}
 
-% Slide 3 - Exemplo de Visão
-\begin{frame}{Exemplo: Visão do Produto}
-\begin{alertblock}{Sistema de Controle de Gastos Universitário}
-\textbf{Para} estudantes universitários \\
-\textbf{Que} têm dificuldade em controlar gastos mensais \\
-\textbf{O} UniBudget \textbf{é uma} aplicação de controle financeiro \\
-\textbf{Que} permite registro rápido e visualização de padrões \\
-\textbf{Diferente de} apps complexos como Mobills \\
-\textbf{Nosso produto} foca na simplicidade e contexto estudantil
-\end{alertblock}
-
-\vspace{0.3cm}
-\begin{itemize}
-    \item \textbf{Usuário}: Específico e bem definido
-    \item \textbf{Problema}: Concreto e relevante
-    \item \textbf{Diferencial}: Simplicidade + contexto
-\end{itemize}
-\end{frame}
-
-
-
-% Slide 5 - Framework de MVP
-\begin{frame}{Framework para Definir MVP}
+% Slide 3 - MVP com Critérios de Qualidade
+\begin{frame}{Framework para MVP + Qualidade}
 \begin{block}{1. Problema Core}
 Qual o \textbf{principal} problema que seu produto resolve?
 \end{block}
@@ -104,464 +101,597 @@ Qual o \textbf{principal} problema que seu produto resolve?
 "Acreditamos que [usuários] vão [comportamento] porque [benefício]"
 \end{block}
 
-\begin{block}{3. Métricas de Sucesso}
-Como você saberá se funcionou?
+\begin{block}{3. Critérios de Qualidade}
+Como garantir que o código seja limpo e de fácil manutenção?
 \end{block}
 
 \vspace{0.3cm}
 \begin{exampleblock}{Exemplo - Sistema de Biblioteca}
 \textbf{Problema}: Estudantes perdem tempo procurando livros \\
-\textbf{Hipótese}: Vão consultar antes de ir à biblioteca \\
-\textbf{Métrica}: Redução de idas "em vão" à biblioteca
+\textbf{MVP}: Busca + Status + Empréstimo simples \\
+\textbf{Qualidade}: Funções < 20 linhas, nomes descritivos
 \end{exampleblock}
 \end{frame}
 
-% Slide 6 - Técnica MoSCoW
-\begin{frame}{Técnica MoSCoW para Definir Escopo}
-\centering
-\begin{tikzpicture}[scale=0.9]
-    \node[priority1, text width=7cm] at (0,0) {\textbf{Must Have} - Essencial para o MVP};
-    \node[priority2, text width=7cm] at (0,-1) {\textbf{Should Have} - Importante, versão 2.0};
-    \node[priority3, text width=7cm] at (0,-2) {\textbf{Could Have} - Desejável, backlog futuro};
-    \node[draw, fill=red!20, rounded corners, minimum width=7cm, minimum height=0.8cm, text centered] at (0,-3) {\textbf{Won't Have} - Explicitamente excluído};
-\end{tikzpicture}
-
-\vspace{0.5cm}
-\textbf{Dica}: Se você tem dúvidas se algo é Must/Should, provavelmente é Should!
-\end{frame}
-
-% Slide 7 - Exemplo MoSCoW Aplicado
-\begin{frame}{Exemplo: MoSCoW - Sistema de Biblioteca}
-\begin{columns}[t]
-\column{0.48\textwidth}
-\textbf{Must Have (MVP)}
+% Slide 4 - Código Limpo no MVP
+\begin{frame}{Princípios de Código Limpo no MVP}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\textbf{Nomenclatura:}
 \begin{itemize}
-    \item Cadastrar livro
-    \item Listar livros
-    \item Busca simples
-    \item Marcar emprestado/disponível
+    \item Nomes intencionais
+    \item Evitar abreviações
+    \item Usar termos do domínio
+    \item Pronunciáveis
 \end{itemize}
 
-\textbf{Should Have (v2.0)}
+\textbf{Funções:}
 \begin{itemize}
-    \item Filtros avançados
-    \item Histórico de empréstimos
-    \item Dados do usuário
+    \item Pequenas (< 20 linhas)
+    \item Uma responsabilidade
+    \item Poucos parâmetros
+    \item Nome descritivo
 \end{itemize}
 
-\column{0.48\textwidth}
-\textbf{Could Have}
+\column{0.5\textwidth}
+\textbf{Formatação:}
 \begin{itemize}
-    \item Sistema de reservas
-    \item Notificações
-    \item Estatísticas
-    \item API externa
+    \item Indentação consistente
+    \item Espaçamento vertical
+    \item Agrupamento lógico
+    \item Linhas < 120 chars
 \end{itemize}
 
-\textbf{Won't Have}
+\textbf{Comentários:}
 \begin{itemize}
-    \item Pagamentos de multa
-    \item Integração com biblioteca física
-    \item App mobile
+    \item Apenas quando necessário
+    \item Explicam "por quê"
+    \item Mantidos atualizados
+    \item Não redundantes
 \end{itemize}
 \end{columns}
 \end{frame}
 
-% Slide 8 - Backlog Estruturado
-\begin{frame}{Product Backlog: Organização Prática}
-\textbf{Estrutura de cada item:}
-\begin{center}
-[Prioridade] + [User Story] + [Critérios] + [Estimativa]
-\end{center}
-
-\vspace{0.3cm}
-\textbf{User Story Template:}
-\begin{alertblock}{}
-Como [tipo de usuário], quero [funcionalidade] para [benefício]\\
-Exemplo: "Como estudante, quero buscar livros por autor para encontrar obras específicas rapidamente"
-\end{alertblock}
-
-\vspace{0.3cm}
-\textbf{Critérios de Aceitação:}
+% Slide 6 - Code Smells Prioritários
+\begin{frame}{Code Smells: O que Procurar}
+\begin{columns}[t]
+\column{0.48\textwidth}
+\textbf{Nível Método/Função:}
 \begin{itemize}
-    \item Condições que a funcionalidade deve atender
-    \item Cenários de teste implícitos
-    \item Definição clara de "pronto"
+    \item \textbf{Long Method}: > 20-30 linhas
+    \item \textbf{Long Parameter List}: > 3-4 parâmetros  
+    \item \textbf{Duplicate Code}: Repetição
+    \item \textbf{Dead Code}: Código não usado
 \end{itemize}
+
+\textbf{Nível Classe:}
+\begin{itemize}
+    \item \textbf{Large Class}: Muitas responsabilidades
+    \item \textbf{Data Class}: Só dados, sem comportamento
+    \item \textbf{God Class}: Classe que faz tudo
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Nível Estrutural:}
+\begin{itemize}
+    \item \textbf{Feature Envy}: Método interessado em outra classe
+    \item \textbf{Inappropriate Intimacy}: Classes muito acopladas
+    \item \textbf{Poor Naming}: Nomes ambíguos
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{alertblock}{Objetivo}
+Identificar pelo menos \textbf{3 code smells} diferentes no seu código!
+\end{alertblock}
+\end{columns}
 \end{frame}
 
-% Slide 9 - Exemplo Completo de Backlog
-\begin{frame}{Exemplo: Backlog Completo}
+% Slide 7 - Técnicas de Refatoração
+\begin{frame}{Técnicas de Refatoração Essenciais}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\textbf{Extract Method:}
+\begin{itemize}
+    \item Transformar trecho em método
+    \item Reduzir tamanho de funções
+    \item Melhorar legibilidade
+\end{itemize}
+
+\textbf{Rename Variable/Method:}
+\begin{itemize}
+    \item Nomes mais descritivos
+    \item Eliminar ambiguidade
+    \item Usar vocabulário do domínio
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Introduce Parameter Object:}
+\begin{itemize}
+    \item Agrupar parâmetros relacionados
+    \item Reduzir lista de parâmetros
+    \item Criar classes de dados
+\end{itemize}
+
+\textbf{Remove Duplicate Code:}
+\begin{itemize}
+    \item Extrair código comum
+    \item Criar funções reutilizáveis
+    \item Manter consistência
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Meta}
+Aplicar pelo menos \textbf{3 refatorações} documentadas no seu projeto!
+\end{exampleblock}
+\end{frame}
+
+% Slide 8 - MoSCoW + Critérios de Qualidade
+\begin{frame}{MoSCoW + Critérios de Qualidade}
+\centering
+\begin{tikzpicture}[scale=0.9]
+    \node[priority1, text width=7cm] at (0,0) {\textbf{Must Have} - MVP + Código Limpo};
+    \node[priority2, text width=7cm] at (0,-1) {\textbf{Should Have} - Refatorações + SOLID};
+    \node[priority3, text width=7cm] at (0,-2) {\textbf{Could Have} - Testes + Métricas};
+    \node[draw, fill=red!20, rounded corners, minimum width=7cm, minimum height=0.8cm, text centered] at (0,-3) {\textbf{Won't Have} - Features complexas desnecessárias};
+\end{tikzpicture}
+
+\vspace{0.5cm}
+\textbf{Lembre-se}: Melhor um MVP simples com código de qualidade que features demais mal implementadas!
+\end{frame}
+
+% Slide 9 - Backlog com Critérios de Qualidade
+\begin{frame}{Backlog: Funcionalidade + Qualidade}
 \scriptsize
-\begin{tabular}{|c|p{5cm}|p{3cm}|c|}
+\begin{tabular}{|c|p{4cm}|p{4cm}|c|}
 \hline
-\textbf{Pri} & \textbf{User Story} & \textbf{Critérios de Aceitação} & \textbf{Est} \\
+\textbf{Pri} & \textbf{User Story} & \textbf{Critérios de Qualidade} & \textbf{Est} \\
 \hline
-P1 & Como estudante, quero cadastrar uma nova tarefa para não esquecer & - Campos: título, descrição, data\newline - Validação obrigatórios\newline - Mensagem de confirmação & 4h \\
+P1 & Como estudante, quero cadastrar tarefa & - Função cadastro < 20 linhas\newline - Nomenclatura descritiva\newline - Validação de entrada & 4h \\
 \hline
-P1 & Como estudante, quero ver todas as tarefas para ter visão geral & - Lista ordenada por data\newline - Indicador de urgência\newline - Máximo 50 por tela & 3h \\
+P1 & Como estudante, quero listar tarefas & - Separar lógica/apresentação\newline - Função reutilizável\newline - Tratamento de lista vazia & 3h \\
 \hline
-P2 & Como estudante, quero filtrar por status para focar no importante & - Filtros: todas, pendentes, feitas\newline - Filtro persiste na sessão & 2h \\
+P2 & \textbf{Refatorar código duplicado} & - Identificar duplicação\newline - Extrair função comum\newline - Documentar refatoração & 2h \\
+\hline
+P2 & \textbf{Melhorar nomenclatura} & - Revisar nomes ambíguos\newline - Aplicar convenções\newline - Atualizar documentação & 1h \\
 \hline
 \end{tabular}
 
-\vspace{0.2cm}
-\textbf{Observe}: User stories focam no valor, não na implementação!
+\vspace{0.3cm}
+\textbf{Novidade}: Itens de \textbf{qualidade} também entram no backlog!
 \end{frame}
 
-% Slide 10 - Técnicas de Priorização
-\begin{frame}{Matriz Valor x Esforço para Priorização}
-\centering
-\begin{tikzpicture}[scale=1.1]
-    % Eixos
-    \draw[thick,->] (0,0) -- (5,0) node[right] {Esforço};
-    \draw[thick,->] (0,0) -- (0,4) node[above] {Valor};
-    
-    % Quadrantes
-    \fill[green!20] (0,2) rectangle (2.5,4);
-    \fill[yellow!20] (2.5,2) rectangle (5,4);
-    \fill[blue!20] (0,0) rectangle (2.5,2);
-    \fill[red!20] (2.5,0) rectangle (5,2);
-    
-    % Labels dos quadrantes
-    \node[text width=2cm, align=center] at (1.25,3) {\textbf{FAÇA\\PRIMEIRO}\\\small P1};
-    \node[text width=2cm, align=center] at (3.75,3) {\textbf{PLANEJE\\BEM}\\\small P2};
-    \node[text width=2cm, align=center] at (1.25,1) {\textbf{SE SOBRAR\\TEMPO}\\\small P3};
-    \node[text width=2cm, align=center] at (3.75,1) {\textbf{NÃO FAÇA\\(agora)}\\\small Won't};
-    
-    % Exemplos
-    \node[fill=white, circle, draw] at (1,3.5) {\tiny Login};
-    \node[fill=white, circle, draw] at (4,3.5) {\tiny API};
-    \node[fill=white, circle, draw] at (1,0.5) {\tiny Log};
-    \node[fill=white, circle, draw] at (4,0.5) {\tiny IA};
-\end{tikzpicture}
-\end{frame}
-
-
-% Slide 12 - Cronograma Detalhado
-\begin{frame}{Cronograma: Setembro 2025 (Unidade 1)}
+% Slide 10 - Cronograma Integrado
+\begin{frame}{Cronograma Integrado com Conteúdo}
 \scriptsize
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=0.8]
     % Semanas
-    \draw[fill=blue!10] (0,3) rectangle (2.5,4) node[midway, font=\tiny] {Sem 1: Setup};
-    \draw[fill=green!20] (2.7,3) rectangle (5.2,4) node[midway, font=\tiny] {Sem 2: Sprint 1};
-    \draw[fill=green!20] (5.4,3) rectangle (7.9,4) node[midway, font=\tiny] {Sem 3: Sprint 2};
-    \draw[fill=yellow!20] (8.1,3) rectangle (10.6,4) node[midway, font=\tiny] {Sem 4: Sprint 3};
-    \draw[fill=red!20] (10.8,3) rectangle (13.3,4) node[midway, font=\tiny] {Sem 5: Entrega};
+    \draw[fill=blue!10] (0,3.5) rectangle (2.2,4.5) node[midway, font=\tiny] {Sem 1: Setup};
+    \draw[fill=green!20] (2.4,3.5) rectangle (4.6,4.5) node[midway, font=\tiny] {Sem 2: Clean Code};
+    \draw[fill=yellow!20] (4.8,3.5) rectangle (7,4.5) node[midway, font=\tiny] {Sem 3: Code Smells};
+    \draw[fill=orange!20] (7.2,3.5) rectangle (9.4,4.5) node[midway, font=\tiny] {Sem 4: SOLID};
+    \draw[fill=red!20] (9.6,3.5) rectangle (11.8,4.5) node[midway, font=\tiny] {Sem 5: Refatoração};
     
     % Atividades detalhadas
-    \node[below, font=\tiny, text width=2.3cm, align=center] at (1.25,3) {
-        • Visão do produto\\
-        • Backlog inicial\\
-        • Setup ambiente
+    \node[below, font=\tiny, text width=2cm, align=center] at (1.1,3.5) {
+        • Visão produto\\
+        • MVP inicial\\
+        • Ambiente dev
     };
-    \node[below, font=\tiny, text width=2.3cm, align=center] at (3.95,3) {
-        • Funcionalidades P1\\
-        • Primeira versão\\
-        • Testes básicos
+    \node[below, font=\tiny, text width=2cm, align=center] at (3.5,3.5) {
+        • Nomenclatura\\
+        • Formatação\\
+        • Funções pequenas
     };
-    \node[below, font=\tiny, text width=2.3cm, align=center] at (6.65,3) {
-        • Completar P1\\
-        • Tratamento erros\\
-        • Melhorar UX
+    \node[below, font=\tiny, text width=2cm, align=center] at (5.9,3.5) {
+        • Identificar smells\\
+        • Ferramentas\\
+        • Catalogar problemas
     };
-    \node[below, font=\tiny, text width=2.3cm, align=center] at (9.35,3) {
-        • Funcionalidades P2\\
-        • Refatoração\\
-        • Documentação
+    \node[below, font=\tiny, text width=2cm, align=center] at (8.3,3.5) {
+        • Responsabilidades\\
+        • Reorganizar classes\\
+        • Reduzir acoplamento
     };
-    \node[below, font=\tiny, text width=2.3cm, align=center] at (12.05,3) {
-        • Vídeo\\
-        • Revisão docs\\
-        • Upload SIGAA
+    \node[below, font=\tiny, text width=2cm, align=center] at (10.7,3.5) {
+        • Aplicar técnicas\\
+        • Documentar\\
+        • Finalizar entrega
     };
 \end{tikzpicture}
 \normalsize
 
 \vspace{0.3cm}
-\textbf{Entrega}: 02/10/2025 até 23:59
+\textbf{Cada semana}: Desenvolvimento + aplicação dos conceitos da aula
 \end{frame}
 
-% Slide 13 - Definition of Done
-\begin{frame}{Definition of Done (DoD) Progressivo}
+% Slide 11 - Definition of Done Progressivo
+\begin{frame}{Definition of Done com Qualidade}
 \begin{columns}[t]
 \column{0.32\textwidth}
 \textbf{Sprint 1}
 \begin{itemize}
-    \item Funcionalidade implementada
+    \item Funcionalidade OK
     \item Código compila
-    \item Teste manual OK
-    \item Commit descritivo
+    \item \textbf{Nomes descritivos}
+    \item \textbf{Formatação consistente}
+    \item \textbf{Funções < 20 linhas}
 \end{itemize}
 
 \column{0.32\textwidth}
 \textbf{Sprint 2}
 \begin{itemize}
     \item Tudo do Sprint 1 +
+    \item \textbf{Code smells catalogados}
+    \item \textbf{2+ smells corrigidos}
     \item Tratamento de erros
-    \item Código comentado
-    \item Refatoração inicial
+    \item Documentação inicial
 \end{itemize}
 
 \column{0.32\textwidth}
 \textbf{Sprint 3}
 \begin{itemize}
     \item Tudo do Sprint 2 +
-    \item Testes automatizados
-    \item Documentação completa
+    \item \textbf{SOLID aplicado}
+    \item \textbf{3+ refatorações}
+    \item \textbf{Relatório qualidade}
     \item Code review próprio
 \end{itemize}
 \end{columns}
 
 \vspace{0.5cm}
-\begin{alertblock}{Dica}
-DoD evolui ao longo do projeto. Comece simples e melhore gradualmente!
+\begin{alertblock}{Evolução}
+Definition of Done evolui incorporando conceitos das aulas!
 \end{alertblock}
 \end{frame}
 
-% Slide 14 - Ferramentas Práticas
-\begin{frame}{Ferramentas para Gestão do Projeto}
+% Slide 12 - Ferramentas de Análise
+\begin{frame}{Ferramentas para Análise de Qualidade}
 \begin{columns}[c]
 \column{0.5\textwidth}
-\textbf{Gestão de Backlog:}
+\textbf{Python:}
 \begin{itemize}
-    \item \textbf{Trello}: Visual e simples
-    \item \textbf{GitHub Projects}: Integrado com código
-    \item \textbf{Notion}: Robusto para docs
-    \item \textbf{Google Sheets}: Rápido de usar
+    \item \textbf{pylint}: Análise estática completa
+    \item \textbf{flake8}: Style guide enforcement
+    \item \textbf{black}: Formatação automática
+    \item \textbf{radon}: Métricas de complexidade
 \end{itemize}
 
-\textbf{Controle de Versão:}
+\textbf{Java:}
 \begin{itemize}
-    \item Commits frequentes
-    \item Mensagens descritivas
-    \item Branches por feature
+    \item \textbf{Checkstyle}: Convenções de código
+    \item \textbf{PMD}: Code smells detector
+    \item \textbf{SpotBugs}: Bug pattern detection
 \end{itemize}
 
 \column{0.5\textwidth}
-\textbf{Estrutura de Commits:}
-\begin{block}{Exemplo de commit}
-\texttt{git commit -m "[TIPO] Descrição"}
-
-\vspace{0.2cm}
-\textbf{Tipos:}
+\textbf{JavaScript:}
 \begin{itemize}
-    \item \texttt{FEAT}: nova funcionalidade
-    \item \texttt{FIX}: correção de bug
-    \item \texttt{DOCS}: documentação
-    \item \texttt{REFACTOR}: refatoração
-    \item \texttt{TEST}: testes
+    \item \textbf{ESLint}: Linting e qualidade
+    \item \textbf{Prettier}: Formatação consistente
+    \item \textbf{SonarJS}: Análise de qualidade
 \end{itemize}
-\end{block}
-\end{columns}
-\end{frame}
 
-% Slide 15 - Estrutura de Projeto
-\begin{frame}{Estrutura de Pastas Recomendada}
-\begin{columns}[c]
-\column{0.5\textwidth}
-\begin{block}{Estrutura Básica}
-\texttt{projeto/}\\
-\texttt{|-- src/} \hfill \textit{Código fonte}\\
-\texttt{|-- tests/} \hfill \textit{Testes}\\
-\texttt{|-- docs/} \hfill \textit{Documentação}\\
-\texttt{|-- README.md} \hfill \textit{Visão geral}\\
-\texttt{|-- CHANGELOG.md} \hfill \textit{Mudanças}
-\end{block}
-
-\column{0.5\textwidth}
-\textbf{README.md essencial:}
+\textbf{Multiplataforma:}
 \begin{itemize}
-    \item Título do projeto
-    \item Descrição breve
-    \item Como instalar/executar
-    \item Como usar
-    \item Estrutura do código
-    \item Autor e contato
+    \item \textbf{SonarLint}: Plugin IDE
+    \item \textbf{SonarCloud}: Análise online
+    \item \textbf{CodeClimate}: Métricas contínuas
 \end{itemize}
 \end{columns}
 
 \vspace{0.3cm}
-\begin{alertblock}{Dica}
-README é o cartão de visitas do seu projeto. Invista tempo nele!
-\end{alertblock}
+\begin{block}{Recomendação}
+Use pelo menos \textbf{1 ferramenta} para identificar code smells automaticamente!
+\end{block}
 \end{frame}
 
+% Slide 13 - Métricas de Qualidade
+\begin{frame}{Métricas de Qualidade para Acompanhar}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\textbf{Métricas Básicas:}
+\begin{itemize}
+    \item \textbf{Linhas por Método}: < 20-30
+    \item \textbf{Parâmetros por Função}: < 4
+    \item \textbf{Complexidade Ciclomática}: < 10
+    \item \textbf{Duplicação}: < 5%
+\end{itemize}
 
+\column{0.5\textwidth}
+\textbf{Indicadores de Qualidade:}
+\begin{itemize}
+    \item \textbf{Nomes descritivos}: 90%+
+    \item \textbf{Comentários úteis}: Não redundantes
+    \item \textbf{Code smells}: Identificados e catalogados
+    \item \textbf{Refatorações}: Documentadas
+\end{itemize}
+\end{columns}
 
-% Slide 17 - Sinais de Bom Projeto
+\vspace{0.5cm}
+\begin{exampleblock}{Meta do Projeto}
+\textbf{3+ code smells} identificados e \textbf{3+ refatorações} aplicadas com documentação completa
+\end{exampleblock}
+\end{frame}
+
+% Slide 14 - Estrutura de Projeto
+\begin{frame}{Estrutura de Projeto + Qualidade}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\begin{block}{Estrutura Recomendada}
+\texttt{projeto/}\\
+\texttt{|-- src/} \hfill \textit{Código-fonte}\\
+\texttt{|-- tests/} \hfill \textit{Testes}\\
+\texttt{|-- docs/} \hfill \textit{Documentação}\\
+\texttt{|-- refactoring/} \hfill \textit{\textbf{Análises e refatorações}}\\
+\texttt{|-- tools/} \hfill \textit{Scripts de análise}\\
+\texttt{|-- README.md} \hfill \textit{Visão geral + qualidade}
+\end{block}
+
+\column{0.5\textwidth}
+\textbf{Pasta /refactoring/:}
+\begin{itemize}
+    \item code-smells-identified.md
+    \item refactoring-log.md
+    \item before-after-examples/
+    \item quality-metrics.md
+\end{itemize}
+
+\textbf{README.md deve incluir:}
+\begin{itemize}
+    \item Como executar análises
+    \item Convenções de código
+    \item Métricas atuais
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% Slide 15 - Exemplo de Documentação de Refatoração
+\begin{frame}[fragile]{Exemplo: Documentação de Refatoração}
+\textbf{Template para refactoring-log.md:}
+
+\begin{block}{Refatoração 1: Extract Method}
+\textbf{Code Smell}: Long Method em \texttt{process\_data()} - 45 linhas
+
+\textbf{Técnica Aplicada}: Extract Method
+
+\textbf{Justificativa}: Método fazia validação + processamento + persistência
+
+\textbf{Resultado}: 
+\begin{itemize}
+    \item \texttt{validate\_input()}: 8 linhas
+    \item \texttt{process\_business\_logic()}: 12 linhas  
+    \item \texttt{save\_to\_database()}: 6 linhas
+\end{itemize}
+
+\textbf{Impacto}: Melhor testabilidade e legibilidade
+\end{block}
+
+\vspace{0.2cm}
+\textbf{Documente}: Cada refatoração com antes/depois e justificativa!
+\end{frame}
+
+% Slide 16 - Critérios de Avaliação
+\begin{frame}{Critérios de Avaliação - Unidade 1}
+\begin{columns}[t]
+\column{0.5\textwidth}
+\textbf{Qualidade do Código (30\%)}
+\begin{itemize}
+    \item Aplicação de código limpo
+    \item Nomenclatura e estrutura
+    \item Formatação consistente
+\end{itemize}
+
+\textbf{Code Smells (20\%)}
+\begin{itemize}
+    \item Identificação correta
+    \item Uso de ferramentas
+    \item Catalogação detalhada
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Refatorações (20\%)}
+\begin{itemize}
+    \item Técnicas bem aplicadas
+    \item Documentação completa
+    \item Melhoria efetiva
+\end{itemize}
+
+\textbf{MVP e Visão (15\% cada)}
+\begin{itemize}
+    \item Funcionalidade e valor
+    \item Planejamento coerente
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% Slide 17 - Documentação Obrigatória
+\begin{frame}{Documentação Obrigatória Expandida}
+\textbf{Documentos de Entrega:}
+\begin{itemize}
+    \item[\checkmark] Visão do Produto (PDF, 2-3 páginas)
+    \item[\checkmark] Product Backlog (PDF)
+    \item[\checkmark] Relatório de Qualidade de Código (PDF, 3-4 páginas)
+    \item[\checkmark] Link para o repositório com o código-fonte completo
+    \item[\checkmark] Vídeo de apresentação (8-10 minutos)
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Estrutura do Relatório de Qualidade:}
+\begin{enumerate}
+    \item Aplicação de Código Limpo (exemplos)
+    \item Code Smells Identificados (tabela + análise)  
+    \item Refatorações Realizadas (antes/depois)
+    \item Ferramentas Utilizadas (prints + métricas)
+    \item Próximos Passos (melhorias planejadas)
+\end{enumerate}
+\end{frame}
+
+% Slide 18 - Estrutura do Vídeo Atualizada
+\begin{frame}{Estrutura do Vídeo (8-10 min)}
+\textbf{Roteiro Sugerido:}
+
+\begin{columns}[t]
+\column{0.5\textwidth}
+\textbf{Min 1-2}: Problema e Visão
+\begin{itemize}
+    \item Apresentação do problema
+    \item Solução proposta
+    \item MVP definido
+\end{itemize}
+
+\textbf{Min 3-4}: Demo do MVP
+\begin{itemize}
+    \item Funcionalidades principais
+    \item Navegação pelo sistema
+    \item Valor entregue
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Min 5-6}: Qualidade do Código
+\begin{itemize}
+    \item Exemplos de código limpo
+    \item Estrutura organizada
+    \item Boas práticas aplicadas
+\end{itemize}
+
+\textbf{Min 7-8}: Code Smells e Refatoração
+\begin{itemize}
+    \item Problemas identificados
+    \item Técnicas aplicadas
+    \item Melhorias alcançadas
+\end{itemize}
+
+\textbf{Min 9-10}: Conclusões
+\begin{itemize}
+    \item Lições aprendidas
+    \item Próximos passos
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% Slide 19 - Sinais de Bom Projeto Atualizado
 \begin{frame}{Sinais de um Bom Projeto}
 \begin{columns}[c]
 \column{0.5\textwidth}
 \textbf{Sinais Positivos:}
 \begin{itemize}
-    \item \checkmark\ Explica o valor em 30s
-    \item \checkmark\ MVP pode ser usado por alguém real
-    \item \checkmark\ Você está animado para desenvolvê-lo
-    \item \checkmark\ Escopo é realista para o tempo
+    \item \checkmark\ MVP funcional e valioso
+    \item \checkmark\ \textbf{Código é legível}
+    \item \checkmark\ \textbf{Funções pequenas e focadas}
+    \item \checkmark\ \textbf{Nomes são descritivos}
+    \item \checkmark\ Code smells identificados honestamente
+    \item \checkmark\ Refatorações bem justificadas
 \end{itemize}
 
 \column{0.5\textwidth}
-\textbf{Sinais de atenção:}
+\textbf{Sinais de Atenção:}
 \begin{itemize}
-    \item \ding{55}\ MVP muito complexo
-    \item \ding{55}\ Foco na tecnologia, não no usuário
-    \item \ding{55}\ Backlog com 50+ itens
-    \item \ding{55}\ Problema vago ou inexistente
+    \item \ding{55}\ Code smells ignorados
+    \item \ding{55}\ Funções muito longas
+    \item \ding{55}\ Nomes ambíguos (a, tmp, data)
+    \item \ding{55}\ Código duplicado sem correção
+    \item \ding{55}\ Refatorações superficiais
+    \item \ding{55}\ Foco só nas features
 \end{itemize}
 \end{columns}
 
 \vspace{0.5cm}
 \begin{alertblock}{Lembre-se}
-Melhor um projeto simples bem executado que um complexo pela metade!
+Código de qualidade hoje evita dor de cabeça amanhã!
 \end{alertblock}
 \end{frame}
 
-% Slide 18 - Erros Comuns
+% Slide 20 - Erros Comuns Atualizados
 \begin{frame}{Erros Comuns a Evitar}
 \begin{enumerate}
-    \item \textbf{MVP muito ambicioso}
+    \item \textbf{Ignorar qualidade de código}
     \begin{itemize}
-        \item[\ding{55}] "Sistema completo de e-commerce"
-        \item[\checkmark] "Catálogo simples com carrinho básico"
+        \item[\ding{55}] "Vou limpar depois"
+        \item[\checkmark] "Código limpo desde o início"
     \end{itemize}
     
-    \item \textbf{Foco na tecnologia}
+    \item \textbf{Code smells "falsos"}
     \begin{itemize}
-        \item[\ding{55}] "Quero usar React, Node, MongoDB..."
-        \item[\checkmark] "Como resolver o problema do usuário?"
+        \item[\ding{55}] Inventar problemas inexistentes
+        \item[\checkmark] Usar ferramentas para detecção real
     \end{itemize}
     
-    \item \textbf{Backlog estático}
+    \item \textbf{Refatorações cosméticas}
     \begin{itemize}
-        \item[\ding{55}] "Planejei tudo, não vou mudar"
-        \item[\checkmark] "Vou adaptar conforme aprendo"
+        \item[\ding{55}] Apenas renomear variáveis
+        \item[\checkmark] Melhorias estruturais significativas
+    \end{itemize}
+    
+    \item \textbf{Documentação insuficiente}
+    \begin{itemize}
+        \item[\ding{55}] "O código se explica"
+        \item[\checkmark] Justificar todas as decisões
     \end{itemize}
 \end{enumerate}
-
-\vspace{0.3cm}
-\textbf{Mantra}: Ação e feedback são mais valiosos que planejamento excessivo
 \end{frame}
 
-% Slide 19 - Recursos de Apoio
-\begin{frame}{Recursos de Apoio Disponíveis}
-\textbf{Durante o Desenvolvimento:}
-\begin{itemize}
-    \item \textbf{Atendimentos}: Segundas 14h-16h (online) é bom?
-    \item \textbf{Fórum da Disciplina}: Dúvidas técnicas e conceituais
-    \item \textbf{GitHub do Curso}: Templates e exemplos
-    \item \textbf{Material Complementar}: Artigos sobre MVP e backlog
-\end{itemize}
-
-\vspace{0.3cm}
-\textbf{Templates Disponíveis:}
-\begin{itemize}
-    \item Documento de Visão do Produto
-    \item Planilha de Product Backlog
-    \item Estrutura de README.md
-    \item Checklist de Definition of Done
-\end{itemize}
-
-\vspace{0.3cm}
-\begin{alertblock}{Importante}
-Não hesite em buscar ajuda! Melhor esclarecer dúvidas cedo que descobrir problemas na entrega.
-\end{alertblock}
-\end{frame}
-
-% Slide 20 - Preparação da Entrega
-\begin{frame}{Preparação da Entrega Final}
-\textbf{Documentos Obrigatórios:}
-\begin{itemize}
-    \item Visão do Produto (PDF, 2-3 páginas)
-    \item Product Backlog (PDF ou planilha)
-    \item Vídeo de apresentação (5-8 minutos)
-\end{itemize}
-
-\vspace{0.3cm}
-\textbf{Estrutura do Vídeo:}
-\begin{itemize}
-    \item \textbf{Min 1-2}: Problema e visão do produto
-    \item \textbf{Min 3-4}: Demonstração do MVP planejado
-    \item \textbf{Min 5-6}: Backlog e priorização
-    \item \textbf{Min 7-8}: Stack tecnológica e próximos passos
-\end{itemize}
-
-\vspace{0.3cm}
-\textbf{Formato dos Arquivos:}
-\texttt{[TipoDoc]\_[NomeProjeto]\_[NomeAluno].pdf}
-\end{frame}
-
-% Slide 21 - Checklist Final
-\begin{frame}{Checklist Final da Entrega}
+% Slide 21 - Checklist Expandido
+\begin{frame}{Checklist Final Expandido}
 \begin{columns}[t]
 \column{0.5\textwidth}
-\textbf{Antes de Enviar:}
+\textbf{Código e Qualidade:}
 \begin{itemize}
-    \item Todos os arquivos no formato correto
-    \item Links de vídeo acessíveis
-    \item Documentos autoexplicativos
-    \item Nomes seguem o padrão
-    \item ZIP dentro do limite de tamanho
+    \item[\checkmark] Nomes são descritivos
+    \item[\checkmark] Funções < 20 linhas
+    \item[\checkmark] Código formatado consistente
+    \item[\checkmark] \textbf{3+ code smells identificados}
+    \item[\checkmark] \textbf{3+ refatorações aplicadas}
+    \item[\checkmark] Ferramentas de análise usadas
 \end{itemize}
 
 \column{0.5\textwidth}
-\textbf{Autovaliação:}
+\textbf{Documentação:}
 \begin{itemize}
-    \item Visão é clara e inspiradora
-    \item MVP é realista e valioso
-    \item Backlog está bem priorizado
-    \item Vídeo comunica bem a ideia
-    \item Estou orgulhoso do resultado
+    \item[\checkmark] Relatório de qualidade completo
+    \item[\checkmark] Refatorações bem documentadas
+    \item[\checkmark] Link para repositório do projeto
+    \item[\checkmark] Before/after examples
+    \item[\checkmark] Vídeo mostra código e qualidade
+    \item[\checkmark] README com padrões de qualidade
 \end{itemize}
 \end{columns}
 
 \vspace{0.5cm}
-\begin{block}{Entrega}
-\textbf{SIGAA - Tarefa "Entrega U1"}\\
-\textbf{Deadline}: 02/10/2025 até 23:59\\
-\textbf{Formato}: ZIP único com todos os arquivos
+\begin{block}{Autoavaliação Final}
+"Outro desenvolvedor conseguiria entender e manter meu código facilmente?"
 \end{block}
 \end{frame}
 
-% Slide 22 - Próximos Passos
-\begin{frame}{Próximos Passos}
-\textbf{Esta Semana (02-08/09):}
+% Slide 22 - Recursos e Apoio
+\begin{frame}{Recursos de Apoio Disponíveis}
+\textbf{Catálogos de Referência:}
 \begin{itemize}
-    \item Definir o problema que quer resolver
-    \item Aplicar o template de visão do produto
-    \item Criar backlog inicial com 10-15 itens
-    \item Configurar ambiente de desenvolvimento
+    \item \textbf{Code Smells}: \url{https://luzkan.github.io/smells/}
+    \item \textbf{Refactoring}: Martin Fowler's catalog
+    \item \textbf{Clean Code}: Robert C. Martin principles
 \end{itemize}
 
 \vspace{0.3cm}
-\textbf{Próxima Semana (09-15/09):}
+\textbf{Ferramentas Online:}
 \begin{itemize}
-    \item Iniciar Sprint 1 com funcionalidades P1
-    \item Setup do repositório Git
-    \item Primeira versão funcional (mesmo simples)
-    \item Buscar feedback de colegas
+    \item \textbf{SonarCloud}: Análise gratuita projetos públicos
+    \item \textbf{CodeClimate}: Métricas de qualidade
+    \item \textbf{Better Code Hub}: Compliance com guidelines
 \end{itemize}
 
 \vspace{0.3cm}
-\textbf{Lembre-se}: O objetivo é aprender aplicando conceitos ágeis, não criar o projeto perfeito!
+\textbf{Apoio da Disciplina:}
+\begin{itemize}
+    \item \textbf{Atendimento}: Segundas 14h-16h (online)
+    \item \textbf{Discord}: \url{https://discord.gg/bbMFJBQRT8}
+    \item \textbf{GitHub}: \url{https://github.com/fmarquesfilho/bpp-2025-2}
+\end{itemize}
 \end{frame}
 
 % Slide Final
-\begin{frame}{Valeu e Bom Trabalho!}
+\begin{frame}{Sucesso no Projeto!}
 \centering
-\begin{tikzpicture}
-    \node[draw, fill=blue!10, rounded corners, minimum width=10cm, minimum height=4cm, text width=9cm, align=center] {
-        \Large\textbf{O projeto é uma oportunidade de:}\\
-        
-        \vspace{0.5cm}
-        
-        Aplicar conceitos do curso na prática\\
-        Aprender com feedback e iteração\\
-        Desenvolver algo que você(s) tem orgulho\\
-        
-        \vspace{0.5cm}
-    };
-\end{tikzpicture}
 
 \vspace{0.5cm}
 \textbf{Dúvidas?} fernando@dimap.ufrn.br
