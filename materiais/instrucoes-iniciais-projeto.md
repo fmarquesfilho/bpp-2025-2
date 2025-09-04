@@ -2,14 +2,15 @@
 
 ## Visão Geral
 
-A primeira entrega (Unidade 1) consiste em duas partes:
+A primeira entrega (Unidade 1) consiste em três partes integradas:
 
-1. **Planejamento completo** do projeto, aplicando conceitos de visão de produto, definição de MVP e através da organização de um Backlog Priorizado
-2. **Desenvolvimento e demonstração do MVP** em funcionamento na versão inicial.
+1. **Planejamento estratégico** do projeto, aplicando conceitos de visão de produto, definição de MVP e organização de um Backlog Priorizado
+2. **Desenvolvimento do MVP inicial** aplicando princípios de código limpo e boas práticas
+3. **Análise e refatoração** do código desenvolvido, identificando code smells e aplicando técnicas de melhoria
 
 ---
 
-## Fase 1 - Planejamento (Unidade 1)
+## Fase 1 - Planejamento
 
 ### 1. Visão do Produto
 
@@ -46,264 +47,421 @@ Nosso produto foca na simplicidade e gamificação do controle financeiro
 
 ---
 
-### 2. Produto Viável Mínimo ou _Minimum Viable Product_ (MVP)
+### 2. Produto Viável Mínimo (MVP)
 
-O MVP não é apenas "versão pequena", mas sim **o produto mais simples que valida sua hipótese principal de valor**. Ele deve ter três características essenciais:
+O MVP deve ter três características essenciais: **Viável**, **Valioso** e **Validável**, mas também deve servir como base para aplicação dos conceitos de boas práticas de programação.
 
-#### 2.1 Características de um MVP Eficaz:
-
-1. **Viável**: Pode ser desenvolvido no tempo disponível
-2. **Valioso**: Resolve o problema central do usuário
-3. **Validável**: Permite testar a hipótese principal
-
-#### 2.2 Framework de Definição de MVP:
+#### 2.1 Framework de Definição de MVP:
 
 **Problema Central**: Qual o principal problema que seu produto resolve?
 
 **Hipótese de Valor**: "Acreditamos que [usuários] vão [comportamento esperado] porque [benefício percebido]"
 
-**Métricas de Sucesso**: Como você saberá se o MVP funcionou?
+**Critérios de Qualidade de Código**: Como garantir que o MVP seja bem estruturado e e tenha boas características de qualidade?
 
-#### Exemplo Detalhado - Sistema de Biblioteca Digital:
+#### Exemplo - Sistema de Biblioteca Digital:
 
 **Problema Core**: Estudantes perdem tempo procurando livros disponíveis na biblioteca
 
-**Hipótese de Valor**: "Acreditamos que estudantes vão consultar nosso sistema antes de ir à biblioteca porque saberão quais livros estão disponíveis"
-
 **MVP Funcionalidades**:
-- Cadastro simples de livros (título, autor, status)
-- Busca por título
-- Visualização de disponibilidade
-- Sistema simples de empréstimo/devolução
+- Cadastro simples de livros (aplicando nomenclatura clara)
+- Busca por título (com tratamento de entrada)
+- Visualização de disponibilidade (interface limpa)
+- Sistema simples de empréstimo/devolução (código bem estruturado)
 
-**Fora do MVP** (para versões futuras):
-- Sistema de reservas
-- Notificações automáticas
-- Histórico detalhado
-- Integração com sistema acadêmico
-
-#### 2.3 Técnica MoSCoW para Definir MVP:
-
-- **Must have**: Funcionalidades essenciais (seu MVP)
-- **Should have**: Importantes, mas não críticas (versão 2.0)
-- **Could have**: Desejáveis (backlog futuro)
-- **Won't have**: Explicitamente excluídas do projeto
+**Requisitos de Código Limpo para o MVP**:
+- Nomes descritivos para variáveis, funções e classes
+- Funções pequenas com responsabilidade única
+- Comentários apenas onde necessário
+- Formatação consistente
+- Estrutura organizacional clara
 
 ---
 
-### 3. Product Backlog - Organização Prática
+### 3. Product Backlog com Critérios de Qualidade
 
-O backlog é sua ferramenta de gestão de escopo e prioridades. Ele deve ser **dinâmico** e **orientado a valor**.
+O backlog deve incluir não apenas funcionalidades, mas também critérios de qualidade de código e refatoração.
 
 #### 3.1 Estrutura do Backlog:
 
-Cada item deve seguir o formato:
+| Pri | User Story | Critérios de Aceitação | Critérios de Qualidade | Est | Sprint |
+|-----|------------|------------------------|------------------------|-----|--------|
+| P1 | Como estudante, quero cadastrar uma nova tarefa para não esquecer de fazê-la | - Campos obrigatórios validados<br>- Confirmação visual | - Função de cadastro < 20 linhas<br>- Nomenclatura descritiva<br>- Tratamento de erros | 4h | 1 |
+| P1 | Como estudante, quero ver todas as minhas tarefas para ter visão geral | - Lista ordenada<br>- Indicador de urgência | - Separação clara entre lógica e apresentação<br>- Função de listagem reutilizável | 3h | 1 |
+
+#### 3.2 Itens Específicos de Qualidade no Backlog:
+
+**Refatoração e Code Smells (P2-P3):**
+- [ ] Identificar e eliminar code smells no módulo principal
+- [ ] Refatorar funções longas (Long Method)
+- [ ] Eliminar duplicação de código (Duplicate Code)
+- [ ] Melhorar nomenclatura ambígua (Poor Naming)
+- [ ] Aplicar princípios SOLID onde apropriado
+
+---
+
+## Fase 2 - Desenvolvimento com Boas Práticas
+
+### 4. Aplicação de Código Limpo
+
+#### 4.1 Princípios Obrigatórios no MVP:
+
+**Nomenclatura:**
+- Nomes intencionais e pronunciáveis
+- Evitar abreviações
+- Usar termos do domínio do problema
+
+**Funções:**
+- Pequenas (idealmente < 20 linhas)
+- Fazem apenas uma coisa
+- Nível único de abstração
+- Mínimo de parâmetros possível
+
+**Formatação:**
+- Indentação consistente
+- Espaçamento vertical adequado
+- Linha com no máximo 120 caracteres
+
+**Comentários:**
+- Apenas quando necessário
+- Explicam "por que", não "o que"
+- Mantidos atualizados com o código
+
+#### 4.2 Estrutura de Projeto Recomendada:
+
 ```
-[Prioridade] [Funcionalidade] - [User Story] - [Critérios de Aceitação] - [Estimativa]
-```
-
-#### 3.2 Exemplo Completo de Backlog - Sistema de Tarefas Acadêmicas:
-
-| Pri | User Story | Critérios de Aceitação | Est | Sprint |
-|-----|------------|------------------------|-----|--------|
-| P1 | Como estudante, quero cadastrar uma nova tarefa para não esquecer de fazê-la | - Campos: título, descrição, data limite<br>- Validação de campos obrigatórios<br>- Confirmação de cadastro | 4h | 1 |
-| P1 | Como estudante, quero ver todas as minhas tarefas para ter visão geral | - Lista ordenada por data limite<br>- Indicador visual de urgência<br>- Máximo 50 tarefas por tela | 3h | 1 |
-| P1 | Como estudante, quero marcar tarefa como concluída para acompanhar progresso | - Checkbox/botão de conclusão<br>- Mudança visual da tarefa<br>- Confirmação da ação | 2h | 1 |
-| P2 | Como estudante, quero editar uma tarefa para corrigir informações | - Formulário de edição<br>- Manter dados anteriores<br>- Validação de mudanças | 3h | 2 |
-| P2 | Como estudante, quero filtrar tarefas por status para focar no que importa | - Filtros: todas, pendentes, concluídas<br>- Filtro persiste na sessão | 2h | 2 |
-| P3 | Como estudante, quero ver estatísticas das minhas tarefas para medir produtividade | - Total de tarefas<br>- Taxa de conclusão<br>- Gráfico simples | 4h | 3 |
-
-#### 3.3 Técnicas de Priorização:
-
-**Matriz Valor x Esforço:**
-```
-Alto Valor + Baixo Esforço = Prioridade 1 (Faça primeiro!)
-Alto Valor + Alto Esforço = Prioridade 2 (Planeje bem)
-Baixo Valor + Baixo Esforço = Prioridade 3 (Se sobrar tempo)
-Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
+projeto/
+|-- src/
+    |-- models/          # Classes de domínio (nomes claros)
+    |-- services/        # Lógica de negócio (funções focadas)
+    |-- controllers/     # Interface/entrada (responsabilidade única)
+    |-- utils/           # Utilitários reutilizáveis
+|-- tests/              # Testes organizados por módulo
+|-- docs/               # Documentação
+|-- refactoring/        # Documentação das refatorações
+|-- README.md           # Visão geral e guia de qualidade
 ```
 
 ---
 
-### 4. Planejamento de Sprints
+### 5. Identificação e Tratamento de Code Smells
 
-#### 4.1 Cronograma (Unidade 1):
+#### 5.1 Code Smells Prioritários para Identificação:
 
-**Semana 1 (02-08/09): Setup e Planejamento**
-- [ ] Definir visão do produto
-- [ ] Criar backlog inicial
-- [ ] Configurar ambiente de desenvolvimento
-- [ ] Criar repositório Git
-- [ ] Escolher stack tecnológica
+**Nível Método/Função:**
+- [ ] **Long Method**: Métodos com mais de 20-30 linhas
+- [ ] **Long Parameter List**: Mais de 3-4 parâmetros
+- [ ] **Duplicate Code**: Código repetido em múltiplos locais
+- [ ] **Dead Code**: Código não utilizado
 
-**Semana 2 (09-15/09): Sprint 1 - MVP**
-- [ ] Implementar funcionalidades P1 básicas
-- [ ] Setup de testes básicos
-- [ ] Primeira versão funcional (mesmo que simples)
-- [ ] Documentação inicial
+**Nível Classe:**
+- [ ] **Large Class**: Classes com muitas responsabilidades
+- [ ] **Data Class**: Classes apenas com dados, sem comportamento
+- [ ] **God Class**: Classe que faz tudo
 
-**Semana 3 (16-22/09): Sprint 2 - Refinamento**
-- [ ] Completar funcionalidades P1
-- [ ] Adicionar tratamento de erros
-- [ ] Melhorar interface/UX
-- [ ] Testes mais robustos
+**Nível Estrutural:**
+- [ ] **Feature Envy**: Método mais interessado em outra classe
+- [ ] **Inappropriate Intimacy**: Classes muito acopladas
 
-**Semana 4 (23-29/09): Sprint 3 - Polimento**
-- [ ] Funcionalidades P2 (se tempo permitir)
-- [ ] Refatoração e limpeza de código
-- [ ] Documentação final
-- [ ] Preparação da apresentação
+#### 5.2 Processo de Refatoração Documentado:
 
-**Semana 5 (30/09-02/10): Entrega**
-- [ ] Vídeo de apresentação
-- [ ] Revisão final dos documentos
-- [ ] Upload no SIGAA
+Para cada refatoração realizada, documente:
 
-#### 4.2 Definition of Done (DoD) por Sprint:
+1. **Code Smell Identificado**: Qual problema foi encontrado
+2. **Técnica de Refatoração**: Qual técnica foi aplicada (do catálogo)
+3. **Antes/Depois**: Código antes e depois da refatoração
+4. **Justificativa**: Por que essa melhoria era necessária
+5. **Impacto**: Como a mudança melhora a qualidade
 
-**Sprint 1:**
+---
+
+### 6. Planejamento
+
+#### 6.1 Cronograma Detalhado (Unidade 1):
+
+**Semana 1 (22/08 - Apresentação):**
+- Apresentação do projeto e conceitos de planejamento ágil
+- Definir visão do produto e MVP inicial
+
+**Semana 2 (29/08 - Código Limpo):**
+- **Desenvolvimento**: Implementar primeiras funcionalidades aplicando nomenclatura e formatação
+- **Entrega Sprint 1**: Código com nomes descritivos e estrutura clara
+
+**Semana 3 (05/09 - Code Smells):**
+- **Análise**: Identificar code smells no código atual usando ferramentas
+- **Documentação**: Catalogar problemas encontrados
+- **Desenvolvimento**: Continuar MVP mantendo qualidade
+
+**Semana 4 (12/09 - SOLID):**
+- **Refatoração**: Aplicar princípios SOLID onde apropriado
+- **Melhoria**: Reorganizar código seguindo Single Responsibility
+- **Desenvolvimento**: Completar funcionalidades principais do MVP
+
+**Semana 5 (19/09 - Refatoração):**
+- **Refatoração Final**: Aplicar técnicas do catálogo de Fowler
+- **Documentação**: Registrar todas as refatorações realizadas
+- **Preparação**: Finalizar documentos e vídeo de apresentação
+
+**Entrega Final (02/10):**
+- Todos os artefatos com análise de qualidade incluída
+
+#### 6.2 Definition of Done (DoD) por Sprint:
+
+**Sprint 1 (Semana 2):**
 - [ ] Funcionalidade implementada
-- [ ] Código compila sem erros
-- [ ] Teste manual realizado
-- [ ] Commit com mensagem descritiva
+- [ ] Código segue convenções de nomenclatura
+- [ ] Funções pequenas e focadas
+- [ ] Formatação consistente
+- [ ] README inicial criado
 
-**Sprint 2:**
+**Sprint 2 (Semana 3):**
 - [ ] Tudo do Sprint 1 +
-- [ ] Tratamento básico de erros
-- [ ] Código comentado
-- [ ] Refatoração inicial
+- [ ] Code smells identificados e catalogados
+- [ ] Pelo menos 2 code smells corrigidos
+- [ ] Documentação das correções
 
-**Sprint 3:**
+**Sprint 3 (Semana 4):**
 - [ ] Tudo do Sprint 2 +
-- [ ] Testes automatizados (se aplicável)
-- [ ] Documentação atualizada
-- [ ] Code review próprio
+- [ ] Princípios SOLID aplicados onde apropriado
+- [ ] Estrutura de classes melhorada
+- [ ] Acoplamento reduzido
+
+**Sprint Final (Semana 5):**
+- [ ] Tudo do Sprint 3 +
+- [ ] Pelo menos 5 refatorações documentadas
+- [ ] Código final limpo e bem estruturado
+- [ ] Relatório de qualidade completo
 
 ---
 
-### 5. Ferramentas e Técnicas Recomendadas para Gestão de Backlog
-- **Trello**: Boards visuais (To Do, Doing, Done)
-- **GitHub Projects**: Integrado com código
-
----
-
-### 6. Templates para Entrega
-
-#### 6.1 Template de Visão do Produto:
-```markdown
-# Visão do Produto: [Nome do Projeto]
-
-## Declaração da Visão
-[Use o template fornecido anteriormente]
-
-## Problema a Ser Resolvido
-- Contexto atual:
-- Principais dores:
-- Impacto do problema:
-
-## Solução Proposta
-- Abordagem escolhida:
-- Diferencial principal:
-- Benefícios esperados:
-
-## Usuários-Alvo
-- Perfil primário:
-- Perfil secundário:
-- Necessidades principais:
-
-## Sucesso do Projeto
-- Métricas de sucesso:
-- Critérios de validação:
-```
-
-#### 6.2 Template de Backlog:
-```markdown
-# Product Backlog: [Nome do Projeto]
-
-## MVP (Must Have)
-| ID | User Story | Critérios de Aceitação | Estimativa |
-|----|------------|------------------------|------------|
-| 1  |            |                        |            |
-
-## Versão 2.0 (Should Have)
-| ID | User Story | Critérios de Aceitação | Estimativa |
-|----|------------|------------------------|------------|
-| 2  |            |                        |            |
-
-## Futuro (Could Have)
-| ID | User Story | Critérios de Aceitação | Estimativa |
-|----|------------|------------------------|------------|
-| 3  |            |                        |            |
-
-## Explicitamente Excluído (Won't Have)
-- Funcionalidade X: Motivo
-- Funcionalidade Y: Motivo
-```
-
----
-
-### 7. Preparação dos Arquivos para Entrega
-
-#### 7.1 Checklist de Entrega:
-
-**Documentos Obrigatórios:**
-- [ ] Visão do Produto (PDF, 2-3 páginas)
-- [ ] Product Backlog (PDF) - se fizer no Trello ou ferramenta similar, anexar print da tela.
-- [ ] Vídeo de apresentação (5-8 minutos)
-
-#### 7.2 Estrutura do Vídeo de Apresentação:
-
-**Minuto 1-2**: Apresentação do problema e visão
-**Minuto 3-4**: Demonstração do MVP planejado
-**Minuto 5-6**: Explicação do backlog e priorização
-**Minuto 7-8**: Stack tecnológica e próximos passos
-
-#### 7.3 Critérios de Avaliação:
+### 7. Critérios de Avaliação Atualizados
 
 | Critério | Peso | Detalhamento |
 |----------|------|--------------|
-| Clareza da Visão | 25% | Problema bem definido, solução coerente |
-| Qualidade do MVP | 25% | Escopo realista, foco no valor |
-| Organização do Backlog | 25% | Priorização justificada, user stories bem escritas |
-| Apresentação | 25% | Comunicação clara, demonstração eficaz |
+| Clareza da Visão e MVP | 20% | Problema bem definido, solução coerente |
+| Organização do Backlog | 15% | Priorização justificada, user stories bem escritas |
+| **Qualidade do Código** | **30%** | **Aplicação de código limpo, nomenclatura, estrutura** |
+| **Identificação de Code Smells** | **20%** | **Análise crítica, uso de ferramentas, catalogação** |
+| **Refatorações Realizadas** | **15%** | **Técnicas aplicadas, documentação, melhoria efetiva** |
 
 ---
 
-### 8. Dicas Práticas Finais
+### 8. Documentação de Qualidade
 
-#### 8.1 Erros Comuns a Evitar:
-- **MVP muito complexo**: Comece menor do que imagina
-- **Backlog estático**: Ele deve evoluir conforme você aprende
-- **Foco na tecnologia**: O valor para o usuário vem primeiro
-- **Planejamento excessivo**: Ação e feedback são mais valiosos
+#### 8.1 Relatório de Análise de Código:
 
-#### 8.2 Sinais de um Bom Projeto:
-- Você consegue explicar o valor em 1 minuto
-- O MVP pode ser usado por alguém real
-- As funcionalidades P1 resolvem o problema central
-- Você está animado para desenvolvê-lo
+```markdown
+# Relatório de Qualidade - [Nome do Projeto]
 
-#### 8.3 Recursos de Apoio:
+## 1. Aplicação de Código Limpo
+### Nomenclatura
+- Exemplos de bons nomes utilizados
+- Convenções adotadas
+
+### Estrutura de Funções
+- Tamanho médio das funções
+- Exemplos de funções bem estruturadas
+
+### Formatação
+- Padrões de indentação
+- Organização visual do código
+
+## 2. Code Smells Identificados
+| Code Smell | Localização | Severidade | Status |
+|------------|-------------|------------|--------|
+| Long Method | arquivo.py:50 | Alta | Corrigido |
+| Duplicate Code | modulo1.py, modulo2.py | Média | Pendente |
+
+## 3. Refatorações Realizadas
+### Refatoração 1: Extract Method
+**Antes:**
+```python
+# código original
+```
+
+**Depois:**
+```python
+# código refatorado
+```
+
+**Justificativa:** Método muito longo, extraída responsabilidade específica
+
+## 4. Ferramentas Utilizadas
+- Análise estática: [nome da ferramenta]
+- Métricas de qualidade: [resultados]
+
+## 5. Próximos Passos
+- Code smells ainda a corrigir
+- Melhorias planejadas para U3
+```
+
+#### 8.2 Documentos de Entrega:
+
+**Obrigatórios:**
+- [ ] Visão do Produto (PDF, 2-3 páginas)
+- [ ] Product Backlog (PDF)
+- [ ] **Relatório de Qualidade de Código (PDF, 3-4 páginas)**
+- [ ] **Código fonte completo (ZIP)**
+- [ ] Vídeo de apresentação (8-10 minutos)
+
+#### 8.3 Estrutura do Vídeo Atualizada:
+
+**Minutos 1-2**: Apresentação do problema e visão
+**Minutos 3-4**: Demonstração do MVP funcionando
+**Minutos 5-6**: **Exemplos de código limpo aplicado**
+**Minutos 7-8**: **Code smells identificados e refatorações**
+**Minutos 9-10**: Backlog, próximos passos e lições aprendidas
+
+---
+
+### 9. Ferramentas Recomendadas para Análise
+
+#### 9.1 Por Linguagem:
+
+**Python:**
+- pylint, flake8, black (formatação)
+- radon (métricas de complexidade)
+
+**Java:**
+- Checkstyle, PMD, SpotBugs
+- SonarLint (IDE integration)
+
+**JavaScript/TypeScript:**
+- ESLint, Prettier
+- SonarJS
+
+**C/C++:**
+- cppcheck, clang-tidy
+- Valgrind (análise de memória)
+
+#### 9.2 Métricas de Qualidade:
+
+- **Complexidade Ciclomática**: < 10 por função
+- **Linhas por Método**: < 20-30 linhas
+- **Duplicação**: < 5% do código total
+- **Cobertura de Comentários**: Comentários úteis, não excessivos
+
+---
+
+### 10. Exemplos de Aplicação
+
+#### 10.1 Antes e Depois - Exemplo de Refatoração:
+
+**ANTES (com code smells):**
+```python
+def process_user_data(name, age, email, phone, address, city, zip_code):
+    # Long Parameter List + Long Method
+    if not name or len(name) < 2:
+        return False
+    if not email or "@" not in email:
+        return False
+    if not phone or len(phone) < 10:
+        return False
+    if age < 18 or age > 120:
+        return False
+    
+    user_data = {
+        "name": name.strip().title(),
+        "age": age,
+        "email": email.lower().strip(),
+        "phone": phone.replace("-", "").replace(" ", ""),
+        "address": address,
+        "city": city,
+        "zip": zip_code
+    }
+    
+    # salvar no banco...
+    return True
+```
+
+**DEPOIS (refatorado):**
+```python
+class UserData:
+    def __init__(self, name, age, email, phone, address):
+        self.name = name
+        self.age = age
+        self.email = email
+        self.phone = phone
+        self.address = address
+    
+def validate_user_data(user_data):
+    """Valida os dados básicos do usuário."""
+    return (validate_name(user_data.name) and 
+            validate_email(user_data.email) and
+            validate_phone(user_data.phone) and
+            validate_age(user_data.age))
+
+def validate_name(name):
+    """Valida se o nome é válido."""
+    return name and len(name.strip()) >= 2
+
+def format_user_data(user_data):
+    """Formata os dados do usuário para consistência."""
+    return UserData(
+        name=user_data.name.strip().title(),
+        age=user_data.age,
+        email=user_data.email.lower().strip(),
+        phone=clean_phone_number(user_data.phone),
+        address=user_data.address
+    )
+
+def process_user_data(user_data):
+    """Processa os dados do usuário com validação e formatação."""
+    if not validate_user_data(user_data):
+        return False
+    
+    formatted_data = format_user_data(user_data)
+    return save_user_to_database(formatted_data)
+```
+
+**Refatorações Aplicadas:**
+1. **Extract Method**: Separação das validações em funções específicas
+2. **Introduce Parameter Object**: UserData class para reduzir parâmetros
+3. **Rename Method**: Nomes mais descritivos
+4. **Single Responsibility**: Cada função tem uma responsabilidade
+
+---
+
+### 11. Recursos e Apoio
+
+#### 11.1 Catálogos de Referência:
+- [Catálogo de Code Smells e Refatorações](https://luzkan.github.io/smells/)
+- Refactoring by Martin Fowler (técnicas clássicas)
+- Clean Code by Robert C. Martin (princípios fundamentais)
+
+#### 11.2 Ferramentas Online:
+- SonarCloud (análise gratuita para projetos públicos)
+- CodeClimate (métricas de qualidade)
+- GitHub Actions (automação de análise)
+
+#### 11.3 Apoio Disponível:
 - **Atendimento**: Segundas 14h-16h (online)
 - **Discord da disciplina**: https://discord.gg/bbMFJBQRT8
 - **GitHub do curso**: https://github.com/fmarquesfilho/bpp-2025-2
 
 ---
 
-### 9. Instruções de Entrega Final
+### 12. Checklist Final
 
-#### 9.1 Formato dos Arquivos:
-- **Visão do Produto e Backlog do Produto**: Você pode usar qualquer editor ou ferramenta para elaborar estes documentos. Antes de entregá-los, faça a exportação para PDF ou o print da tela correspondente e gere os documentos em PDF. Estes documentos não serão aceitos em outro formato.
-- **Vídeo**: Adicionar o link para YouTube/Drive num arquivo texto e compactar junto aos demais documentos.
+#### 12.1 Antes de Enviar:
+- [ ] Todos os arquivos no formato correto
+- [ ] Código fonte incluído e organizado
+- [ ] **Pelo menos 3 code smells identificados**
+- [ ] **Pelo menos 3 refatorações documentadas**
+- [ ] **Relatório de qualidade completo**
+- [ ] Links de vídeo acessíveis
+- [ ] Nomenclatura segue convenções de código limpo
 
-#### 9.2 Envio:
-- **Plataforma**: SIGAA - Tarefa "Entrega U1"
-- **Deadline**: 02/10/2025 até 23:59
-- **Formato**: ZIP único com todos os arquivos
+#### 12.2 Autoavaliação de Qualidade:
+- [ ] Código é legível por outro desenvolvedor
+- [ ] Funções são pequenas e focadas
+- [ ] Nomes são descritivos e intencionais
+- [ ] Estrutura está bem organizada
+- [ ] Code smells foram identificados
+- [ ] Refatorações melhoraram o código
 
-#### 9.3 Checklist Final:
-- [ ] Todos os arquivos estão no formato correto
-- [ ] Links de vídeo estão acessíveis
-- [ ] Documentos são autoexplicativos
-- [ ] Nome dos arquivos segue o padrão
-- [ ] Arquivo ZIP está dentro do limite de tamanho
+---
+
+**Data de Entrega**: 02/10/2025 até 23:59
+**Plataforma**: SIGAA - Tarefa "Entrega U1"
+**Formato**: ZIP único com todos os arquivos incluindo código fonte
