@@ -2,11 +2,14 @@
 
 ## Visão Geral
 
-O projeto da disciplina de Boas Práticas de Programação (BPP) será desenvolvido ao longo do semestre utilizando **princípios ágeis**. A primeira entrega (Unidade 1) consiste no **planejamento completo** do projeto, aplicando conceitos de visão de produto, definição de MVP e Backlog Priorizado e também uma versão preliminar (ainda inicial) do produto desenvolvido no projeto.
+A primeira entrega (Unidade 1) consiste em duas partes:
+
+1. **Planejamento completo** do projeto, aplicando conceitos de visão de produto, definição de MVP e através da organização de um Backlog Priorizado
+2. **Desenvolvimento e demonstração do MVP** em funcionamento na versão inicial.
 
 ---
 
-## Fase 1 - Planejamento Estratégico (Unidade 1)
+## Fase 1 - Planejamento (Unidade 1)
 
 ### 1. Visão do Produto
 
@@ -38,24 +41,24 @@ Nosso produto foca na simplicidade e gamificação do controle financeiro
 - [ ] Define claramente o usuário-alvo
 - [ ] Identifica o problema específico a ser resolvido
 - [ ] Explicita o valor único oferecido
-- [ ] É inspiradora, mas realista para o escopo acadêmico
-- [ ] Pode ser desenvolvida em 3-4 meses por 1-3 pessoas
+- [ ] É inspiradora, mas realista para o escopo deste curso e tempo disponível para dedicação ao projeto
+- [ ] Pode ser desenvolvida em 3-4 meses individualmente ou em grupo de 2 a 3 pessoas
 
 ---
 
-### 2. Minimum Viable Product (MVP)
+### 2. Produto Viável Mínimo ou _Minimum Viable Product_ (MVP)
 
 O MVP não é apenas "versão pequena", mas sim **o produto mais simples que valida sua hipótese principal de valor**. Ele deve ter três características essenciais:
 
 #### 2.1 Características de um MVP Eficaz:
 
 1. **Viável**: Pode ser desenvolvido no tempo disponível
-2. **Valioso**: Resolve o problema core do usuário
+2. **Valioso**: Resolve o problema central do usuário
 3. **Validável**: Permite testar a hipótese principal
 
 #### 2.2 Framework de Definição de MVP:
 
-**Problema Core**: Qual o principal problema que seu produto resolve?
+**Problema Central**: Qual o principal problema que seu produto resolve?
 
 **Hipótese de Valor**: "Acreditamos que [usuários] vão [comportamento esperado] porque [benefício percebido]"
 
@@ -84,7 +87,7 @@ O MVP não é apenas "versão pequena", mas sim **o produto mais simples que val
 - **Must have**: Funcionalidades essenciais (seu MVP)
 - **Should have**: Importantes, mas não críticas (versão 2.0)
 - **Could have**: Desejáveis (backlog futuro)
-- **Won't have**: Explicitamente excluídas desta versão
+- **Won't have**: Explicitamente excluídas do projeto
 
 ---
 
@@ -142,7 +145,7 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 - [ ] Criar repositório Git
 - [ ] Escolher stack tecnológica
 
-**Semana 2 (09-15/09): Sprint 1 - Core MVP**
+**Semana 2 (09-15/09): Sprint 1 - MVP**
 - [ ] Implementar funcionalidades P1 básicas
 - [ ] Setup de testes básicos
 - [ ] Primeira versão funcional (mesmo que simples)
@@ -254,13 +257,8 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 
 **Documentos Obrigatórios:**
 - [ ] Visão do Produto (PDF, 2-3 páginas)
-- [ ] Product Backlog (PDF ou planilha)
+- [ ] Product Backlog (PDF ou planilha) - se fizer no Trello ou similar, anexar print da tela.
 - [ ] Vídeo de apresentação (5-8 minutos)
-
-**Documentos Complementares (Opcionais, mas recomendados):**
-- [ ] Documento de arquitetura (1 página)
-- [ ] Cronograma de desenvolvimento
-- [ ] Análise de riscos do projeto
 
 #### 7.2 Estrutura do Vídeo de Apresentação:
 
@@ -289,9 +287,9 @@ Baixo Valor + Alto Esforço = Não faça (pelo menos agora)
 - **Planejamento excessivo**: Ação e feedback são mais valiosos
 
 #### 8.2 Sinais de um Bom Projeto:
-- Você consegue explicar o valor em 30 segundos
+- Você consegue explicar o valor em 1 minuto
 - O MVP pode ser usado por alguém real
-- As funcionalidades P1 resolvem o problema core
+- As funcionalidades P1 resolvem o problema central
 - Você está animado para desenvolvê-lo
 
 #### 8.3 Recursos de Apoio:
