@@ -149,15 +149,7 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 
 ---
 
-## Material de Apoio
-
-- Livro: "Clean Code" de Robert C. Martin
-- [Catálogo de Code Smells e Refatorações](https://luzkan.github.io/smells/)
-- Ferramentas: SonarQube, PMD, Checkstyle, JUnit, Valgrind, entre outras.
-
----
-
-## Recursos de Apoio Disponíveis
+## Recursos de Apoio
 
 ### Catálogos de Referência:
 - [Catálogo de Code Smells e Refatorações](https://luzkan.github.io/smells/)
