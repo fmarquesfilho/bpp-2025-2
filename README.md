@@ -174,17 +174,4 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 - **Discord da disciplina**: https://discord.gg/bbMFJBQRT8
 - **GitHub do curso**: https://github.com/fmarquesfilho/bpp-2025-2
 
----
 
-## Metas de Qualidade por Unidade
-
-### Unidade 1:
-- Pelo menos **3 code smells** identificados corretamente
-- Pelo menos **3 refatorações** documentadas e aplicadas
-- Relatório de qualidade completo com análise detalhada
-
-### Unidade 3:
-- MVP funcional com código limpo consistente
-- Evolução demonstrável da qualidade desde U1
-- Aplicação de pelo menos **5 técnicas de refatoração** diferentes
-- Uso de ferramentas automatizadas de análise
