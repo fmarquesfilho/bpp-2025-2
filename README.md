@@ -5,7 +5,7 @@
 - **Dias de aula:** Sextas-feiras
 - **Modalidade:** Presencial (exceto no acompanhamento de projeto, que será online)
 - **Linguagem:** Livre (os alunos podem escolher a linguagem de programação preferida para o projeto)
-- **Repositório oficial:** [\[Link do GitHub\]](https://github.com/fmarquesfilho/bpp-2025-2)
+- **Repositório oficial:** [Link do GitHub](https://github.com/fmarquesfilho/bpp-2025-2)
 
 ---
 
@@ -27,15 +27,26 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 
 ## Metodologia de Avaliação
 
-| Unidade | Tipo de Avaliação | Descrição |
-|---------|-------------------|-----------|
-| **U1**  | Projeto (entrega preliminar)  | Planejamento do projeto + MVP inicial |
-| **U2**  | Prova Escrita     | Avaliação presencial dos conceitos teóricos e práticos |
-| **U3**  | Projeto (entrega final)     | Entrega do MVP final do projeto |
+### Critérios Detalhados por Unidade
+
+| Unidade | Tipo de Avaliação | Critérios de Avaliação | Peso |
+|---------|-------------------|------------------------|------|
+| **U1**  | Projeto (entrega preliminar) | Planejamento + MVP inicial | 100% |
+| **U2**  | Prova Escrita | Conceitos teóricos e práticos | 100% |
+| **U3**  | Projeto (entrega final) | MVP final | 100% |
+
+#### Critérios Específicos da Unidade 1:
+
+| Critério | Peso | Detalhamento |
+|----------|------|--------------|
+| Clareza da Visão e MVP | 15% cada | Problema bem definido, solução coerente |
+| Qualidade do Código | 30% | Aplicação de código limpo, nomenclatura, estrutura |
+| Identificação de Code Smells | 20% | Análise crítica, uso de ferramentas, catalogação |
+| Refatorações Realizadas | 20% | Técnicas aplicadas, documentação, melhoria efetiva |
 
 ### Observações:
-- O projeto pode ser feito **individualmente ou em grupos de 2 a 3 pessoas**.
-- Todas as entregas devem ser acompanhadas de vídeo explicativo (5–8 min) e artefatos em PDF/ZIP.
+- O projeto pode ser feito **individualmente ou em grupos de 2 a 4 pessoas**.
+- Todas as entregas devem ser acompanhadas de vídeo explicativo (8–10 min para U1) e artefatos em PDF/ZIP.
 - A nota final será a média aritmética das três unidades (cada unidade vale 10,0).
 
 ---
@@ -144,3 +155,36 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 - [Catálogo de Code Smells e Refatorações](https://luzkan.github.io/smells/)
 - Ferramentas: SonarQube, PMD, Checkstyle, JUnit, Valgrind, entre outras.
 
+---
+
+## Recursos de Apoio Disponíveis
+
+### Catálogos de Referência:
+- [Catálogo de Code Smells e Refatorações](https://luzkan.github.io/smells/)
+- Refactoring by Martin Fowler (técnicas clássicas)
+- Clean Code by Robert C. Martin (princípios fundamentais)
+
+### Ferramentas Online:
+- SonarCloud (análise gratuita para projetos públicos)
+- CodeClimate (métricas de qualidade)
+- GitHub Actions (automação de análise)
+
+### Apoio da Disciplina:
+- **Atendimento**: Segundas 14h-16h (online)
+- **Discord da disciplina**: https://discord.gg/bbMFJBQRT8
+- **GitHub do curso**: https://github.com/fmarquesfilho/bpp-2025-2
+
+---
+
+## Metas de Qualidade por Unidade
+
+### Unidade 1:
+- Pelo menos **3 code smells** identificados corretamente
+- Pelo menos **3 refatorações** documentadas e aplicadas
+- Relatório de qualidade completo com análise detalhada
+
+### Unidade 3:
+- MVP funcional com código limpo consistente
+- Evolução demonstrável da qualidade desde U1
+- Aplicação de pelo menos **5 técnicas de refatoração** diferentes
+- Uso de ferramentas automatizadas de análise
