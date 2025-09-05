@@ -142,6 +142,94 @@ projeto/
 |-- README.md           # Visão geral e guia de qualidade
 ```
 
+#### 4.3 Detalhamento dos Arquivos de Qualidade:
+
+**Pasta `/refactoring/`:**
+
+1. **`code-smells-identified.md`** - Catálogo de problemas identificados:
+```markdown
+# Code Smells Identificados
+
+## 1. Long Method
+- **Arquivo**: src/services/user_service.py
+- **Linha**: 45-78
+- **Descrição**: Método process_user_registration com 34 linhas
+- **Severidade**: Alta
+- **Ferramenta**: pylint (função muito complexa)
+- **Status**: Corrigido em Sprint 2
+
+## 2. Duplicate Code
+- **Arquivos**: src/controllers/auth.py e src/controllers/profile.py
+- **Linhas**: 23-31 e 45-53
+- **Descrição**: Validação de email duplicada
+- **Severidade**: Média
+- **Status**: Pendente
+```
+
+2. **`refactoring-log.md`** - Registro de todas as refatorações:
+```markdown
+# Log de Refatorações
+
+## Refatoração #1: Extract Method
+- **Data**: 2025-09-05
+- **Code Smell**: Long Method em UserService.process_user_registration()
+- **Técnica Aplicada**: Extract Method
+- **Arquivos Afetados**: src/services/user_service.py
+- **Justificativa**: Método fazia validação + processamento + persistência (34 linhas)
+- **Resultado**: 
+  - validate_user_input(): 8 linhas
+  - process_business_logic(): 12 linhas
+  - save_user_data(): 6 linhas
+- **Impacto**: Melhor testabilidade e legibilidade
+- **Testes**: Todos os testes passando
+
+## Refatoração #2: Rename Variable
+- **Data**: 2025-09-06
+- **Code Smell**: Poor Naming em múltiplos arquivos
+- **Técnica Aplicada**: Rename Variable/Method
+- **Justificativa**: Variáveis como 'data', 'info', 'temp' eram ambíguas
+- **Mudanças**:
+  - data → user_registration_data
+  - info → product_details
+  - temp → formatted_address
+```
+
+3. **`before-after-examples/`** - Pasta com exemplos práticos:
+```
+before-after-examples/
+|-- long-method-refactor/
+    |-- before.py
+    |-- after.py
+    |-- explanation.md
+|-- duplicate-code-elimination/
+    |-- before_auth.py
+    |-- before_profile.py
+    |-- after_shared_validator.py
+    |-- explanation.md
+```
+
+4. **`quality-metrics.md`** - Métricas de qualidade coletadas:
+```markdown
+# Métricas de Qualidade
+
+## Análise Inicial (Sprint 1)
+- **Complexidade Ciclomática Média**: 8.5
+- **Linhas por Método (Média)**: 18.3
+- **Duplicação de Código**: 12%
+- **Code Smells Detectados**: 15
+
+## Análise Atual (Sprint 3)
+- **Complexidade Ciclomática Média**: 5.2
+- **Linhas por Método (Média)**: 12.1
+- **Duplicação de Código**: 3%
+- **Code Smells Detectados**: 4
+- **Code Smells Corrigidos**: 11
+
+## Ferramentas Utilizadas
+- **pylint**: Análise estática Python
+- **radon**: Métricas de complexidade
+```
+
 ---
 
 ### 5. Identificação e Tratamento de Code Smells
