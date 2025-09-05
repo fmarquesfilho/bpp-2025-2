@@ -43,7 +43,7 @@ Nosso produto foca na simplicidade e gamificação do controle financeiro
 - [ ] Identifica o problema específico a ser resolvido
 - [ ] Explicita o valor único oferecido
 - [ ] É inspiradora, mas realista para o escopo deste curso e tempo disponível para dedicação ao projeto
-- [ ] Pode ser desenvolvida em 3-4 meses individualmente ou em grupo de 2 a 3 pessoas
+- [ ] Pode ser desenvolvida em 3-4 meses individualmente ou em grupo de 2 a 4 pessoas
 
 ---
 
@@ -234,15 +234,14 @@ Para cada refatoração realizada, documente:
 
 ---
 
-### 7. Critérios de Avaliação Atualizados
+### 7. Critérios de Avaliação
 
 | Critério | Peso | Detalhamento |
 |----------|------|--------------|
-| Clareza da Visão e MVP | 20% | Problema bem definido, solução coerente |
-| Organização do Backlog | 15% | Priorização justificada, user stories bem escritas |
-| **Qualidade do Código** | **30%** | **Aplicação de código limpo, nomenclatura, estrutura** |
-| **Identificação de Code Smells** | **20%** | **Análise crítica, uso de ferramentas, catalogação** |
-| **Refatorações Realizadas** | **15%** | **Técnicas aplicadas, documentação, melhoria efetiva** |
+| Clareza da Visão e MVP | 15% cada | Problema bem definido, solução coerente |
+| Qualidade do Código | 30% | Aplicação de código limpo, nomenclatura, estrutura, formatação |
+| Identificação de Code Smells | 20% | Análise crítica, uso de ferramentas, catalogação |
+| Refatorações Realizadas | 20% | Técnicas aplicadas, documentação, melhoria do código |
 
 ---
 
@@ -303,7 +302,7 @@ Para cada refatoração realizada, documente:
 - [ ] Link para o repositório com o código-fonte do projeto
 - [ ] Vídeo de apresentação (8-10 minutos)
 
-#### 8.3 Estrutura do Vídeo Atualizada:
+#### 8.3 Estrutura do Vídeo:
 
 **Minutos 1-2**: Apresentação do problema e visão
 **Minutos 3-4**: Demonstração do MVP funcionando
