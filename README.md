@@ -63,15 +63,15 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 |------|-----------|
 | 29/08/25 | **Código Limpo: Nomenclatura, Formatação e Estrutura** |
 
-### **Semana 3** - Code Smells e Detecção
+### **Semana 3** - Apresentação do Projeto
 | Data | Atividade |
 |------|-----------|
-| 05/09/25 | **Introdução a Code Smells e Ferramentas de Detecção** |
+| 05/09/25 | **Apresentação dos Requisitos do Projeto (U1)** |
 
-### **Semana 4** - Princípios SOLID
+### **Semana 4** - Code Smells + SOLID
 | Data | Atividade |
 |------|-----------|
-| 12/09/25 | **Aplicação Prática dos Princípios SOLID** |
+| 12/09/25 | **Code Smells e Princípios SOLID** |
 
 ### **Semana 5** - Técnicas de Refatoração
 | Data | Atividade |
