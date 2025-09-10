@@ -7,6 +7,8 @@
 \usepackage{tikz}
 \usepackage{fontawesome5}
 \usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
 \usetikzlibrary{shapes.geometric, arrows, positioning, shadows}
 
 % Tema moderno
@@ -67,9 +69,14 @@
 \frametitle{O que são Code Smells?}
 \begin{center}
 \begin{tikzpicture}
-    \node[draw, rectangle, fill=cleanred!20, minimum width=6cm, minimum height=2cm, rounded corners=10pt] (smell) {
+    \node[draw, rectangle, fill=cleanred!20, minimum width=8cm, minimum height=2.5cm, rounded corners=10pt] (smell) {
+        \begin{minipage}{7.5cm}
+        \centering
         \textbf{Sinais de problemas no código} \\
-        \footnotesize Indicam possíveis violações de boas práticas
+        \footnotesize Indicam possíveis violações de boas práticas \\
+        \vspace{0.2cm}
+        \textit{Não são bugs, mas podem levar a eles}
+        \end{minipage}
     };
 \end{tikzpicture}
 \end{center}
@@ -77,18 +84,86 @@
 \vspace{0.5cm}
 \begin{block}{Definição}
 \footnotesize
-Code smells são características superficiais no código-fonte que podem indicar problemas mais profundos no design.
+Code smells são características superficiais no código-fonte que podem indicar problemas mais profundos no design, estrutura ou implementação.
 \end{block}
 
 \begin{exampleblock}{Exemplos Comuns}
 \footnotesize
 \begin{itemize}
-    \item Long Method (Método Longo)
-    \item Duplicate Code (Código Duplicado)
-    \item Large Class (Classe Grande)
-    \item Poor Naming (Nomenclatura Pobre)
+    \item \textbf{Long Method} - Métodos muito longos
+    \item \textbf{Duplicate Code} - Código duplicado
+    \item \textbf{Large Class} - Classes muito grandes
+    \item \textbf{Poor Naming} - Nomenclatura inadequada
+    \item \textbf{God Class} - Classe que faz tudo
 \end{itemize}
 \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Origem e Importância}
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\footnotesize
+\textbf{Termo criado por:} Martin Fowler (1999) \\
+\textbf{Inspiração:} Kent Beck \\
+\textbf{Livro:} "Refactoring: Improving the Design of Existing Code"
+
+\vspace{0.5cm}
+\textbf{Por que são importantes?}
+\begin{itemize}
+    \item Facilitam identificação de problemas
+    \item Guiam decisões de refatoração
+    \item Melhoram manutenibilidade
+    \item Reduzem débito técnico
+\end{itemize}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=yellow!20, draw=orange, thick] (0,0) rectangle (3,2.5);
+    \node at (1.5,2) {\faExclamationTriangle};
+    \node[text width=2.8cm, align=center, font=\scriptsize] at (1.5,1.3) {\textbf{Code Smell}};
+    \node[text width=2.8cm, align=center, font=\tiny] at (1.5,0.7) {Sinal de que algo pode estar errado no design};
+    \node[text width=2.8cm, align=center, font=\tiny] at (1.5,0.3) {Não é um bug, mas pode levar a problemas};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Catálogo de Code Smells}
+\begin{center}
+\textbf{Recurso Oficial:} \\
+\vspace{0.3cm}
+\Large \url{https://luzkan.github.io/smells/}
+\end{center}
+
+\vspace{0.5cm}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Categorias Principais}
+\footnotesize
+\begin{itemize}
+    \item \textbf{Bloaters} - Código inchado
+    \item \textbf{Object-Orientation Abusers} - Abuso de OO
+    \item \textbf{Change Preventers} - Impedimentos de mudança
+    \item \textbf{Dispensables} - Código desnecessário
+    \item \textbf{Couplers} - Acoplamento excessivo
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{alertblock}{Projeto BPP 2025.2}
+\footnotesize
+Consulte também os exemplos no repositório: \\
+\vspace{0.2cm}
+\url{https://github.com/fmarquesfilho/bpp-2025-2}
+\end{alertblock}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -101,22 +176,28 @@ def process_user_registration(name, email, password, age, address, phone):
     if not name or len(name) < 2:
         raise ValueError("Nome invalido")
     if not email or "@" not in email:
-        raise ValueError("Email invalido")
-    # ... mais validacoes
+        raise ValueError("Email invalido") 
+    if not password or len(password) < 8:
+        raise ValueError("Senha muito fraca")
+    if age < 18 or age > 120:
+        raise ValueError("Idade invalida")
+    if not phone or len(phone) < 10:
+        raise ValueError("Telefone invalido")
     
     # Formatacao (10 linhas)
     formatted_name = name.strip().title()
     formatted_email = email.lower().strip()
-    # ... mais formatacao
+    formatted_phone = phone.replace("-", "").replace(" ", "")
     
     # Persistencia (8 linhas)
     user_data = {
-        'name': formatted_name,
-        'email': formatted_email,
-        # ... mais campos
+        'name': formatted_name, 'email': formatted_email,
+        'password': hash_password(password), 'age': age,
+        'address': address, 'phone': formatted_phone
     }
     database.save(user_data)
-    # ... mais 20 linhas de logica
+    send_welcome_email(formatted_email)
+    log_registration(user_data)
     return True
 \end{lstlisting}
 \end{block}
@@ -128,22 +209,28 @@ def process_user_registration(name, email, password, age, address, phone):
 \scriptsize
 \begin{lstlisting}
 def process_user_registration(user_data):
+    """Processa registro de usuario aplicando validacao, formatacao e persistencia."""
     validate_user_input(user_data)
     formatted_data = format_user_data(user_data)
     save_user(formatted_data)
     send_welcome_email(formatted_data.email)
+    return True
 
 def validate_user_input(user_data):
+    """Valida todos os dados de entrada do usuario."""
     if not is_valid_name(user_data.name):
         raise ValueError("Nome invalido")
     if not is_valid_email(user_data.email):
         raise ValueError("Email invalido")
-    # ... outras validacoes
+    if not is_valid_password(user_data.password):
+        raise ValueError("Senha muito fraca")
 
 def format_user_data(user_data):
+    """Formata dados do usuario para consistencia."""
     return UserData(
         name=user_data.name.strip().title(),
-        email=user_data.email.lower().strip()
+        email=user_data.email.lower().strip(),
+        phone=clean_phone_number(user_data.phone)
     )
 \end{lstlisting}
 \end{block}
@@ -318,6 +405,44 @@ class PaymentProcessor:
         payment_method.process(amount)
 \end{lstlisting}
 \end{block}
+\end{frame}
+
+\section{Aplicação Prática}
+
+\begin{frame}
+\frametitle{Processo de Identificação e Refatoração}
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm, scale=0.7]
+    \node[rectangle, draw, fill=cleanred!20, text width=2cm, align=center, font=\scriptsize] (problem) {Code Smell\\Identificado};
+    \node[rectangle, draw, fill=yellow!20, text width=2cm, align=center, font=\scriptsize, right=of problem] (analyze) {Análise\\SOLID};
+    \node[rectangle, draw, fill=cleangreen!20, text width=2cm, align=center, font=\scriptsize, right=of analyze] (solution) {Refatoração\\Aplicada};
+    
+    \draw[->, thick] (problem) -- (analyze);
+    \draw[->, thick] (analyze) -- (solution);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Processo}
+\footnotesize
+\begin{enumerate}
+    \item \textbf{Identificar} code smells
+    \item \textbf{Analisar} princípio SOLID violado
+    \item \textbf{Aplicar} refatoração apropriada
+    \item \textbf{Validar} melhoria na qualidade
+\end{enumerate}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{alertblock}{Dica}
+\footnotesize
+Priorize refatorações baseado no impacto e frequência de mudanças na área do código.
+\end{alertblock}
+\end{column}
+\end{columns}
 \end{frame}
 
 \section{Conclusão}
