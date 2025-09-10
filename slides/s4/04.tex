@@ -1,0 +1,364 @@
+% aula_04.tex - Code Smells + SOLID
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{graphicx}
+\usetikzlibrary{shapes.geometric, arrows, positioning, shadows}
+
+% Tema moderno
+\usetheme{metropolis}
+\usecolortheme{default}
+
+% Cores personalizadas
+\definecolor{cleanblue}{RGB}{52, 152, 219}
+\definecolor{cleangreen}{RGB}{46, 204, 113}
+\definecolor{cleanred}{RGB}{231, 76, 60}
+\definecolor{cleangray}{RGB}{149, 165, 166}
+\definecolor{darkgray}{RGB}{44, 62, 80}
+
+% Configuração do código Python
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    backgroundcolor=\color{gray!10},
+    commentstyle=\color{cleangreen},
+    keywordstyle=\color{cleanblue}\bfseries,
+    numberstyle=\tiny\color{cleangray},
+    stringstyle=\color{cleanred},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    frame=single,
+    rulecolor=\color{cleangray!30}
+}
+
+\lstset{style=pythonstyle}
+
+% Informações do documento
+\title{Code Smells + Princípios SOLID}
+\subtitle{Boas Práticas de Programação - BPP 2025.2}
+\author{Prof. Fernando Marques Filho}
+\institute{Universidade Federal do Rio Grande do Norte}
+\date{12 de Setembro de 2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Agenda}
+\tableofcontents
+\end{frame}
+
+\section{Introdução a Code Smells}
+
+\begin{frame}
+\frametitle{O que são Code Smells?}
+\begin{center}
+\begin{tikzpicture}
+    \node[draw, rectangle, fill=cleanred!20, minimum width=6cm, minimum height=2cm, rounded corners=10pt] (smell) {
+        \textbf{Sinais de problemas no código} \\
+        \footnotesize Indicam possíveis violações de boas práticas
+    };
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{block}{Definição}
+\footnotesize
+Code smells são características superficiais no código-fonte que podem indicar problemas mais profundos no design.
+\end{block}
+
+\begin{exampleblock}{Exemplos Comuns}
+\footnotesize
+\begin{itemize}
+    \item Long Method (Método Longo)
+    \item Duplicate Code (Código Duplicado)
+    \item Large Class (Classe Grande)
+    \item Poor Naming (Nomenclatura Pobre)
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exemplo: Long Method}
+\begin{block}{\textcolor{cleanred}{\faTimes} Violação}
+\scriptsize
+\begin{lstlisting}
+def process_user_registration(name, email, password, age, address, phone):
+    # Validacao (15 linhas)
+    if not name or len(name) < 2:
+        raise ValueError("Nome invalido")
+    if not email or "@" not in email:
+        raise ValueError("Email invalido")
+    # ... mais validacoes
+    
+    # Formatacao (10 linhas)
+    formatted_name = name.strip().title()
+    formatted_email = email.lower().strip()
+    # ... mais formatacao
+    
+    # Persistencia (8 linhas)
+    user_data = {
+        'name': formatted_name,
+        'email': formatted_email,
+        # ... mais campos
+    }
+    database.save(user_data)
+    # ... mais 20 linhas de logica
+    return True
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exemplo: Long Method Refatorado}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Solução}
+\scriptsize
+\begin{lstlisting}
+def process_user_registration(user_data):
+    validate_user_input(user_data)
+    formatted_data = format_user_data(user_data)
+    save_user(formatted_data)
+    send_welcome_email(formatted_data.email)
+
+def validate_user_input(user_data):
+    if not is_valid_name(user_data.name):
+        raise ValueError("Nome invalido")
+    if not is_valid_email(user_data.email):
+        raise ValueError("Email invalido")
+    # ... outras validacoes
+
+def format_user_data(user_data):
+    return UserData(
+        name=user_data.name.strip().title(),
+        email=user_data.email.lower().strip()
+    )
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\section{Ferramentas de Detecção}
+
+\begin{frame}
+\frametitle{Ferramentas Python para Análise}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{pylint}
+\footnotesize
+Análise estática completa\\
+\texttt{pip install pylint}\\
+\texttt{pylint meu\_projeto/}
+\end{block}
+
+\begin{block}{flake8}
+\footnotesize
+Estilo e complexidade\\
+\texttt{pip install flake8}\\
+\texttt{flake8 --max-complexity=10}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{radon}
+\footnotesize
+Métricas de complexidade\\
+\texttt{pip install radon}\\
+\texttt{radon cc . -a}
+\end{block}
+
+\begin{block}{vulture}
+\footnotesize
+Código não utilizado\\
+\texttt{pip install vulture}\\
+\texttt{vulture .}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exemplo: Saída do pylint}
+\begin{block}{Resultado da Análise}
+\scriptsize
+\begin{verbatim}
+user_service.py:45:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+user_service.py:50:4: R0913: Too many arguments (6/5) (too-many-arguments)
+user_service.py:50:4: R0915: Too many statements (55/50) (too-many-statements)
+auth.py:23:4: W0612: Unused variable 'temp' (unused-variable)
+utils.py:10:0: C0103: Function name "doStuff" doesn't conform to snake_case...
+\end{verbatim}
+\end{block}
+
+\begin{block}{Code Smells Detectados}
+\footnotesize
+\begin{itemize}
+    \item \textcolor{cleanred}{Too many arguments} → Long Parameter List
+    \item \textcolor{cleanred}{Too many statements} → Long Method
+    \item \textcolor{cleanred}{Unused variable} → Dead Code
+    \item \textcolor{cleanred}{Bad naming} → Poor Naming
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Princípios SOLID}
+
+\begin{frame}
+\frametitle{Princípios SOLID}
+\begin{center}
+\begin{tabular}{lll}
+\textbf{S} & SRP & Single Responsibility Principle \\
+\textbf{O} & OCP & Open/Closed Principle \\
+\textbf{L} & LSP & Liskov Substitution Principle \\
+\textbf{I} & ISP & Interface Segregation Principle \\
+\textbf{D} & DIP & Dependency Inversion Principle \\
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+\begin{block}{Objetivo}
+\footnotesize
+Criar software mais flexível, compreensível e sustentável através de princípios de design orientado a objetos.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{SRP - Single Responsibility Principle}
+\begin{block}{\textcolor{cleanred}{\faTimes} Violação}
+\scriptsize
+\begin{lstlisting}
+class UserManager:
+    def create_user(self, user_data):
+        # Valida dados
+        # Salva no banco
+        # Envia email
+        # Gera log
+        pass
+        
+    def generate_report(self):
+        # Busca dados
+        # Formata relatorio
+        # Salva PDF
+        # Envia por email
+        pass
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{SRP - Single Responsibility Principle}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Solução}
+\scriptsize
+\begin{lstlisting}
+class UserValidator:
+    def validate(self, user_data): pass
+
+class UserRepository:
+    def save(self, user_data): pass
+
+class EmailService:
+    def send_welcome_email(self, email): pass
+
+class Logger:
+    def log_user_creation(self, user_data): pass
+
+# Cada classe tem uma unica responsabilidade
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{OCP - Open/Closed Principle}
+\begin{block}{\textcolor{cleanred}{\faTimes} Violação}
+\scriptsize
+\begin{lstlisting}
+class PaymentProcessor:
+    def process_payment(self, payment_type, amount):
+        if payment_type == "credit_card":
+            # Processa cartao
+        elif payment_type == "paypal":
+            # Processa paypal
+        elif payment_type == "pix":
+            # Processa pix
+        # Novo metodo -> modificar classe
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{OCP - Open/Closed Principle}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Solução}
+\scriptsize
+\begin{lstlisting}
+from abc import ABC, abstractmethod
+
+class PaymentMethod(ABC):
+    @abstractmethod
+    def process(self, amount): pass
+
+class CreditCardPayment(PaymentMethod):
+    def process(self, amount): pass
+
+class PayPalPayment(PaymentMethod):
+    def process(self, amount): pass
+
+class PaymentProcessor:
+    def process_payment(self, payment_method, amount):
+        payment_method.process(amount)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\section{Conclusão}
+
+\begin{frame}
+\frametitle{Próximos Passos}
+\begin{enumerate}
+    \item \textbf{Prática}: Aplicar análise estática no seu projeto
+    \item \textbf{Identificar}: Code smells no código atual
+    \item \textbf{Refatorar}: Aplicar princípios SOLID
+    \item \textbf{Documentar}: Registrar as melhorias
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{block}{Ferramentas Recomendadas}
+\footnotesize
+\begin{itemize}
+    \item \textbf{pylint}: Análise completa
+    \item \textbf{radon}: Métricas de complexidade
+    \item \textbf{vulture}: Dead code detection
+    \item \textbf{flake8}: Estilo e boas práticas
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Referências}
+\footnotesize
+\begin{itemize}
+    \item Fowler, Martin. \textbf{Refactoring: Improving the Design of Existing Code}
+    \item Martin, Robert C. \textbf{Clean Code: A Handbook of Agile Software Craftsmanship}
+    \item Catálogo de Code Smells: \url{https://luzkan.github.io/smells/}
+    \item SOLID Principles: \url{https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898}
+    \item Repositório do curso: \url{https://github.com/fmarquesfilho/bpp-2025-2}
+\end{itemize}
+
+\vspace{0.5cm}
+\begin{center}
+\Large
+Dúvidas?
+\end{center}
+\end{frame}
+
+\end{document}
