@@ -2,7 +2,7 @@
 
 ## 📋 Preparação do Ambiente
 
-### Instalação das Ferramentas (Windows/Linux)
+### Instalação das Ferramentas
 
 ```bash
 # Instalar as ferramentas principais
