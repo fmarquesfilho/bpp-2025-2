@@ -1,4 +1,4 @@
-# Exemplos Práticos para Análise de Code Smells - Aula 13/09/2025
+# Exemplos Práticos para Análise de Code Smells - Aula 12/09/2025
 
 ## 📋 Preparação do Ambiente
 
