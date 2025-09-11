@@ -1,6 +1,7 @@
 % aula_04.tex - Code Smells + SOLID
 \documentclass[aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{listings}
 \usepackage{xcolor}
@@ -30,20 +31,38 @@
     keywordstyle=\color{cleanblue}\bfseries,
     numberstyle=\tiny\color{cleangray},
     stringstyle=\color{cleanred},
-    basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
     keepspaces=true,
     numbers=left,
-    numbersep=5pt,
+    numbersep=3pt,
     showspaces=false,
     showstringspaces=false,
     showtabs=false,
-    tabsize=4,
+    tabsize=2,
     frame=single,
-    rulecolor=\color{cleangray!30}
+    rulecolor=\color{cleangray!30},
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    inputencoding=utf8,  % ← ADICIONE ESTA LINHA
+    extendedchars=true,         % ← ADICIONE ESTA LINHA
+    literate=                   % ← ADICIONE ESTAS LINHAS
+      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+      {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+      {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+      {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+      {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+      {ã}{{\~a}}1 {ẽ}{{\~e}}1 {ĩ}{{\~i}}1 {õ}{{\~o}}1 {ũ}{{\~u}}1
+      {Ã}{{\~A}}1 {Ẽ}{{\~E}}1 {Ĩ}{{\~I}}1 {Õ}{{\~O}}1 {Ũ}{{\~U}}1
+      {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1
+      {ñ}{{\~n}}1 {Ñ}{{\~N}}1
 }
+
 
 \lstset{style=pythonstyle}
 
@@ -69,8 +88,8 @@
 \frametitle{O que são Code Smells?}
 \begin{center}
 \begin{tikzpicture}
-    \node[draw, rectangle, fill=cleanred!20, minimum width=8cm, minimum height=2.5cm, rounded corners=10pt] (smell) {
-        \begin{minipage}{7.5cm}
+    \node[draw, rectangle, fill=cleanred!20, minimum width=8cm, minimum height=2.0cm, rounded corners=10pt] (smell) {
+        \begin{minipage}{6.0cm}
         \centering
         \textbf{Sinais de problemas no código} \\
         \footnotesize Indicam possíveis violações de boas práticas \\
@@ -81,19 +100,19 @@
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.5cm}
 \begin{block}{Definição}
+\vspace{0.1cm}
 \footnotesize
 Code smells são características superficiais no código-fonte que podem indicar problemas mais profundos no design, estrutura ou implementação.
 \end{block}
 
-\begin{exampleblock}{Exemplos Comuns}
+
+\begin{exampleblock}{\small{Exemplos Comuns}}
 \footnotesize
 \begin{itemize}
     \item \textbf{Long Method} - Métodos muito longos
     \item \textbf{Duplicate Code} - Código duplicado
     \item \textbf{Large Class} - Classes muito grandes
-    \item \textbf{Poor Naming} - Nomenclatura inadequada
     \item \textbf{God Class} - Classe que faz tudo
 \end{itemize}
 \end{exampleblock}
@@ -120,12 +139,12 @@ Code smells são características superficiais no código-fonte que podem indica
 
 \begin{column}{0.4\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \draw[fill=yellow!20, draw=orange, thick] (0,0) rectangle (3,2.5);
-    \node at (1.5,2) {\faExclamationTriangle};
-    \node[text width=2.8cm, align=center, font=\scriptsize] at (1.5,1.3) {\textbf{Code Smell}};
-    \node[text width=2.8cm, align=center, font=\tiny] at (1.5,0.7) {Sinal de que algo pode estar errado no design};
-    \node[text width=2.8cm, align=center, font=\tiny] at (1.5,0.3) {Não é um bug, mas pode levar a problemas};
+\begin{tikzpicture}[scale=1.1]
+    \draw[fill=yellow!20, draw=orange, thick] (0,0) rectangle (3,3.2);
+    \node at (1.5,2.5) {\faExclamationTriangle};
+    \node[text width=2.8cm, align=center, font=\scriptsize] at (1.5,1.8) {\textbf{Code Smell}};
+    \node[text width=2.8cm, align=center, font=\tiny] at (1.5,1.1) {Sinal de que algo pode estar errado no design};
+    \node[text width=2.8cm, align=center, font=\tiny] at (1.5,0.5) {Não é um bug, mas pode levar a problemas};
 \end{tikzpicture}
 \end{center}
 \end{column}
@@ -160,7 +179,7 @@ Code smells são características superficiais no código-fonte que podem indica
 \footnotesize
 Consulte também os exemplos no repositório: \\
 \vspace{0.2cm}
-\url{https://github.com/fmarquesfilho/bpp-2025-2}
+\href{https://github.com/fmarquesfilho/bpp-2025-2}{Clique aqui para abrir}
 \end{alertblock}
 \end{column}
 \end{columns}
@@ -169,10 +188,10 @@ Consulte também os exemplos no repositório: \\
 \begin{frame}[fragile]
 \frametitle{Exemplo: Long Method}
 \begin{block}{\textcolor{cleanred}{\faTimes} Violação}
-\scriptsize
+\tiny
 \begin{lstlisting}
-def process_user_registration(name, email, password, age, address, phone):
-    # Validacao (15 linhas)
+def process_user_registration(name, email, password, age):
+    # Validacao (15+ linhas no total)
     if not name or len(name) < 2:
         raise ValueError("Nome invalido")
     if not email or "@" not in email:
@@ -181,26 +200,15 @@ def process_user_registration(name, email, password, age, address, phone):
         raise ValueError("Senha muito fraca")
     if age < 18 or age > 120:
         raise ValueError("Idade invalida")
-    if not phone or len(phone) < 10:
-        raise ValueError("Telefone invalido")
-    
-    # Formatacao (10 linhas)
-    formatted_name = name.strip().title()
-    formatted_email = email.lower().strip()
-    formatted_phone = phone.replace("-", "").replace(" ", "")
-    
-    # Persistencia (8 linhas)
-    user_data = {
-        'name': formatted_name, 'email': formatted_email,
-        'password': hash_password(password), 'age': age,
-        'address': address, 'phone': formatted_phone
-    }
-    database.save(user_data)
-    send_welcome_email(formatted_email)
-    log_registration(user_data)
+
+    # ... mais codigo aqui
     return True
 \end{lstlisting}
 \end{block}
+
+\vspace{0.1cm}
+\footnotesize
+\faGithub \, \href{https://github.com/fmarquesfilho/bpp-2025-2/}{Clique aqui} para ver exemplo completo.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -209,7 +217,7 @@ def process_user_registration(name, email, password, age, address, phone):
 \scriptsize
 \begin{lstlisting}
 def process_user_registration(user_data):
-    """Processa registro de usuario aplicando validacao, formatacao e persistencia."""
+    """Processa registro aplicando validacao, formatacao e persistencia."""
     validate_user_input(user_data)
     formatted_data = format_user_data(user_data)
     save_user(formatted_data)
@@ -220,20 +228,13 @@ def validate_user_input(user_data):
     """Valida todos os dados de entrada do usuario."""
     if not is_valid_name(user_data.name):
         raise ValueError("Nome invalido")
-    if not is_valid_email(user_data.email):
-        raise ValueError("Email invalido")
-    if not is_valid_password(user_data.password):
-        raise ValueError("Senha muito fraca")
-
-def format_user_data(user_data):
-    """Formata dados do usuario para consistencia."""
-    return UserData(
-        name=user_data.name.strip().title(),
-        email=user_data.email.lower().strip(),
-        phone=clean_phone_number(user_data.phone)
-    )
+    # ... outras validacoes
 \end{lstlisting}
 \end{block}
+
+\vspace{0.1cm}
+\footnotesize
+\faGithub \, \href{https://github.com/fmarquesfilho/bpp-2025-2/}{Clique aqui} para ver exemplo completo.
 \end{frame}
 
 \section{Ferramentas de Detecção}
@@ -273,6 +274,13 @@ Código não utilizado\\
 \end{block}
 \end{column}
 \end{columns}
+
+\vspace{0.5cm}
+\begin{alertblock}{Exemplo Prático - Aula de Hoje}
+\footnotesize
+\faCode \, Vamos analisar código real usando essas ferramentas! \\
+\faGithub \, Códigos em: \url{https://github.com/fmarquesfilho/bpp-2025-2/tree/main/exemplos/analise-pratica}
+\end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -316,36 +324,38 @@ utils.py:10:0: C0103: Function name "doStuff" doesn't conform to snake_case...
 \vspace{0.5cm}
 \begin{block}{Objetivo}
 \footnotesize
+\vspace{0.05cm}
 Criar software mais flexível, compreensível e sustentável através de princípios de design orientado a objetos.
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{SRP - Single Responsibility Principle}
-\begin{block}{\textcolor{cleanred}{\faTimes} Violação}
+\begin{block}{\textcolor{cleanred}{\faTimes} Violação - Classe com múltiplas responsabilidades}
 \scriptsize
 \begin{lstlisting}
 class UserManager:
     def create_user(self, user_data):
-        # Valida dados
-        # Salva no banco
-        # Envia email
-        # Gera log
+        # Valida dados + Salva no banco + Envia email + Gera log
         pass
         
     def generate_report(self):
-        # Busca dados
-        # Formata relatorio
-        # Salva PDF
-        # Envia por email
+        # Busca dados + Formata + Salva PDF + Envia email
         pass
 \end{lstlisting}
 \end{block}
+
+\vspace{0.3cm}
+\begin{alertblock}{Exemplos Completos}
+\footnotesize
+\faGithub \, Ver violações e soluções SOLID em: \\
+\url{https://github.com/fmarquesfilho/bpp-2025-2/tree/main/exemplos/solid}
+\end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{SRP - Single Responsibility Principle}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Solução}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Solução - Responsabilidades separadas}
 \scriptsize
 \begin{lstlisting}
 class UserValidator:
@@ -360,14 +370,14 @@ class EmailService:
 class Logger:
     def log_user_creation(self, user_data): pass
 
-# Cada classe tem uma unica responsabilidade
+# Cada classe tem uma única responsabilidade
 \end{lstlisting}
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{OCP - Open/Closed Principle}
-\begin{block}{\textcolor{cleanred}{\faTimes} Violação}
+\begin{block}{\textcolor{cleanred}{\faTimes} Violação - Modificação para extensão}
 \scriptsize
 \begin{lstlisting}
 class PaymentProcessor:
@@ -378,14 +388,14 @@ class PaymentProcessor:
             # Processa paypal
         elif payment_type == "pix":
             # Processa pix
-        # Novo metodo -> modificar classe
+        # Novo método -> modificar classe existente
 \end{lstlisting}
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{OCP - Open/Closed Principle}
-\begin{block}{\textcolor{cleangreen}{\faCheck} Solução}
+\begin{block}{\textcolor{cleangreen}{\faCheck} Solução - Extensão sem modificação}
 \scriptsize
 \begin{lstlisting}
 from abc import ABC, abstractmethod
@@ -395,9 +405,6 @@ class PaymentMethod(ABC):
     def process(self, amount): pass
 
 class CreditCardPayment(PaymentMethod):
-    def process(self, amount): pass
-
-class PayPalPayment(PaymentMethod):
     def process(self, amount): pass
 
 class PaymentProcessor:
@@ -438,11 +445,39 @@ class PaymentProcessor:
 
 \begin{column}{0.5\textwidth}
 \begin{alertblock}{Dica}
+\vspace{0.05cm}
 \footnotesize
 Priorize refatorações baseado no impacto e frequência de mudanças na área do código.
 \end{alertblock}
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercícios Práticos - Aula de Hoje}
+\begin{block}{Tarefa 1: Instalação das Ferramentas}
+\footnotesize
+\begin{enumerate}
+    \item Instalar as ferramentas: \texttt{pip install pylint flake8 radon vulture}
+    \item Verificar instalação: \texttt{pylint --version}
+    \item Clonar repositório: \texttt{git clone https://github.com/fmarquesfilho/bpp-2025-2}
+\end{enumerate}
+\end{block}
+
+\begin{block}{Tarefa 2: Análise com pylint}
+\footnotesize
+Analisar o arquivo \texttt{exemplos/analise-pratica/problema1.py} e identificar:
+\begin{itemize}
+    \item Quais code smells foram detectados?
+    \item Qual a pontuação do código?
+    \item Quais princípios SOLID estão sendo violados?
+\end{itemize}
+\end{block}
+
+\begin{block}{Tarefa 3: Métricas de Complexidade}
+\footnotesize
+Usar radon para medir complexidade: \texttt{radon cc exemplos/analise-pratica/ -a}
+\end{block}
 \end{frame}
 
 \section{Conclusão}
