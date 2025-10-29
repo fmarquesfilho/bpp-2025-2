@@ -53,86 +53,71 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 
 ## Calendário do Curso - 2025.2
 
-### **Semana 1** - Apresentação e Introdução
+### Apresentação e Introdução
 | Data | Atividade |
 |------|-----------|
 | 22/08/25 | **Apresentação do curso e Introdução a Boas Práticas** |
 
-### **Semana 2** - Princípios de Código Limpo
+### Princípios de Código Limpo
 | Data | Atividade |
 |------|-----------|
 | 29/08/25 | **Código Limpo: Nomenclatura, Formatação e Estrutura** |
 
-### **Semana 3** - Apresentação do Projeto
+### Apresentação do Projeto
 | Data | Atividade |
 |------|-----------|
 | 05/09/25 | **Apresentação dos Requisitos do Projeto (U1)** |
 
-### **Semana 4** - Code Smells + SOLID
+### Code Smells + SOLID, Refatoração e Ferramentas
 | Data | Atividade |
 |------|-----------|
-| 12/09/25 | **Code Smells e Princípios SOLID** |
+| 12/09/25 à 17/10/25| **Code Smells + SOLID, Refatoração e Ferramentas** |
 
-### **Semana 5** - Técnicas de Refatoração
+### Acompanhamento de projeto e revisão
 | Data | Atividade |
 |------|-----------|
-| 19/09/25 | **Catálogo de Refatoração: Técnicas Básicas** |
-
-### **Semana 6** - Ferramentas de Análise Estática
-| Data | Atividade |
-|------|-----------|
-| 26/09/25 | **Ferramentas Open-Source para Análise de Código** |
+| 19/09/25 à 10/10/25 | Acompanhamento de projeto |
 
 ### **Semana 7** - Entrega U1: Planejamento do Projeto
 | Data     | Atividade                                          |
 |----------|----------------------------------------------------|
-| 02/10/25 | **As entregas devem ser realizadas via SIGAA até 23:59.** |
-| 03/10/25 | **Feriado (não haverá aula)** |
+| 14/10/25 | **As entregas devem ser realizadas via SIGAA até 23:59.** |
 
-### **Semana 8** - Mineração de Repositórios
+### **Semana 9** - Não houve aula
 | Data | Atividade |
 |------|-----------|
-| 10/10/25 | **Mineração de Repositórios para Identificação de Code Smells** |
+| 17/10/25 | Aula cancelada |
 
-### **Semana 9** - Mineração de Repositórios II
+### Mineração de Repositórios
 | Data | Atividade |
 |------|-----------|
-| 17/10/25 | **Mineração de Repositórios para Identificação de Code Smells (Continuação)** |
+| 24/10/25 | **Mineração de Repositórios para Identificação de Code Smells** |
 
-### **Semana 10** - Programação Defensiva
+### Automação de Testes
 | Data | Atividade |
 |------|-----------|
-| 24/10/25 | **Programação Defensiva e Tratamento de Erros** |
+| 07/11/25 | **Automação de Testes e Análise de Cobertura** |
 
-### **Semana 11** - Automação de Testes
-| Data | Atividade |
-|------|-----------|
-| 31/10/25 | **Automação de Testes e Análise de Cobertura** |
-
-### **Semana 12** - Técnicas de Depuração e Análise de Desempenho
+### Técnicas de Depuração e Análise de Desempenho
 | Data | Atividade |
 |------|-----------|
 | 14/11/25 | **Depuração, Gerenciamento de Memória, Análise de Desempenho e Detecção de Gargalos** |
 
-### **Semana 13** - Feriado
+### Feriado
 | Data | Atividade |
 |------|-----------|
 | 21/11/25 | **Não haverá aula** |
 
-### **Semana 14** - Prova Presencial (U2)
+### Prova Presencial (U2)
 | Data | Atividade |
 |------|-----------|
 | 28/11/25 | **Avaliação Escrita - Unidade 2** |
 
-### **Semana 15** - Entrega U3: MVP do Projeto
+### Entrega U3: MVP do Projeto e Reposição
 | Data | Atividade |
 |------|-----------|
 | 05/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59. Eu estarei de plantão online para tirar dúvidas sobre a entrega no horário da aula.** |
-
-### **Semana 16** - Entrega das notas
-| Data | Atividade |
-|------|-----------|
-| 12/12/25 | **Reposição de avaliação** |
+| 05/12/25 | **Reposição de avaliação** |
 
 ---
 
