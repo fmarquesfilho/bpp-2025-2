@@ -109,35 +109,30 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 |------|-----------|
 | 31/10/25 | **Automação de Testes e Análise de Cobertura** |
 
-### **Semana 12** - Prova Presencial (U2)
-| Data | Atividade |
-|------|-----------|
-| 07/11/25 | **Avaliação Escrita - Unidade 2** |
-
-### **Semana 13** - Técnicas de Depuração e Análise de Desempenho
+### **Semana 12** - Técnicas de Depuração e Análise de Desempenho
 | Data | Atividade |
 |------|-----------|
 | 14/11/25 | **Depuração, Gerenciamento de Memória, Análise de Desempenho e Detecção de Gargalos** |
 
-### **Semana 14** - Feriado
+### **Semana 13** - Feriado
 | Data | Atividade |
 |------|-----------|
 | 21/11/25 | **Não haverá aula** |
 
-### **Semana 15** - Desenvolvimento do MVP
+### **Semana 14** - Prova Presencial (U2)
 | Data | Atividade |
 |------|-----------|
-| 28/11/25 | **Acompanhamento do Projeto (online)** |
+| 28/11/25 | **Avaliação Escrita - Unidade 2** |
 
-### **Semana 16** - Entrega U3: MVP do Projeto
+### **Semana 15** - Entrega U3: MVP do Projeto
 | Data | Atividade |
 |------|-----------|
-| 05/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59. Eu estarei de plantão online para tirar dúvidas sobre a entrega.** |
+| 05/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59. Eu estarei de plantão online para tirar dúvidas sobre a entrega no horário da aula.** |
 
-### **Semana 17** - Entrega das notas
+### **Semana 16** - Entrega das notas
 | Data | Atividade |
 |------|-----------|
-| 12/12/25 | **Recuperação** |
+| 12/12/25 | **Reposição de avaliação** |
 
 ---
 
