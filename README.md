@@ -71,7 +71,7 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 ### Code Smells + SOLID, Refatoração e Ferramentas
 | Data | Atividade |
 |------|-----------|
-| 12/09/25 à 17/10/25| **Code Smells + SOLID, Refatoração e Ferramentas** |
+| 12/09/25 à 24/10/25| **Code Smells + SOLID, Refatoração e Ferramentas** |
 
 ### Acompanhamento de projeto e revisão
 | Data | Atividade |
