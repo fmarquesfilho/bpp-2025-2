@@ -143,7 +143,6 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 
 ### Apoio da Disciplina:
 - **Atendimento**: Segundas 14h-16h (online)
-- **Discord da disciplina**: https://discord.gg/bbMFJBQRT8
 - **GitHub do curso**: https://github.com/fmarquesfilho/bpp-2025-2
 
 
