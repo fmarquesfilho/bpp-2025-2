@@ -1,0 +1,565 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% Tema
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Cores personalizadas
+\definecolor{codecolor}{rgb}{0.95,0.95,0.95}
+\definecolor{commentgreen}{rgb}{0,0.6,0}
+\definecolor{keywordblue}{rgb}{0,0,0.8}
+
+% Configuração de códig
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordblue}\bfseries,
+    commentstyle=\color{commentgreen},
+    stringstyle=\color{red},
+    backgroundcolor=\color{codecolor},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=2
+}
+
+% Informações do documento
+\title{Automação de Testes e Análise de Cobertura}
+\subtitle{Boas Práticas de Programação - 2025.2}
+\author{Prof. [Fernando Figueira]}
+\institute{Universidade Federal do Rio Grande do Norte}
+\date{07 de Novembro de 2025}
+
+\begin{document}
+
+% Slide de título
+\frame{\titlepage}
+
+% Sumário
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+%=============================================================================
+\section{Introdução à Automação de Testes}
+%=============================================================================
+
+\begin{frame}{Por que Automatizar Testes?}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Benefícios:}
+            \begin{itemize}
+                \item \faCheckCircle\ Detecção precoce de bugs
+                \item \faCheckCircle\ Redução de custos
+                \item \faCheckCircle\ Documentação viva
+                \item \faCheckCircle\ Confiança para refatorar
+                \item \faCheckCircle\ Integração com CI/CD
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{alertblock}{Estatística}
+                Bugs encontrados na produção custam \textbf{15x mais} para corrigir do que bugs encontrados durante o desenvolvimento.
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{A Pirâmide de Testes}
+    \begin{center}
+        \vspace{3em}
+        \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+            % UI Tests (End-to-End) i'd like the pyramid to be divided into three sections with labels and percentages on the right side, right now the top edge is flattened
+
+            \draw[fill=red!30] (-1,10) -- (1,10) -- (2,8) -- (-2,8) -- cycle;
+            \node at (0,9) {\textbf{End-to-End}};
+            \node[align=center, font=\small] at (0,8.5) {Lentos\\Caro};
+            
+            % Integration Tests
+            \draw[fill=yellow!40] (-2,8) -- (2,8) -- (3,6) -- (-3,6) -- cycle;
+            \node at (0,7) {\textbf{Integração}};
+            \node[font=\small] at (0,6.5) {Moderados};
+            
+            % Unit Tests
+            \draw[fill=green!30] (-3,6) -- (3,6) -- (4.5,4) -- (-4.5,4) -- cycle;
+            \node at (0,5.2) {\textbf{Testes Unitários}};
+            \node[align=center, font=\small] at (0,4.5) {Rápido\\Barato};
+            
+            % Percentages
+            \node[right, font=\small] at (0,9.5) {10\%};
+            \node[right, font=\small] at (3.0,6.5) {20\%};
+            \node[right, font=\small] at (5,4.7) {70\%};
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Tipos de Testes}
+    \begin{block}{Testes Unitários (70\%)}
+        Testam \textbf{funções e métodos isolados}. Rápidos e focados.
+    \end{block}
+    
+    \begin{block}{Testes de Integração (20\%)}
+        Testam \textbf{interação entre componentes}. Banco de dados, APIs, módulos.
+    \end{block}
+    
+    \begin{block}{Testes End-to-End (10\%)}
+        Testam \textbf{fluxo completo do usuário}. Interface gráfica, simulação real.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Características de Bons Testes: FIRST}
+    \begin{description}
+        \item[\textbf{F}ast] Executam rapidamente (segundos, não minutos)
+        \item[\textbf{I}ndependent] Não dependem de outros testes
+        \item[\textbf{R}epeatable] Resultados consistentes em qualquer ambiente
+        \item[\textbf{S}elf-validating] Pass/Fail claro, sem verificação manual
+        \item[\textbf{T}imely] Escritos junto com o código (idealmente antes!)
+    \end{description}
+    
+    \vspace{1em}
+    \begin{alertblock}{Atenção}
+        Um teste que não segue FIRST é um teste frágil!
+    \end{alertblock}
+\end{frame}
+
+%=============================================================================
+\section{Análise de Cobertura de Código}
+%=============================================================================
+
+\begin{frame}{O que é Cobertura de Código?}
+    \begin{block}{Definição}
+        Percentual do código que é \textbf{executado} pelos testes automatizados.
+    \end{block}
+    
+    \vspace{1em}
+    
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{O que medir:}
+            \begin{itemize}
+                \item Linhas executadas
+                \item Branches (if/else)
+                \item Funções chamadas
+                \item Condições booleanas
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{alertblock}{Importante}
+                100\% de cobertura \\ 
+                $\neq$ \\
+                100\% de qualidade
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Tipos de Cobertura}
+    \begin{enumerate}
+        \item \textbf{Cobertura de Linhas}
+        \begin{itemize}
+            \item Quantas linhas foram executadas?
+            \item Meta: 70-80\% para código geral
+        \end{itemize}
+        
+        \vspace{0.5em}
+        
+        \item \textbf{Cobertura de Branches}
+        \begin{itemize}
+            \item Quantos caminhos (if/else) foram testados?
+            \item Meta: 60-70\% para código geral
+        \end{itemize}
+        
+        \vspace{0.5em}
+        
+        \item \textbf{Cobertura de Funções}
+        \begin{itemize}
+            \item Quantas funções foram chamadas?
+            \item Meta: 80-90\% para módulos críticos
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo: Código com Baixa Cobertura}
+    \begin{lstlisting}
+def calcular_desconto(preco, cupom):
+    if cupom == "DESC10":
+        return preco * 0.9
+    elif cupom == "DESC20":
+        return preco * 0.8
+    elif cupom == "FRETE_GRATIS":
+        return preco
+    else:
+        raise ValueError("Cupom invalido")
+    \end{lstlisting}
+    
+    \vspace{0.5em}
+    
+    \begin{lstlisting}
+def test_desconto():
+    assert calcular_desconto(100, "DESC10") == 90
+    \end{lstlisting}
+    
+    \begin{alertblock}{Problema}
+        Cobertura de linhas: 37.5\% | Branches: 25\%
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo: Código com Boa Cobertura}
+    \begin{lstlisting}
+def test_desconto_10():
+    assert calcular_desconto(100, "DESC10") == 90
+
+def test_desconto_20():
+    assert calcular_desconto(100, "DESC20") == 80
+
+def test_frete_gratis():
+    assert calcular_desconto(100, "FRETE_GRATIS") == 100
+
+def test_cupom_invalido():
+    with pytest.raises(ValueError):
+        calcular_desconto(100, "INVALIDO")
+    \end{lstlisting}
+    
+    \begin{exampleblock}{Resultado}
+        Cobertura de linhas: 100\% | Branches: 100\%
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Métricas de Qualidade}
+    \begin{center}
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Categoria} & \textbf{Mínimo} & \textbf{Ideal} \\
+            \hline
+            Cobertura de Linhas & 70\% & 80-90\% \\
+            \hline
+            Cobertura de Branches & 60\% & 70-80\% \\
+            \hline
+            Módulos Críticos & 85\% & 95\%+ \\
+            \hline
+            Código Legado & 50\% & 70\% \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \vspace{1em}
+    
+    \begin{block}{Boas Práticas}
+        \begin{itemize}
+            \item \faCheck\ Priorize código crítico e complexo
+            \item \faCheck\ Use cobertura como guia, não como meta absoluta
+            \item \faTimes\ Não infle cobertura com testes vazios
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+%=============================================================================
+\section{Ferramentas e Boas Práticas}
+%=============================================================================
+
+\begin{frame}{Ferramentas por Linguagem}
+    \begin{center}
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Linguagem} & \textbf{Framework} & \textbf{Cobertura} \\
+            \hline
+            Python & pytest, unittest & coverage.py \\
+            \hline
+            JavaScript & Jest, Mocha & Istanbul, nyc \\
+            \hline
+            Java & JUnit, TestNG & JaCoCo \\
+            \hline
+            C/C++ & Google Test, Catch2 & gcov, lcov \\
+            \hline
+            C\# & NUnit, xUnit & OpenCover \\
+            \hline
+            Go & testing (built-in) & go test -cover \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Padrão AAA (Arrange-Act-Assert)}
+    \begin{block}{Estrutura Clara de Testes}
+        Todo teste deve seguir três fases bem definidas:
+    \end{block}
+    
+    \begin{lstlisting}
+def test_calcular_desconto():
+    # ARRANGE - Preparar dados e dependencias
+    produto = Produto(nome="Notebook", preco=3000)
+    desconto = 0.10
+    
+    # ACT - Executar a acao
+    preco_final = produto.aplicar_desconto(desconto)
+    
+    # ASSERT - Verificar resultado
+    assert preco_final == 2700
+    assert produto.preco == 3000  # nao modifica original
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{O que Testar?}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textcolor{green!70!black}{\faCheck\ \textbf{Priorize testar:}}
+            \begin{itemize}
+                \item Lógica de negócio
+                \item Cálculos e transformações
+                \item Validações
+                \item Casos limite (edge cases)
+                \item Tratamento de erros
+                \item Funções complexas
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textcolor{red}{\faTimes\ \textbf{Não priorize:}}
+            \begin{itemize}
+                \item Getters/setters simples
+                \item Código de terceiros
+                \item Constantes
+                \item Configurações triviais
+                \item Framework/biblioteca
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+%=============================================================================
+\section{Demonstração Prática}
+%=============================================================================
+
+\begin{frame}{Parte Prática}
+    \begin{center}
+        \Huge Vamos à Prática! \faLaptopCode
+    \end{center}
+    
+    \vspace{2em}
+    
+    \Large
+    \begin{itemize}
+        \item Exercício 1: Testes Unitários
+        \item Exercício 2: Cobertura de Código
+        \item Exercício 3: TDD na Prática 
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \normalsize
+    \textbf{Ferramenta:} Replit (replit.com) ou Google Colab
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 1: Sistema de Senhas}
+    \textbf{Contexto:} Validação de senhas seguras
+    
+    \vspace{1em}
+    
+    \textbf{Sua tarefa:}
+    \begin{itemize}
+        \item Implementar testes para validação de senha
+        \item Testar casos válidos e inválidos
+        \item Testar cálculo de força da senha
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \textbf{Requisitos:}
+    \begin{itemize}
+        \item Senha deve ter no mínimo 8 caracteres
+        \item Deve conter maiúscula, minúscula e número
+        \item Força: Fraca, Média ou Forte
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 2: Carrinho de Compras}
+    \textbf{Contexto:} Sistema com descontos e cupons
+    
+    \vspace{1em}
+    
+    \textbf{Sua tarefa:}
+    \begin{itemize}
+        \item Escrever testes que cubram todos os cenários
+        \item Analisar cobertura com coverage.py
+        \item Identificar código não coberto
+        \item Criar testes para atingir 100\% de cobertura
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \begin{alertblock}{Desafio}
+        Após rodar \texttt{coverage report}, identifique as linhas não cobertas e crie testes para elas!
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 3: TDD - Calculadora de IMC}
+    \textbf{Contexto:} Implementar seguindo Test-Driven Development
+    
+    \vspace{1em}
+    
+    \textbf{Ciclo TDD:}
+    \begin{enumerate}
+        \item \textcolor{red}{\textbf{RED}} - Escrever teste que falha
+        \item \textcolor{green!70!black}{\textbf{GREEN}} - Implementar código mínimo para passar
+        \item \textcolor{blue}{\textbf{REFACTOR}} - Melhorar o código
+    \end{enumerate}
+    
+    \vspace{1em}
+    
+    \textbf{Funcionalidades:}
+    \begin{itemize}
+        \item Calcular IMC: peso / altura²
+        \item Classificar: Abaixo do peso, Normal, Sobrepeso, Obesidade
+        \item Validar entradas (peso e altura > 0)
+    \end{itemize}
+\end{frame}
+
+%=============================================================================
+\section{Integração com o Projeto}
+%=============================================================================
+
+\begin{frame}{Requisitos para U3}
+    \begin{block}{Automação de Testes (30\%)}
+        \begin{itemize}
+            \item Mínimo 15 testes unitários
+            \item Mínimo 5 testes de integração
+            \item Seguir padrão AAA
+            \item Princípios FIRST
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Cobertura de Código (20\%)}
+        \begin{itemize}
+            \item Cobertura de linhas $\geq$ 70\%
+            \item Cobertura de branches $\geq$ 60\%
+            \item Módulos críticos $\geq$ 85\%
+            \item Justificar código não coberto
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% \begin{frame}{Estrutura de Testes no Projeto}
+%     \begin{block}{Organização Recomendada}
+%         \begin{verbatim}
+% projeto/
+% ├── src/
+% │   └── (código fonte)
+% ├── tests/
+% │   ├── unit/
+% │   │   ├── test_modelo1.py
+% │   │   └── test_servicos.py
+% │   ├── integration/
+% │   │   └── test_fluxo.py
+% │   └── conftest.py
+% └── README.md
+%         \end{verbatim}
+%     \end{block}
+% \end{frame}
+
+\begin{frame}{Comandos Essenciais}
+    \begin{block}{pytest}
+        \texttt{pytest -v} \hfill Executar com verbose \\
+        \texttt{pytest tests/unit/} \hfill Testar pasta específica \\
+        \texttt{pytest -k "senha"} \hfill Testar por nome \\
+        \texttt{pytest --maxfail=1} \hfill Parar no primeiro erro
+    \end{block}
+    
+    \begin{block}{coverage.py}
+        \texttt{coverage run -m pytest} \hfill Executar com cobertura \\
+        \texttt{coverage report} \hfill Relatório no terminal \\
+        \texttt{coverage html} \hfill Relatório HTML detalhado \\
+        \texttt{coverage report --show-missing} \hfill Mostrar linhas não cobertas
+    \end{block}
+\end{frame}
+
+%=============================================================================
+\section{Conclusão}
+%=============================================================================
+
+\begin{frame}{Principais Aprendizados}
+    \begin{enumerate}
+        \item Testes automatizados são \textbf{investimento}, não custo
+        \item Siga a \textbf{pirâmide de testes}: 70\% unitários
+        \item Use \textbf{FIRST} como guia de qualidade
+        \item Cobertura é uma \textbf{métrica}, não uma meta absoluta
+        \item \textbf{TDD} força design melhor e testes mais focados
+    \end{enumerate}
+    
+    \vspace{1em}
+    
+    \begin{alertblock}{Lembre-se}
+        ``Código sem testes é código legado por definição'' \\
+        \hfill --- Michael Feathers
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Recursos e Referências}
+    \textbf{Documentação:}
+    \begin{itemize}
+        \item pytest: \url{https://docs.pytest.org/}
+        \item coverage.py: \url{https://coverage.readthedocs.io/}
+        \item Jest (JS): \url{https://jestjs.io/}
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \textbf{Livros:}
+    \begin{itemize}
+        \item Clean Code, Robert C. Martin (Cap. 9)
+        \item Test Driven Development, Kent Beck
+        \item The Art of Unit Testing, Roy Osherove
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Próximos Passos}
+    \begin{block}{Hoje}
+        \begin{itemize}
+            \item Completar os 3 exercícios práticos
+            \item Experimentar com coverage.py
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Esta Semana}
+        \begin{itemize}
+            \item Adicionar testes ao seu projeto
+            \item Analisar cobertura atual
+            \item Identificar gaps de teste
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Para U3 (05/12)}
+        \begin{itemize}
+            \item Suite completa de testes
+            \item Cobertura $\geq$ 70\%
+            \item Documentação de qualidade
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Contato e Suporte}
+    \begin{center}
+        \Large
+        \textbf{Dúvidas?}
+        
+        \vspace{2em}
+        
+        \faEnvelope\ Atendimento: Segundas 14h-16h (online) \\
+        \vspace{0.5em}
+        \faDiscord\ Discord: \url{https://discord.gg/bbMFJBQRT8} \\
+        \vspace{0.5em}
+        \faGithub\ GitHub: \url{https://github.com/fmarquesfilho/bpp-2025-2}
+        
+        \vspace{2em}
+        
+        \Huge
+        Bons testes! \faRocket
+    \end{center}
+\end{frame}
+
+\end{document}
