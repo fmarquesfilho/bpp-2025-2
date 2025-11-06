@@ -1,0 +1,375 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% Tema
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Cores personalizadas
+\definecolor{codecolor}{rgb}{0.95,0.95,0.95}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+% Configuração de código
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{codecolor},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=2
+}
+
+% Informações do documento
+\title{Entrega Final do Projeto}
+\subtitle{Unidade 3 - MVP Final com Testes e Análises}
+\author{Boas Práticas de Programação - 2025.2}
+\institute{UFRN}
+\date{Entrega: 05/12/2025 às 23:59}
+
+\begin{document}
+
+% Slide de título
+\frame{\titlepage}
+
+%=============================================================================
+\begin{frame}{U3: Evolução do Projeto}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{U1 focou em:}
+            \begin{itemize}
+                \item \faCheck\ Planejamento e MVP
+                \item \faCheck\ Código Limpo
+                \item \faCheck\ Code Smells
+                \item \faCheck\ Refatoração
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{U3 adiciona:}
+            \begin{itemize}
+                \item \faPlus\ Automação de Testes
+                \item \faPlus\ Análise de Cobertura
+                \item \faPlus\ Técnicas de Depuração
+                \item \faPlus\ Análise de Desempenho
+                \item \faPlus\ Gerenciamento de Memória
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    
+    \vspace{1em}
+    
+    \begin{alertblock}{Importante}
+        U3 é a continuação do mesmo projeto da U1! Você vai adicionar novas análises ao MVP existente.
+    \end{alertblock}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{Distribuição da Nota - U3}
+    \begin{center}
+        \begin{tikzpicture}[scale=0.9]
+            % Pie chart
+            \def\radius{2.5}
+            
+            % Automação de Testes (30%)
+            \fill[blue!40] (0,0) -- (0:\radius) arc (0:108:\radius) -- cycle;
+            \node at (54:1.5) {\textbf{30\%}};
+            \node[align=center] at (54:3.2) {\small Automação\\de Testes};
+            
+            % Cobertura (20%)
+            \fill[green!40] (0,0) -- (108:\radius) arc (108:180:\radius) -- cycle;
+            \node at (144:1.5) {\textbf{20\%}};
+            \node[align=center] at (144:3.2) {\small Cobertura\\de Código};
+            
+            % Depuração (15%)
+            \fill[yellow!60] (0,0) -- (180:\radius) arc (180:234:\radius) -- cycle;
+            \node at (207:1.5) {\textbf{15\%}};
+            \node[align=center] at (207:3.2) {\small Depuração};
+            
+            % Performance (20%)
+            \fill[orange!50] (0,0) -- (234:\radius) arc (234:306:\radius) -- cycle;
+            \node at (270:1.5) {\textbf{20\%}};
+            \node[align=center] at (270:3.2) {\small Análise de\\Desempenho};
+            
+            % Memória (15%)
+            \fill[red!40] (0,0) -- (306:\radius) arc (306:360:\radius) -- cycle;
+            \node at (333:1.5) {\textbf{15\%}};
+            \node[align=center] at (333:3.2) {\small Gerenciamento\\de Memória};
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{1. Automação de Testes (30\%)}
+    \begin{block}{Requisitos Mínimos}
+        \begin{itemize}
+            \item \textbf{15+ testes unitários} cobrindo funcionalidades principais
+            \item \textbf{5+ testes de integração} testando interação entre componentes
+            \item Seguir padrão \textbf{AAA} (Arrange-Act-Assert)
+            \item Princípios \textbf{FIRST} (Fast, Independent, Repeatable, Self-validating, Timely)
+        \end{itemize}
+    \end{block}
+    
+    \vspace{0.5em}
+    
+    \begin{alertblock}{Qualidade > Quantidade}
+        Testes bem escritos e significativos valem mais que muitos testes triviais!
+    \end{alertblock}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{2. Análise de Cobertura (20\%)}
+    \begin{block}{Métricas Obrigatórias}
+        \begin{itemize}
+            \item \textbf{Cobertura de Linhas:} Mínimo 70\%
+            \item \textbf{Cobertura de Branches:} Mínimo 60\%
+            \item \textbf{Módulos Críticos:} Mínimo 85\%
+        \end{itemize}
+    \end{block}
+    
+    \vspace{0.5em}
+    
+    \begin{block}{Entregáveis}
+        \begin{enumerate}
+            \item Relatório HTML de cobertura na pasta \texttt{tests/coverage-results/}
+            \item Screenshot das métricas principais
+            \item Documento \texttt{coverage-report.md} com:
+            \begin{itemize}
+                \item Evolução da cobertura (início vs final)
+                \item Justificativa para código não coberto (se < 80\%)
+            \end{itemize}
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+%=============================================================================
+\begin{frame}[fragile]{3. Técnicas de Depuração (15\%)}
+    \begin{block}{Requisito: Documentar 3+ bugs}
+        Para cada bug, documente em \texttt{docs/debugging-log.md}:
+    \end{block}
+    
+    \begin{enumerate}
+        \item \textbf{Identificação}: Data, módulo, severidade
+        \item \textbf{Descrição}: Como reproduzir o problema
+        \item \textbf{Investigação}: Técnica de depuração usada
+        \item \textbf{Causa raiz}: O que estava errado
+        \item \textbf{Correção}: Código antes/depois
+        \item \textbf{Verificação}: Testes adicionados
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    
+    \begin{exampleblock}{Técnicas esperadas (escolha livre)}
+        Debugger, logging, testes automatizados, binary search, stack trace, git bisect
+    \end{exampleblock}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{4. Análise de Desempenho (20\%)}
+    \begin{block}{Requisito: Identificar 2+ gargalos}
+        Para cada gargalo, documente em \texttt{docs/performance-analysis.md}:
+    \end{block}
+    
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Análise:}
+            \begin{itemize}
+                \item Módulo/função afetada
+                \item Problema identificado
+                \item Medição inicial (tempo)
+                \item Complexidade (Big O)
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Otimização:}
+            \begin{itemize}
+                \item Técnica aplicada
+                \item Código antes/depois
+                \item Medição final
+                \item Ganho de performance
+                \item Trade-offs
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    
+    \vspace{0.5em}
+    
+    \begin{alertblock}{Ferramentas}
+        Python: cProfile, timeit | JS: Chrome DevTools | Java: JProfiler | C/C++: gprof, Valgrind
+    \end{alertblock}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{5. Gerenciamento de Memória (15\%)}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{C/C++ (obrigatório):}
+            \begin{itemize}
+                \item Usar Valgrind
+                \item Detectar memory leaks
+                \item Corrigir acessos inválidos
+                \item Documentar correções
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Outras linguagens:}
+            \begin{itemize}
+                \item Uso eficiente de estruturas
+                \item Evitar referências circulares
+                \item Generators para grandes volumes
+                \item Cache com limite (LRU)
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    
+    \vspace{1em}
+    
+    \begin{block}{Documento: \texttt{docs/memory-analysis.md}}
+        \begin{itemize}
+            \item Análise realizada (ferramenta usada)
+            \item Problemas encontrados
+            \item Otimizações implementadas
+            \item Medições antes/depois
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+%=============================================================================
+\begin{frame}[fragile]{Estrutura de Entrega}
+    \begin{lstlisting}
+entrega-u3/
+|-- README.md                  # Visao geral + instrucoes
+|-- docs/
+|   |-- testing-report.md      # Relatorio completo
+|   |-- coverage-report.md     # Analise de cobertura
+|   |-- debugging-log.md       # Bugs encontrados
+|   |-- performance-analysis.md # Gargalos e otimizacoes
+|   `-- memory-analysis.md     # Analise de memoria
+|-- tests/
+|   |-- unit/                  # Testes unitarios
+|   |-- integration/           # Testes de integracao
+|   `-- coverage-results/      # Relatorios HTML
+|-- src/
+|   `-- (codigo fonte refatorado)
+`-- video-presentation.md      # Link para video
+    \end{lstlisting}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{Vídeo de Apresentação (10-12 min)}
+    \begin{enumerate}
+        \item \textbf{Recapitulação} (1-2 min)
+        \begin{itemize}
+            \item Visão do produto
+            \item Evolução desde U1
+        \end{itemize}
+        
+        \item \textbf{Demonstração de Testes} (3-4 min)
+        \begin{itemize}
+            \item Execução da suite
+            \item Relatório de cobertura
+        \end{itemize}
+        
+        \item \textbf{Depuração} (2 min)
+        \begin{itemize}
+            \item 1-2 bugs interessantes
+            \item Como foram corrigidos
+        \end{itemize}
+        
+        \item \textbf{Performance} (2 min)
+        \begin{itemize}
+            \item Gargalos encontrados
+            \item Métricas before/after
+        \end{itemize}
+        
+        \item \textbf{Conclusão} (2-3 min)
+        \begin{itemize}
+            \item Qualidade final
+            \item Lições aprendidas
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{Checklist de Entrega}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Documentação:}
+            \begin{itemize}
+                \item[$\square$] README.md atualizado
+                \item[$\square$] testing-report.md
+                \item[$\square$] coverage-report.md
+                \item[$\square$] debugging-log.md (3+ bugs)
+                \item[$\square$] performance-analysis.md (2+ gargalos)
+                \item[$\square$] memory-analysis.md
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Código e Testes:}
+            \begin{itemize}
+                \item[$\square$] 10+ testes unitários
+                \item[$\square$] Todos passando
+                \item[$\square$] Cobertura $\geq$ 70\%
+                \item[$\square$] Relatório HTML incluído
+            \end{itemize}
+            
+            \vspace{0.5em}
+            
+            \textbf{Apresentação:}
+            \begin{itemize}
+                \item[$\square$] Vídeo 10-12 min
+                \item[$\square$] Link funcionando
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{Informações Finais}
+    \begin{block}{Entrega}
+        \textbf{Data:} 05/12/2025 às 23:59 \\
+        \textbf{Plataforma:} SIGAA - Tarefa "Entrega U3" \\
+        \textbf{Formato:} ZIP único: \texttt{u3-[projeto]-[integrantes].zip}
+    \end{block}
+    
+    \begin{block}{Trabalho em Grupo}
+        \begin{itemize}
+            \item Individual ou grupos de 2-4 pessoas
+            \item Descrever contribuição de cada membro
+            \item Todos devem dominar o código completo
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{Plantão de Dúvidas}
+        \textbf{05/12 no horário da aula} (online) - Estarei disponível para tirar dúvidas sobre a entrega
+    \end{alertblock}
+\end{frame}
+
+%=============================================================================
+\begin{frame}{Suporte e Recursos}
+    \begin{center}
+        \Large
+        \textbf{Precisa de ajuda?}
+        
+        \vspace{2em}
+        
+        \normalsize
+        \faEnvelope\ \textbf{Atendimento:} Segundas 14h-16h (online) \\
+        \vspace{0.5em}
+        \faDiscord\ \textbf{Discord:} \url{https://discord.gg/bbMFJBQRT8} \\
+        \vspace{0.5em}
+        \faGithub\ \textbf{GitHub:} \url{https://github.com/fmarquesfilho/bpp-2025-2}
+        
+        \vspace{3em}
+        
+        \Huge
+        Bom trabalho!
+    \end{center}
+\end{frame}
+
+\end{document}
