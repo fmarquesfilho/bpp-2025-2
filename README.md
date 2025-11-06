@@ -78,12 +78,12 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 |------|-----------|
 | 19/09/25 à 10/10/25 | Acompanhamento de projeto |
 
-### **Semana 7** - Entrega U1: Planejamento do Projeto
+### Entrega U1: Planejamento do Projeto
 | Data     | Atividade                                          |
 |----------|----------------------------------------------------|
 | 14/10/25 | **As entregas devem ser realizadas via SIGAA até 23:59.** |
 
-### **Semana 9** - Não houve aula
+### Não houve aula
 | Data | Atividade |
 |------|-----------|
 | 17/10/25 | Aula cancelada |
