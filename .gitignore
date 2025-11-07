@@ -29,5 +29,15 @@
 *.fdb_latexmk
 *.xdv
 
+# ignora pycache
+__pycache__/
+
+# .pytest_cache
+.pytest_cache/
+
+# htmlcov
+htmlcov/
+.coverage
+
 # MacOSX
 .DS_Store
