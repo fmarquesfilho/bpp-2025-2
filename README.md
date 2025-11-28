@@ -118,10 +118,10 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 |------|-----------|
 | 05/12/25 | **Avaliação Escrita - Unidade 2** |
 
-### Entrega U3: MVP do Projeto e Reposição
+### Entrega U3: MVP do Projeto
 | Data | Atividade |
 |------|-----------|
-| 10/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59. Eu estarei de plantão online para tirar dúvidas sobre a entrega no horário da aula.** |
+| 10/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59.** |
 
 ---
 
