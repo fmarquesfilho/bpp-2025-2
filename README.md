@@ -108,16 +108,20 @@ O curso será centrado na aplicação prática dos princípios de **código limp
 |------|-----------|
 | 21/11/25 | **Não haverá aula** |
 
+### Revisão
+| Data | Atividade |
+|------|-----------|
+| 28/11/25 | **Revisão e preparação para a prova** |
+
 ### Prova Presencial (U2)
 | Data | Atividade |
 |------|-----------|
-| 28/11/25 | **Avaliação Escrita - Unidade 2** |
+| 05/12/25 | **Avaliação Escrita - Unidade 2** |
 
 ### Entrega U3: MVP do Projeto e Reposição
 | Data | Atividade |
 |------|-----------|
-| 05/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59. Eu estarei de plantão online para tirar dúvidas sobre a entrega no horário da aula.** |
-| 05/12/25 | **Reposição de avaliação** |
+| 10/12/25 | **As entregas devem ser realizadas via SIGAA até 23:59. Eu estarei de plantão online para tirar dúvidas sobre a entrega no horário da aula.** |
 
 ---
 
